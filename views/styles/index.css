@@ -1,0 +1,20 @@
+
+table, th, tr, td{
+    border: 1px solid black;
+}
+
+.table1 td{
+    text-align: center;
+}
+
+.td_w100{
+    width: 100px;
+}
+
+.td_w250{
+    width: 250px;
+}
+
+.td_w300{
+    width: 300px;
+}
