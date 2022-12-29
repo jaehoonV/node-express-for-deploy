@@ -3,6 +3,14 @@ table, th, tr, td{
     border: 1px solid black;
 }
 
+.div1{
+    margin: 0 auto;
+    width: 600px;
+}
+.table1{
+    margin: 0 auto;
+}
+
 .table1 td{
     text-align: center;
 }
