@@ -1,13 +1,5 @@
 extends layout
 
 block content
-    p Welcome to pug Express
-
-    div(class="div1")
-        table(class="table1")
-            th Mail
-            th Name
-            each obj in results
-                tr
-                    td(class="td_w250") #{obj.EMAIL}
-                    td(class="td_w100") #{obj.USERNAME}
+  h1= title
+  p Welcome to #{title}
