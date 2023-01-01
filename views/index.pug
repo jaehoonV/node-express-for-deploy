@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    h1= title
+    p Welcome to pug - Node JS With Maria DB
+
+    div(class="div1")
+        table(class="table1")
+            th Mail
+            th Name
+            each obj in results
+                tr
+                    td(class="td_w250") #{obj.EMAIL}
+                    td(class="td_w100") #{obj.USERNAME}
