@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>index</title>
-  <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" href="/public/stylesheets/index.css">
 </head>
+<script type="text/javascript">
+  function movePage(lotto){
+    location.href = "/" + lotto;
+  }
+</script>
 <body>
   <div style="margin: 0 auto; width: 600px;">
   <h1 style="margin: 10px auto; width: 550px;">NODE JS - MARIA DB - EJS TEST</h1>
@@ -21,5 +26,6 @@
     <% } %>
   </table>
   </div>
+  <div><button type="button" onclick="movePage('lotto')">lotto</button></div>
 </body>
 </html>

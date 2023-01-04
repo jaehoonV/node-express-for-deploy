@@ -23,6 +23,10 @@ router.get('/', function(req, res, next) {
   res.render('index', sql_data);
 });
 
+router.get('/lotto', (req, res) => {
+  res.render('lotto', sql_data_lo);
+})
+
 module.exports = router;
 
 maria.end(); // DB 접속 종료
