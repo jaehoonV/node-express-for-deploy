@@ -25,4 +25,4 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 
-maria.end(); // DB 접속 종료
+// maria.end(); // DB 접속 종료
