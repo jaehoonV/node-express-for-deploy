@@ -3,7 +3,7 @@ var router = express.Router();
 
 // mariaDB Connection
 const maria = require('../ext/conn_mariaDB');
-maria.connect();   // DB 접속
+// maria.connect();   // DB 접속
 
 /* lotto */
 /* 전체 통계 */
