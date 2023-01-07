@@ -53,7 +53,8 @@ let sql_lo_avg_top = "SELECT * FROM V_LOTTO_CNT_SUM WHERE NUM_CNT >= GET_AVG_LOT
 /* 적게 나온 번호(25%) */
 let sql_lo_avg_bottom = "SELECT * FROM V_LOTTO_CNT_SUM WHERE NUM_CNT <= GET_AVG_LOTTO_CNT_BOTTOM() ORDER BY NUM_CNT DESC, NUM ASC; ";
 
-let sql_data_lo;
+router.get('/lotto', (req, res) => {
+  let sql_data_lo;
   maria.query(sql_lo + sql_lo_num_cnt + sql_lo_recently10_num_cnt + sql_lo_avg_up + sql_lo_avg_down + sql_lo_avg_top + sql_lo_avg_bottom, function (err, results) {
     if (err) {
         console.log(err);
@@ -67,10 +68,40 @@ let sql_data_lo;
       "results_lo_top25" : results[5],
       "results_lo_bottom25" : results[6]
     }
-});
+    res.render('lotto', sql_data_lo);
+  });
+})
 
-router.get('/lotto', (req, res) => {
-  res.render('lotto', sql_data_lo);
+router.post('/save', (req, res) => {
+  console.log(req.body);
+  let sql_lo_insert = "INSERT INTO LOTTO(ROUND,NUM1,NUM2,NUM3,NUM4,NUM5,NUM6,NUMB,PRIZE1,PRIZE1CNT,PRIZE2,PRIZE2CNT,ROUND_DATE,REGDAY,REGID) "
+  + "VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE(), ?); ";
+
+  connection.query(sql_lo_insert,
+              [req.body.round, req.body.num1, req.body.num2, req.body.num3, req.body.num4, req.body.num5, req.body.num6, req.body.numB, req.body.prize1, req.body.prize1cnt, req.body.prize2, req.body.prize2cnt, req.body.round_date, req.body.regid], 
+              function (err, result) {
+    if (err) {
+      console.log(err);
+    } else{
+      console.log("1 record inserted!");
+      let sql_data_lo;
+      connection.query(sql_lo + sql_lo_num_cnt + sql_lo_recently10_num_cnt + sql_lo_avg_up + sql_lo_avg_down + sql_lo_avg_top + sql_lo_avg_bottom, function (err, results) {
+        if (err) {
+            console.log(err);
+        }
+        sql_data_lo = {
+          "results_lo" : results[0],
+          "results_lo_num_cnt" : results[1],
+          "results_lo_recently10_num_cnt" : results[2],
+          "results_lo_avg_up" : results[3],
+          "results_lo_avg_down" : results[4],
+          "results_lo_top25" : results[5],
+          "results_lo_bottom25" : results[6]
+        }
+        res.render('lotto', sql_data_lo);
+      });
+    }
+  });
 })
 
 module.exports = router;
