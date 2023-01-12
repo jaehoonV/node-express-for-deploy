@@ -33,7 +33,12 @@ let sql_lo_avg_top = "SELECT * FROM V_LOTTO_CNT_SUM WHERE NUM_CNT >= GET_AVG_LOT
 /* 적게 나온 번호(25%) */
 let sql_lo_avg_bottom = "SELECT * FROM V_LOTTO_CNT_SUM WHERE NUM_CNT <= GET_AVG_LOTTO_CNT_BOTTOM() ORDER BY NUM_CNT DESC, NUM ASC; ";
 
-let sql_data_lo;
+router.post('/lotto', (req, res) => {
+  res.render('lotto');
+})
+
+router.post('/lotto', (req, res) => {
+  let sql_data_lo;
   maria.query(sql_lo + sql_lo_num_cnt + sql_lo_recently10_num_cnt + sql_lo_avg_up + sql_lo_avg_down + sql_lo_avg_top + sql_lo_avg_bottom, function (err, results) {
     if (err) {
         console.log(err);
@@ -47,10 +52,8 @@ let sql_data_lo;
       "results_lo_top25" : results[5],
       "results_lo_bottom25" : results[6]
     }
-});
-
-router.get('/lotto', (req, res) => {
-  res.render('lotto', sql_data_lo);
+    res.json(sql_data_lo);
+  });
 })
 
 module.exports = router;
