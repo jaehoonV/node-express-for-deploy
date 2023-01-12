@@ -53,7 +53,7 @@ let sql_lo_avg_top = "SELECT * FROM V_LOTTO_CNT_SUM WHERE NUM_CNT >= GET_AVG_LOT
 /* 적게 나온 번호(25%) */
 let sql_lo_avg_bottom = "SELECT * FROM V_LOTTO_CNT_SUM WHERE NUM_CNT <= GET_AVG_LOTTO_CNT_BOTTOM() ORDER BY NUM_CNT DESC, NUM ASC; ";
 
-router.post('/lotto', (req, res) => {
+router.get('/lotto', (req, res) => {
   res.render('lotto');
 })
 
