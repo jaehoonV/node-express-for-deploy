@@ -93,6 +93,31 @@ router.post('/save', (req, res) => {
   });
 })
 
+app.post('/extraction', (req, res) => {
+
+  let sql_lo_ext_sel = "SELECT A.ROUND, A.NUM1, A.NUM2, A.NUM3, A.NUM4, A.NUM5, A.NUM6, COUNT(A.ROUND) AS CNT FROM "
+    + "(SELECT * FROM LOTTO WHERE NUM1 IN (" + req.body.num1 + ", " + req.body.num2 + ", " + req.body.num3 + ", " + req.body.num4 + ", " + req.body.num5 + ", " + req.body.num6 + ") "
+    + "UNION ALL "
+    + "SELECT * FROM LOTTO WHERE NUM2 IN (" + req.body.num1 + ", " + req.body.num2 + ", " + req.body.num3 + ", " + req.body.num4 + ", " + req.body.num5 + ", " + req.body.num6 + ") "
+    + "UNION ALL "
+    + "SELECT * FROM LOTTO WHERE NUM3 IN (" + req.body.num1 + ", " + req.body.num2 + ", " + req.body.num3 + ", " + req.body.num4 + ", " + req.body.num5 + ", " + req.body.num6 + ") "
+    + "UNION ALL "
+    + "SELECT * FROM LOTTO WHERE NUM4 IN (" + req.body.num1 + ", " + req.body.num2 + ", " + req.body.num3 + ", " + req.body.num4 + ", " + req.body.num5 + ", " + req.body.num6 + ") "
+    + "UNION ALL "
+    + "SELECT * FROM LOTTO WHERE NUM5 IN (" + req.body.num1 + ", " + req.body.num2 + ", " + req.body.num3 + ", " + req.body.num4 + ", " + req.body.num5 + ", " + req.body.num6 + ") "
+    + "UNION ALL "
+    + "SELECT * FROM LOTTO WHERE NUM6 IN (" + req.body.num1 + ", " + req.body.num2 + ", " + req.body.num3 + ", " + req.body.num4 + ", " + req.body.num5 + ", " + req.body.num6 + ")) A "
+    + "GROUP BY A.ROUND, A.NUM1, A.NUM2, A.NUM3, A.NUM4, A.NUM5, A.NUM6 HAVING CNT > 3 ";
+  
+  maria.query(sql_lo_ext_sel, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else{
+      res.json(result);
+    }
+  });
+})
+
 module.exports = router;
 
 // maria.end(); // DB 접속 종료
