@@ -93,7 +93,7 @@ router.post('/save', (req, res) => {
   });
 })
 
-app.post('/extraction', (req, res) => {
+router.post('/extraction', (req, res) => {
 
   let sql_lo_ext_sel = "SELECT A.ROUND, A.NUM1, A.NUM2, A.NUM3, A.NUM4, A.NUM5, A.NUM6, COUNT(A.ROUND) AS CNT FROM "
     + "(SELECT * FROM LOTTO WHERE NUM1 IN (" + req.body.num1 + ", " + req.body.num2 + ", " + req.body.num3 + ", " + req.body.num4 + ", " + req.body.num5 + ", " + req.body.num6 + ") "
