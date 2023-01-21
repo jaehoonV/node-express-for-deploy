@@ -250,7 +250,7 @@ function lotto_extraction() {
     $('.history_result').html(''); // 초기화
     
     $.ajax({
-        url : "lotto/extraction",
+        url : "/lotto/extraction",
         type : "POST",
         dataType : "JSON",
         data : {"num1" : lotto[0], "num2" : lotto[1], "num3" : lotto[2], "num4" : lotto[3], "num5" : lotto[4], "num6" : lotto[5]}
