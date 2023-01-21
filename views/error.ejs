@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ERROR</title>
+    <link rel="stylesheet" href="/stylesheets/error.css">
+</head>
+
+<body>
+    <div style="margin: 0 auto; width: 1200px;">
+        <h1 style="text-align: center;">ERROR</h1>
+        <% if(error){ %>
+            <h3 style="text-align: center;">
+                <%= error %>
+            </h3>
+            <% } %>
+    </div>
+    <div style="margin: 0 auto; width: 1200px; height: 500px;">
+        <div class="cube">
+            <div class="big">
+                <span style="--i:0;--clr: #e2e2e2;">ERROR</span>
+                <span style="--i:1;--clr: #f0f0f0;">ERROR</span>
+                <span style="--i:2;--clr: #e2e2e2;">ERROR</span>
+                <span style="--i:3;--clr: #f0f0f0;">ERROR</span>
+                <span class="top" style="--clr: #fff;"></span>
+            </div>
+        </div>
+    </div>
+    <div style="margin: 10px auto; width: 140px;"><button type="button" onclick="history.back()">이전 페이지로 이동</button></div>
+</body>
+
+</html>

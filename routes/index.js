@@ -25,8 +25,6 @@ router.get('/', function(req, res, next) {
   res.render('index', sql_data);
 });
 
-
-
 module.exports = router;
 
 // maria.end(); // DB 접속 종료

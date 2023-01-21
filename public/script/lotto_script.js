@@ -7,6 +7,14 @@ let results_lo_top25; // 많이 나온 번호(25%) 통계
 let results_lo_bottom25; // 적게 나온 번호(25%) 통계
 
 function init(){
+    // 제외번호 버튼 출력
+    let ex_num_output = "";
+    for (let ex = 1; ex < 46; ex++) {
+        ex_num_output += makeExBallFunc(ex);
+    }
+
+    $('#except_num').html(ex_num_output);
+
     $.ajax({
         url : "/lotto",
         type : "POST",
@@ -22,13 +30,7 @@ function init(){
         results_lo_avg_down = json_data.results_lo_avg_down;
         results_lo_top25 = json_data.results_lo_top25;
         results_lo_bottom25 = json_data.results_lo_bottom25;
-        console.log(results_lo);
-        console.log(results_lo_num_cnt);
-        console.log(results_lo_recently10_num_cnt);
-        console.log(results_lo_avg_up);
-        console.log(results_lo_avg_down);
-        console.log(results_lo_top25);
-        console.log(results_lo_bottom25);
+        
         for(let i = 1; i <= 6; i++){
             lo_func(i);
         }
@@ -136,6 +138,22 @@ function makeBallFunc(n){
     return output;
 }
 
+function makeExBallFunc(n){
+    let output = "";
+    if(n <= 10){
+        output += "<input type='button' class='ball10 ball ex_num' value=" + n + ">";
+    } else if(n <= 20){
+        output += "<input type='button' class='ball20 ball ex_num' value=" + n + ">";
+    } else if(n <= 30){
+        output += "<input type='button' class='ball30 ball ex_num' value=" + n + ">";
+    } else if(n <= 40){
+        output += "<input type='button' class='ball40 ball ex_num' value=" + n + ">";
+    } else if(n <= 50){
+        output += "<input type='button' class='ball50 ball ex_num' value=" + n + ">";
+    }
+    return output;
+}
+
 function history_toggle() {
     var style = $('#history').css("display");
     if (style == "none") {
@@ -145,31 +163,65 @@ function history_toggle() {
     }
 }
 
+// 제외 번호
+let except_num_arr = [];
+
 function lotto_extraction() {
+    const select_op_val = $('#op_value').val();
     let lotto = [];
-    let i = 0;
     let err_cnt0 = 0;
-    while (i < 6) {
-        let num = Math.floor(Math.random() * 44) + 1;
-        let bool = true;
-        for (let j in lotto) {
-            if (num == lotto[j]) {
-                bool = false;
+    let op_cnt = 0;
+
+    // 번호 입력 처리
+    $('.op_val').each(function(){
+        let temp = $(this).val();
+        if(!lotto.includes(temp) && temp > 0 && temp <= 45){
+            lotto[op_cnt++] = Number(temp); // 숫자 처리 필수
+        }
+    });
+
+    let i = op_cnt;
+
+    switch (select_op_val) {
+        case "0": // 랜덤 추출
+            while (i < 6) {
+                let num = Math.floor(Math.random() * 44) + 1;
+                let bool = true;
+                for (let j in lotto) {
+                    if (num == lotto[j]) {
+                        bool = false;
+                    }
+                }
+                for (let k in except_num_arr) {
+                    if (num == except_num_arr[k]) {
+                        bool = false;
+                    }
+                }
+                if (bool) {
+                    lotto.push(num);
+                    i++;
+                }
+                if (err_cnt0++ > 100) {
+                    alert("조건을 다시 설정해주시기바랍니다.");
+                    break;
+                }
             }
-        }
-        /* for (let k in except_num_arr) {
-            if (num == except_num_arr[k]) {
-                bool = false;
-            }
-        } */
-        if (bool) {
-            lotto.push(num);
-            i++;
-        }
-        if (err_cnt0++ > 100) {
-            alert("조건을 다시 설정해주시기바랍니다.");
-            break;
-        }
+        break;
+        case "1": // 평균보다 많이 나온 번호
+            lotto = option_extraction(i, results_lo_avg_up, lotto);
+        break;
+        case "2": // 많이 나온 번호(25%)
+            lotto = option_extraction(i, results_lo_top25, lotto);
+        break;
+        case "3": // 평균보다 적게 나온 번호
+            lotto = option_extraction(i, results_lo_avg_down, lotto);
+        break;
+        case "4": // 적게 나온 번호(25%)
+            lotto = option_extraction(i, results_lo_bottom25, lotto);
+        break;
+        case "5": // 최근 10회차 번호
+            lotto = option_extraction(i, results_lo_recently10_num_cnt, lotto);
+        break;
     }
 
     // 정렬
@@ -181,19 +233,19 @@ function lotto_extraction() {
     let output = "";
     for (let l = 0; l < 6; l++) {
         if (lotto[l] <= 10) {
-            output += "<input class='ball10 ball_big1' value='" + lotto[l] + "'disabled>";
+            output += "<input class='ball10 ball_big1 tra-effect' value='" + lotto[l] + "'disabled>";
         } else if (lotto[l] <= 20) {
-            output += "<input class='ball20 ball_big1' value='" + lotto[l] + "'disabled>";
+            output += "<input class='ball20 ball_big1 tra-effect' value='" + lotto[l] + "'disabled>";
         } else if (lotto[l] <= 30) {
-            output += "<input class='ball30 ball_big1' value='" + lotto[l] + "'disabled>";
+            output += "<input class='ball30 ball_big1 tra-effect' value='" + lotto[l] + "'disabled>";
         } else if (lotto[l] <= 40) {
-            output += "<input class='ball40 ball_big1' value='" + lotto[l] + "'disabled>";
+            output += "<input class='ball40 ball_big1 tra-effect' value='" + lotto[l] + "'disabled>";
         } else {
-            output += "<input class='ball50 ball_big1' value='" + lotto[l] + "'disabled>";
+            output += "<input class='ball50 ball_big1 tra-effect' value='" + lotto[l] + "'disabled>";
         }
     }
     
-    $('#temp').html(output);
+    $('#pick_num').html(output);
 
     $('.history_result').html(''); // 초기화
     
@@ -206,20 +258,50 @@ function lotto_extraction() {
     .done(function (json){
         let json_data = JSON.parse(JSON.stringify(json));
         for(let i = 0; i < json_data.length; i++){
-            let output = '<div><span>' + json_data[i].ROUND + '회차 </span>'
+            let output = '<div class="tra-effect"><span class="history_result_span">' + json_data[i].ROUND + '회차 </span>'
                 + include_check(lotto,json_data[i].NUM1)
                 + include_check(lotto,json_data[i].NUM2)
                 + include_check(lotto,json_data[i].NUM3)
                 + include_check(lotto,json_data[i].NUM4)
                 + include_check(lotto,json_data[i].NUM5)
                 + include_check(lotto,json_data[i].NUM6)
-                +'</div>';
+                + '<span>&nbsp;&nbsp;</span>'
+                + include_check(lotto,json_data[i].NUMB)
+                +'<span> ' + json_data[i].RANK + '</span></div>';
             $('.history_result').append(output);
         }
     })
     .fail(function (xhr, status, errorThrown){
         alert("Ajax failed")
     })
+}
+
+function option_extraction(i, option_arr, lotto){
+    let option_lotto = lotto;
+    let err_cnt0 = 0;
+    while (i < 6) {
+        let arr = option_arr[Math.floor(Math.random() * option_arr.length)];
+        let bool = true;
+        for (let j in option_lotto) {
+            if (arr.NUM == option_lotto[j]) {
+                bool = false;
+            }
+        }
+        for (let k in except_num_arr) {
+            if (arr.NUM == except_num_arr[k]) {
+                bool = false;
+            }
+        }
+        if (bool) {
+            option_lotto.push(arr.NUM);
+            i++;
+        }
+        if (err_cnt0++ > 100) {
+            alert("조건을 다시 설정해주시기바랍니다.");
+            break;
+        }
+    }
+    return option_lotto;
 }
 
 function include_check(lotto, num){
@@ -238,3 +320,40 @@ function include_check(lotto, num){
     }
     return "<input class='ball10 ball not_include_ball' value='" + num + "'disabled>";
 }
+
+function save_num() {
+    let newDiv = $("<div></div>");
+    newDiv.append($('#pick_num').html());
+    $('#save_box').append(newDiv);
+ }
+
+// 드롭다운 옵션
+window.onload = function () {
+    $('.optionItem').click(function () {
+        $('#op_value').val($(this).val());
+        $('.label').html($(this).html());
+        $('.selectBox').removeClass('active');
+    })
+
+    $('.label').click(function () {
+        if ($('.selectBox').hasClass('active')) {
+            $('.selectBox').removeClass('active');
+        } else {
+            $('.selectBox').addClass('active');
+        }
+    });
+}
+
+// 제외번호
+$(document).on("click",".ex_num",function(e){ 
+    e.preventDefault();
+    if ($(this).hasClass('ex_active')) {
+        $(this).removeClass('ex_active');
+        except_num_arr = except_num_arr.filter((element) => element !== this.value);
+        $('#except_num_input').val(except_num_arr);
+    } else {
+        $(this).addClass('ex_active');
+        except_num_arr.push(this.value);
+        $('#except_num_input').val(except_num_arr);
+    }
+})
