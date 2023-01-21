@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
   res.render('lotto');
 })
 
-router.post('/', (req, res) => {
+router.post('/lotto', (req, res) => {
   let sql_data_lo;
   maria.query(sql_lo + sql_lo_num_cnt + sql_lo_recently10_num_cnt + sql_lo_avg_up + sql_lo_avg_down + sql_lo_avg_top + sql_lo_avg_bottom, function (err, results) {
     if (err) {
@@ -57,7 +57,7 @@ router.post('/', (req, res) => {
   });
 })
 
-router.post('/save', (req, res) => {
+router.post('lotto/save', (req, res) => {
   console.log(req.body);
   let sql_lo_insert = "INSERT INTO LOTTO(ROUND,NUM1,NUM2,NUM3,NUM4,NUM5,NUM6,NUMB,PRIZE1,PRIZE1CNT,PRIZE2,PRIZE2CNT,ROUND_DATE,REGDAY,REGID) "
   + "VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE(), ?); ";
