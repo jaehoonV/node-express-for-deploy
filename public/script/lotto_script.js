@@ -16,7 +16,7 @@ function init(){
     $('#except_num').html(ex_num_output);
 
     $.ajax({
-        url : "/lotto",
+        url : "/lotto/",
         type : "POST",
         dataType : "JSON",
         data : {"today" : new Date()}

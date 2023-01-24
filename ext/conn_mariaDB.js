@@ -1,6 +1,6 @@
 const maria = require('mysql'); // mysql 모듈 로드
 
-const conn = maria.createConnection({  // mysql 접속 설정
+const connection = maria.createConnection({  // mysql 접속 설정
     host: 'svc.gksl2.cloudtype.app',
     port: '32059',
     user: 'root',
@@ -9,4 +9,4 @@ const conn = maria.createConnection({  // mysql 접속 설정
     multipleStatements : true
 });
 
-module.exports = conn;
+module.exports = connection;

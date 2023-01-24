@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 // mariaDB Connection
-// const maria = require('../ext/conn_mariaDB');
-// maria.connect();   // DB 접속
+const maria = require('../ext/conn_mariaDB');
+
+router.use(express.static("public"));
 
 /* lotto */
 /* 전체 통계 */
@@ -104,6 +105,9 @@ router.post('/extraction', (req, res) => {
   });
 })
 
-module.exports = router;
+// 404 Error Handling
+router.all('*',(req, res, next) => {
+  res.status(404).render('error',{error: 404});
+});
 
-// maria.end(); // DB 접속 종료
+module.exports = router;
