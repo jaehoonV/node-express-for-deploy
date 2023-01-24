@@ -12,7 +12,7 @@ function init(){
     for (let ex = 1; ex < 46; ex++) {
         ex_num_output += makeExBallFunc(ex);
     }
-
+    console.log(ex_num_output); //  버그체크
     $('#except_num').html(ex_num_output);
 
     $.ajax({
