@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var lottoRouter = require('./routes/lotto');
 var usersRouter = require('./routes/users');
+let minesweeperRouter = require('./routes/minesweeper');
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/lotto', lottoRouter);
 app.use('/users', usersRouter);
+app.use('/minesweeper', minesweeperRouter);
 
 // 404 Error Handling
 app.all('*',(req, res, next) => {

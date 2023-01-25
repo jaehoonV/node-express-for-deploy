@@ -1,0 +1,278 @@
+html, body {
+    box-sizing: border-box;
+    background-color: #edf1f4;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#game_board {
+    width: 32.5rem;
+    height: 34rem;
+    margin: 0 auto;
+}
+
+#history_board{
+    display: inline-block;
+    width: 33rem;
+    height: 34rem;
+    margin: 120px 30px 10px 10px;
+    overflow: auto;
+    text-align: center;
+}
+
+.notMine, .mine {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid rgb(112, 104, 104);
+    text-align: center;
+    color: rgb(112, 104, 104);
+    line-height: 3rem;
+    background-color: rgb(112, 104, 104);
+    font-weight: 800;
+    padding: 0;
+    margin: 1px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+h2 {
+    margin: 0 auto;
+    width: 25rem;
+    font-size: 2rem;
+    text-align: center;
+    padding: 2% 0;
+}
+
+.clickNotMine {
+    background-color: #e3eff8;
+    transition: all 0.5s ease-in-out;
+}
+
+.clickMine {
+    background-color: #e3eff8;
+    transition: all 0.5s ease-in-out;
+    border: 1px solid red;
+    color: red;
+}
+
+.check {
+    background-color: bisque;
+    color: bisque;
+}
+
+.earthquake {
+    animation: earthquake 150ms 5;
+}
+
+@keyframes earthquake {
+    25% {
+        transform: rotate(-2deg) translateX(-2px);
+    }
+
+    50% {
+        transform: translateY(-1px);
+    }
+
+    75% {
+        transform: rotate(2deg) translateY(2px);
+    }
+}
+
+.beat {
+    animation: beat 350ms 2;
+}
+
+@keyframes beat {
+    to {
+        transform: scale(1.05);
+    }
+}
+
+#failed {
+    position: absolute;
+    padding: 5px;
+    width: 260px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: black;
+    top: 23%;
+    left: calc(50% - 140px);
+    color: red;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    padding: 10px;
+    display: none;
+    opacity: 0;
+}
+
+#won {
+    position: absolute;
+    padding: 5px;
+    width: 260px;
+    border: 2px solid #9f9191;
+    border-radius: 20px;
+    background-color: whitesmoke;
+    top: 23%;
+    left: calc(50% - 140px);
+    color: #353434;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    padding: 10px;
+    display: none;
+    opacity: 0;
+}
+
+.retry_btn {
+    all: unset;
+    margin-top: 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#failed .retry_btn {
+    color: white;
+}
+
+.retry_btn:hover {
+    color: #d5dce2;
+}
+
+.click_cnt_div {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 5px;
+    letter-spacing: 0.1rem;
+}
+
+#failed .click_cnt_div {
+    color: white;
+}
+
+/* 타이머 */
+.flip-card {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    color: #de4848;
+}
+
+.bottom,
+.flip-card .bottom-flip,
+.flip-card .top-flip,
+.top {
+    height: 0.1em;
+    line-height: 1.61em;
+    padding: 0.7em;
+    overflow: hidden;
+    font-weight: 800;
+    font-size: 1.3rem;
+}
+
+.flip-card .top-flip,
+.top {
+    background-color: #353434;
+    border-top-right-radius: 0.5em;
+    border-top-left-radius: 0.5em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bottom,
+.flip-card .bottom-flip {
+    background-color: black;
+    display: flex;
+    align-items: flex-end;
+    border-bottom-right-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+}
+
+/* card 애니메이션  */
+.flip-card .top-flip {
+    position: absolute;
+    width: 20%;
+    animation: flip-top 200ms ease-in;
+    transform-origin: bottom;
+}
+
+@keyframes flip-top {
+    100% {
+        transform: rotateX(90deg);
+    }
+}
+
+.flip-card .bottom-flip {
+    position: absolute;
+    bottom: 0;
+    width: 20%;
+    animation: flip-bottom 200ms ease-out 250ms;
+    transform-origin: top;
+    transform: rotateX(90deg);
+}
+
+@keyframes flip-bottom {
+    100% {
+        transform: rotateX(0deg);
+    }
+}
+
+/* card 애니메이션  */
+
+.container {
+    display: flex;
+    gap: 0.5em;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.container-segment {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1em;
+    align-items: center;
+    font-weight: 800;
+}
+
+.segment {
+    display: flex;
+    gap: 0.1em;
+}
+
+.segment-title {
+    font-size: 1rem;
+}
+
+#click_cnt_div{
+    width: 20px;
+    min-height: 20px;
+    display: flex;
+    column-gap: 5px;
+    margin: 5px auto;
+}
+
+#save_name{
+    all: unset;
+    width: 100px;
+    height: 23px;
+    font-size: 1rem;
+    background: #c4ced5;
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 1px;
+    margin: 10px;
+}
+
+.table1, .table1 td, .table1 th{
+    border-spacing: 0;
+    border : 1px solid black;
+    border-collapse : collapse;
+}
