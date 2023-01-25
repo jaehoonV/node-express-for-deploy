@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MineSweeper</title>
+    <link rel="stylesheet" href="/stylesheets/minesweeper.css">
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="https://kit.fontawesome.com/f1b7ad5b17.js" crossorigin="anonymous"></script>
+    <script src="/script/minesweeper_script.js" type="module" defer></script>
+    <!-- 마우스 우클릭 방지 -->
+    <script type="text/javascript">
+        document.oncontextmenu = function () { return false; }
+    </script>
+</head>
+
+<body>
+    <h2> 10 X 10 MineSweeper</h2>
+
+    <div style="width: 600px; display: inline-block; margin-left: 10%;">
+        <!-- 타이머 -->
+        <div class="container">
+            <div class="container-segment">
+                <div class="segment-title">Minutes</div>
+                <div class="segment">
+                    <div class="flip-card" data-minutes-tens>
+                        <div class="top" id="minutes_tens">0</div>
+                        <div class="bottom">0</div>
+                    </div>
+                    <div class="flip-card" data-minutes-ones>
+                        <div class="top" id="minutes_ones">0</div>
+                        <div class="bottom">0</div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-segment">
+                <div class="segment-title">Seconds</div>
+                <div class="segment">
+                    <div class="flip-card" data-seconds-tens>
+                        <div class="top" id="seconds_tens">0</div>
+                        <div class="bottom">0</div>
+                    </div>
+                    <div class="flip-card" data-seconds-ones>
+                        <div class="top" id="seconds_ones">0</div>
+                        <div class="bottom">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="click_cnt_div">
+            <i class="fa-solid fa-person-digging"></i><span id="left_click_cnt"></span>
+            <i class="fa-sharp fa-solid fa-flag"></i><span id="right_click_cnt"></span>
+        </div>
+        <div id="game_board"></div>
+    </div>
+    <div id="history_board"></div>
+
+    <div id="failed">
+        <i class="fa-solid fa-face-dizzy fa-2xl"></i><br>
+        <div class="click_cnt_div">클릭 :
+            <span class="click_cnt"></span>회
+            <br>
+            시간 :
+            <span class="minutes_time"></span>
+            <span class="seconds_time"></span>초
+        </div>
+        <button class="retry_btn">Retry</button>
+    </div>
+
+    <div id="won">
+        <i class="fa-solid fa-face-laugh-beam fa-2xl"></i><br>
+        <form action="/minesweeper/save" method="POST">
+            <div class="click_cnt_div">클릭 :
+                <span class="click_cnt"></span>회
+                <br>
+                시간 :
+                <span class="minutes_time"></span>
+                <span class="seconds_time"></span>초
+                <br>
+                점수 :
+                <span class="score"></span>
+                <div>
+                    <input type="text" id="save_name" name="save_name" placeholder="NAME" maxlength="20">
+                    <button type="submit" id="save_btn">SAVE</button>
+                    <input type="text" id="save_score" name="save_score" hidden>
+                    <input type="text" id="save_click_cnt" name="save_click_cnt" hidden>
+                    <input type="text" id="save_play_time" name="save_play_time" hidden>
+                </div>
+            </div>
+        </form>
+        <button class="retry_btn">Retry</button>
+    </div>
+</body>
+
+</html>
