@@ -79,8 +79,8 @@ router.post('/save', (req, res) => {
 router.post('/extraction', (req, res) => {
 
   let sql_lo_ext_sel = "SELECT B.ROUND, B.NUM1, B.NUM2, B.NUM3, B.NUM4, B.NUM5, B.NUM6, C.NUMB, B.CNT, "
-    + "CASE WHEN C.NUMB IN (" + req.body.num1 + ", " + req.body.num2 + ", " + req.body.num3 + ", " + req.body.num4 + ", " + req.body.num5 + ", " + req.body.num6 + ") THEN '3등' "
-    + "WHEN B.CNT = 5 THEN '2등' WHEN B.CNT = 6 THEN '1등' ELSE '4등' END AS RANK "
+    + "CASE WHEN C.NUMB IN (" + req.body.num1 + ", " + req.body.num2 + ", " + req.body.num3 + ", " + req.body.num4 + ", " + req.body.num5 + ", " + req.body.num6 + ") AND B.CNT = 5 THEN '2등' "
+    + "WHEN B.CNT = 5 THEN '3등' WHEN B.CNT = 6 THEN '1등' ELSE '4등' END AS RANK "
     + "FROM (SELECT A.ROUND, A.NUM1, A.NUM2, A.NUM3, A.NUM4, A.NUM5, A.NUM6, COUNT(A.ROUND) AS CNT FROM "
     + "(SELECT * FROM LOTTO WHERE NUM1 IN (" + req.body.num1 + ", " + req.body.num2 + ", " + req.body.num3 + ", " + req.body.num4 + ", " + req.body.num5 + ", " + req.body.num6 + ") "
     + "UNION ALL "
