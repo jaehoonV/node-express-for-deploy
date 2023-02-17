@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>2048 Daily</title>
+   <link rel="stylesheet" href="/stylesheets/2048_daily.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="/script/2048_daily.js" type="module" defer></script>
+</head>
+
+<body>
+   <header class="header">
+      <div class="score-container">
+         <span class="score-label">Score</span>
+         <div class="score-box">
+            <div id="score-amount">0</div>
+         </div>
+      </div>
+   </header>
+   <div id="game-board"></div>
+
+   <div class="col_third">
+      <div class="hover panel">
+         <div class="front">
+            <div class="box1">
+               <p>Your Score :
+               <p id="score1"> </p>
+               </p>
+            </div>
+         </div>
+         <div class="back">
+            <div class="box2">
+               <button class="retry_btn">RETRY</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+
+</html>

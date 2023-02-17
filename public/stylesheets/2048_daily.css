@@ -1,0 +1,208 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Arial;
+ }
+ 
+ #score-amount {
+    transition: transform 100ms ease-in-out;
+    font-size: max(3vmin, 15px);
+    font-weight: bold;
+    text-align: center;
+ }
+ 
+ .score-box {
+    position: relative;
+ }
+ 
+ .score-label {
+    font-size: max(2vmin, 10px);
+    color: #AAA;
+    text-align: center;
+    line-height: 1.2;
+ }
+ 
+ .score-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+ 
+ .header {
+    display: flex;
+    padding-bottom: 1vmin;
+    margin-top: 2.5vmin;
+    border-bottom: 1px solid #ccc;
+    align-items: center;
+    color: #ccc;
+ }
+ 
+ body {
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-size: 7.5vmin;
+ }
+ 
+ #game-board {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-size), var(--cell-size));
+    grid-template-rows: repeat(var(--grid-size), var(--cell-size));
+    background-color: #ccc;
+    gap: var(--cell-gap);
+    border-radius: 1vmin;
+    padding: var(--cell-gap);
+    position: relative;
+    margin-top: 2vmin;
+ }
+ 
+ .cell {
+    background-color: #AAA;
+    border-radius: 1vmin;
+ }
+ 
+ .tile {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background-color: red;
+    border-radius: 1vmin;
+    top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+    /* 타일 위치 */
+    left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+    /* 타일 위치 */
+    font-weight: bold;
+    background-color: hsl(200, 50%, var(--background-lightness));
+    color: hsl(200, 25%, var(--text-lightness));
+    animation: show 200ms ease-in-out;
+    /* 타일 숫자 animation */
+    transition: 100ms ease-in-out;
+    /* 타일 움직임을 부드럽게 */
+ }
+ 
+ @keyframes show {
+    0% {
+       opacity: .5;
+       transform: scale(0);
+    }
+ }
+ 
+ p {
+    font-size: 2rem;
+    font-weight: 600;
+    display: inline-block;
+ }
+ 
+ .retry_btn {
+    all: unset;
+    font-size: 3rem;
+    font-weight: 600;
+ }
+ 
+ .retry_btn:hover {
+    color: #2F6E8E;
+    text-decoration: underline;
+ }
+ 
+ .col_third {
+    width: 30rem;
+    position: absolute;
+    display: none;
+ }
+ 
+ .wrapper {
+    width: 980px;
+    margin: 0 auto;
+    background-color: #bdd3de;
+    hoverflow: hidden;
+ }
+ 
+ .panel {
+    margin: 0 auto;
+    height: 130px;
+    position: relative;
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
+ }
+ 
+ .panel .front,
+ .panel .back {
+    text-align: center;
+ }
+ 
+ .panel .front {
+    height: inherit;
+    position: absolute;
+    top: 0;
+    z-index: 900;
+    text-align: center;
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -moz-transform: rotateX(0deg) rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+ }
+ 
+ .panel .back {
+    height: inherit;
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+ }
+ 
+ .panel.flip .front {
+    z-index: 900;
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+ }
+ 
+ .panel.flip .back {
+    z-index: 1000;
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -moz-transform: rotateX(0deg) rotateY(0deg);
+ }
+ 
+ .box1 {
+    background-color: #2F6E8E;
+    width: 30rem;
+    height: 150px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+ }
+ 
+ .box2 {
+    background-color: #DFE8EC;
+    width: 30rem;
+    height: 150px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+ }

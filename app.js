@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var lottoRouter = require('./routes/lotto');
 var usersRouter = require('./routes/users');
 let minesweeperRouter = require('./routes/minesweeper');
+let daily2048Router = require('./routes/2048_daily');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use('/', indexRouter);
 app.use('/lotto', lottoRouter);
 app.use('/users', usersRouter);
 app.use('/minesweeper', minesweeperRouter);
+app.use('/2048_daily', daily2048Router);
 
 // 404 Error Handling
 app.all('*',(req, res, next) => {
