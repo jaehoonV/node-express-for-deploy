@@ -59,7 +59,7 @@
     </div>
     <div id="history_board"></div>
 
-    <div id="failed">
+    <dialog id="failed">
         <i class="fa-solid fa-face-dizzy fa-2xl"></i><br>
         <div class="click_cnt_div">클릭 :
             <span class="click_cnt"></span>회
@@ -69,9 +69,9 @@
             <span class="seconds_time"></span>초
         </div>
         <button class="retry_btn">Retry</button>
-    </div>
+    </dialog>
 
-    <div id="won">
+    <dialog id="won">
         <i class="fa-solid fa-face-laugh-beam fa-2xl"></i><br>
         <form action="/minesweeper/save" method="POST">
             <div class="click_cnt_div">클릭 :
@@ -93,7 +93,7 @@
             </div>
         </form>
         <button class="retry_btn">Retry</button>
-    </div>
+    </dialog>
 </body>
 
 </html>

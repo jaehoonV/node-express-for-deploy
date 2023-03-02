@@ -96,39 +96,27 @@ h2 {
 }
 
 #failed {
-    position: absolute;
-    padding: 5px;
     width: 260px;
     border: 1px solid black;
     border-radius: 20px;
     background-color: black;
-    top: 23%;
-    left: calc(50% - 140px);
     color: red;
     text-align: center;
     vertical-align: middle;
     font-size: 14px;
     padding: 10px;
-    display: none;
-    opacity: 0;
 }
 
 #won {
-    position: absolute;
-    padding: 5px;
     width: 260px;
     border: 2px solid #9f9191;
     border-radius: 20px;
     background-color: whitesmoke;
-    top: 23%;
-    left: calc(50% - 140px);
     color: #353434;
     text-align: center;
     vertical-align: middle;
     font-size: 14px;
     padding: 10px;
-    display: none;
-    opacity: 0;
 }
 
 .retry_btn {
