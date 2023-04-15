@@ -23,8 +23,9 @@ td {
 }
 
 .table2 {
-    margin: 0 auto;
+    /* margin: 0 auto; */
     font-size: 10px;
+    width: 100%
 }
 
 .table2 tr {
@@ -33,6 +34,12 @@ td {
 
 .table2 td {
     text-align: center;
+}
+
+.table2 th{
+    position: sticky;
+    top: 0px;
+    background: #ddd;
 }
 
 .td_w35 {
@@ -493,4 +500,11 @@ td {
     border: 1px solid var(--button-bg-color);
     border-radius: 10px;
     padding: 5px;
+}
+
+#history{
+    width: 100%;
+    height: 500px;
+    overflow-y: scroll;
+    border: 1px solid black;
 }
