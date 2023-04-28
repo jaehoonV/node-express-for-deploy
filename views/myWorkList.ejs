@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>My Work List</title>
+  <link rel="stylesheet" href="/stylesheets/myWorkList.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="/script/myWorkList.js" type="module" defer></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="item list1" value='/myWorkFolder/Color_Switch_Page/'>
+      <span class="zoom">
+        <ion-icon name="expand-outline"></ion-icon>
+      </span>
+      <span class="list_name">Color Switch Page</span>
+      <img src="/myWorkFolder/Color_Switch_Page/screenshot_gif.gif" class="gif_img"></img>
+    </div>
+    <div class="item list2" value='/myWorkFolder/Animated_Circular_Progress_Bar/'>
+      <span class="zoom">
+        <ion-icon name="expand-outline"></ion-icon>
+      </span>
+      <span class="list_name">Animated Circular Progress Bar</span>
+      <img src="/myWorkFolder/Animated_Circular_Progress_Bar/screenshot_gif.gif" class="gif_img"></img>
+    </div>
+    <div class="item list3" value='/myWorkFolder/Countdown_Flip_Timer/'>
+      <span class="zoom">
+        <ion-icon name="expand-outline"></ion-icon>
+      </span>
+      <span class="list_name">Countdown Flip Timer</span>
+      <img src="/myWorkFolder/Countdown_Flip_Timer/screenshot_gif.gif" class="gif_img"></img>
+    </div>
+    <div class="item list4" value='/myWorkFolder/Custom_Input_Range_Slider/'>
+      <span class="zoom">
+        <ion-icon name="expand-outline"></ion-icon>
+      </span>
+      <span class="list_name">Custom Input Range Slider</span>
+      <img src="/myWorkFolder/Custom_Input_Range_Slider/screenshot_gif.gif" class="gif_img"></img>
+    </div>
+    <div class="item list5" value='/myWorkFolder/Dashboard_Sidebar_Menu/'>
+      <span class="zoom">
+        <ion-icon name="expand-outline"></ion-icon>
+      </span>
+      <span class="list_name">Dashboard Sidebar Menu</span>
+      <img src="/myWorkFolder/Dashboard_Sidebar_Menu/screenshot_gif.gif" class="gif_img"></img>
+    </div>
+    <div class="item list6" value='/myWorkFolder/Delete_Button_Animation_Effects/'>
+      <span class="zoom">
+        <ion-icon name="expand-outline"></ion-icon>
+      </span>
+      <span class="list_name">Delete Button Animation Effects</span>
+      <img src="/myWorkFolder/Delete_Button_Animation_Effects/screenshot_gif.gif" class="gif_img"></img>
+    </div>
+    <div class="item list7" value='/myWorkFolder/Dynamic_Expandable_Content_Only_CSS/'>
+      <span class="zoom">
+        <ion-icon name="expand-outline"></ion-icon>
+      </span>
+      <span class="list_name">Dynamic Expandable Content Only CSS</span>
+      <img src="/myWorkFolder/Dynamic_Expandable_Content_Only_CSS/screenshot_gif.gif" class="gif_img"></img>
+    </div>
+    <div class="item list8" value='/myWorkFolder/Highlighter_effect(Pseudo_Element)/'>
+      <span class="zoom">
+        <ion-icon name="expand-outline"></ion-icon>
+      </span>
+      <span class="list_name">Highlighter effect(Pseudo_Element)</span>
+      <img src="/myWorkFolder/Highlighter_effect(Pseudo_Element)/screenshot_gif.gif" class="gif_img"></img>
+    </div>
+    <div class="item list9">9</div>
+    <div class="item list10">10</div>
+  </div>
+
+  <div id="myModal" class="modal">
+    <div class="modal-body">
+      <span class="close">&times;</span>
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+  <div id="movePage_confirmed">
+    '<span id="confirmed_label"></span>'<br>페이지로 이동하시겠습니까?
+    <div>
+      <button id="confirm">네</button>
+      <button id="cancel">아니오</button>
+    </div>
+  </div>
+</body>
+
+</html>
