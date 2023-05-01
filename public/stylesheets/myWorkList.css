@@ -151,13 +151,20 @@ html{
 .list_name{
     text-align: center;
     position: relative;
-    bottom: 2px;
+    bottom: 25px;
     z-index: 1;
-    font-weight: bold;
     transition: 0.5s ease-in-out;
     font-size: 13px;
 }
 
 .item:hover .list_name {
-    font-size: 14px;
+    text-shadow:
+    -0.2px -0.2px 0 #000000,
+    0.2px -0.2px 0 #000000,
+    -0.2px 0.2px 0 #000000,
+    0.2px 0.2px 0 #000000;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
 }
