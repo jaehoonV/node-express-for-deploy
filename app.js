@@ -1,9 +1,12 @@
 var createError = require('http-errors');
 var express = require('express');
+const session = require('express-session')
+const FileStore = require('session-file-store')(session)
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+let authRouter  = require('./routes/auth');
 var indexRouter = require('./routes/index');
 var lottoRouter = require('./routes/lotto');
 var usersRouter = require('./routes/users');
@@ -26,7 +29,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use(session({
+  secret: "secret key",
+  is_logined: ""
+}));
+
+app.use('/', authRouter);
+app.use('/main', indexRouter);
 app.use('/lotto', lottoRouter);
 app.use('/users', usersRouter);
 app.use('/minesweeper', minesweeperRouter);
