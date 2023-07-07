@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+let authCheck = require('../public/script/authCheck.js');
 // mariaDB Connection
 const maria = require('../ext/conn_mariaDB');
 
@@ -35,7 +36,13 @@ let sql_lo_avg_top = "SELECT * FROM V_LOTTO_CNT_SUM WHERE NUM_CNT >= GET_AVG_LOT
 let sql_lo_avg_bottom = "SELECT * FROM V_LOTTO_CNT_SUM WHERE NUM_CNT <= GET_AVG_LOTTO_CNT_BOTTOM() ORDER BY NUM_CNT DESC, NUM ASC; ";
 
 router.get('/', (req, res) => {
-  res.render('lotto');
+  if (!authCheck.isOwner(req, res)) {  // login page
+    res.redirect('/login');
+    return false;
+  } else {
+    res.render('lotto');
+    return false;
+  }
 })
 
 router.post('/', (req, res) => {

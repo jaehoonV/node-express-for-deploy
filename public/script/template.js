@@ -4,7 +4,7 @@ module.exports = {
       <!doctype html>
       <html>
       <head>    
-        <title>Login TEST - ${title}</title>
+        <title>${title}</title>
         <meta charset="utf-8">
         <style>
           @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);

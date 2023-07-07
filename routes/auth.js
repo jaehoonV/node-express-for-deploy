@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var session = require('express-session')
-var FileStore = require('session-file-store')(session)
 
 router.use(express.static("public"));
 
@@ -46,7 +44,7 @@ router.get('/main', function(req, res, next) {
 
 // login page
 router.get('/login', function (request, response) {
-  var title = '로그인';
+  var title = 'Login';
   var html = template.HTML(title,`
           <h2>로그인</h2>
           <form action="/login_process" method="post">

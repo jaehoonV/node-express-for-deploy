@@ -72,6 +72,8 @@ async function handleInput(e) {
    if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
       newTile.waitForTransition(true).then(() => {
          score1.innerText = document.getElementById("score-amount").innerHTML;
+         let score_ = $('#score-amount').text();
+         $('#save_score').val(score_);
          document.getElementsByClassName("col_third")[0].style.display = "inline";
       })
       return

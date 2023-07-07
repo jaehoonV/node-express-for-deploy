@@ -1,13 +1,20 @@
 let express = require('express');
 let router = express.Router();
 
+let authCheck = require('../public/script/authCheck.js');
 // mariaDB Connection
 const maria = require('../ext/conn_mariaDB');
 
 router.use(express.static("public"));
 
 router.get('/', (req, res) => {
+  if (!authCheck.isOwner(req, res)) {  // login page
+    res.redirect('/login');
+    return false;
+  } else {
     res.render('minesweeper');
+    return false;
+  }
 })
 
 let sql_mine_history = "SELECT SEQ, CONVERT(SCORE, FLOAT) AS SCORE, CLICK_CNT, PLAY_TIME, NAME, DATE_FORMAT(REGDAY,'%Y년 %m월 %d일') AS REGDAY FROM MINESWEEPER ORDER BY SCORE DESC, REGDAY; ";
