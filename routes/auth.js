@@ -46,12 +46,48 @@ router.get('/main', function(req, res, next) {
 router.get('/login', function (request, response) {
   var title = 'Login';
   var html = template.HTML(title,`
-          <h2>로그인</h2>
-          <form action="/login_process" method="post">
-          <p><input class="login" type="text" name="email" placeholder="아이디"></p>
-          <p><input class="login" type="password" name="password" placeholder="비밀번호"></p>
-          <p><input class="btn" type="submit" value="로그인"></p>
-          </form> 
+    <div class="container">
+      <div class="box signin">
+        <h2>Already Have an Account ?</h2>
+        <button class="signinBtn">Sign in</button>
+      </div>
+      <div class="box signup">
+        <h2>Don't Have an Account ?</h2>
+        <button class="signupBtn">Sign up</button>
+      </div>
+      <div class="formBx">
+        <div class="form signinform">
+            <form action="/login_process" method="post">
+              <h3>Sign In</h3>
+              <input type="text" name="email" placeholder="Email">
+              <input type="password" name="password" placeholder="Password">
+              <input type="submit" value="Login">
+              <a href="#" class="forgot">Forgot Password</a>
+            </form>
+        </div>
+        <div class="form signupform">
+            <form action="">
+              <h3>Sign Up</h3>
+              <input type="text" name="username" placeholder="Username">
+              <input type="text" name="email" placeholder="Email Address">
+              <input type="password" name="password" placeholder="Password">
+              <input type="password" name="confirm" placeholder="Confirm">
+              <input type="submit" value="Register">
+            </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      let signinBtn = document.querySelector('.signinBtn');
+      let signupBtn = document.querySelector('.signupBtn');
+      let body = document.querySelector('body');
+      signupBtn.onclick = function(){
+        body.classList.add('slide');
+      }
+      signinBtn.onclick = function(){
+        body.classList.remove('slide');
+      }
+    </script>
       `, '');
   response.send(html);
 });
