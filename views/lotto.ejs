@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lotto</title>
     <link rel="stylesheet" href="/stylesheets/lotto.css">
+    <link rel="stylesheet" href="../node_modules/paginationjs/dist/pagination.css">
     <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script type="text/javascript" src="../node_modules/paginationjs/dist/pagination.js"></script>
     <script type="text/javascript" src="/script/lotto_script.js" defer></script>
 </head>
 <body>
@@ -125,7 +127,7 @@
                 </div>
                 <div class="form-group">
                     <label>prize1</label>
-                    <input type="text" class="form-control" name="prize1" />
+                    <input type="text" class="form-control2" name="prize1" />
                 </div>
                 <div class="form-group">
                     <label>prize1cnt</label>
@@ -133,7 +135,7 @@
                 </div>
                 <div class="form-group">
                     <label>prize2</label>
-                    <input type="text" class="form-control" name="prize2" />
+                    <input type="text" class="form-control2" name="prize2" />
                 </div>
                 <div class="form-group">
                     <label>prize2cnt</label>
@@ -141,11 +143,7 @@
                 </div>
                 <div class="form-group">
                     <label>round_date</label>
-                    <input type="text" class="form-control" name="round_date" />
-                </div>
-                <div class="form-group">
-                    <label>regid</label>
-                    <input type="text" class="form-control" name="regid" />
+                    <input type="text" class="form-control2" name="round_date" />
                 </div>
                 <button type="submit" class="button_css">Submit</button>
             </form>
@@ -154,9 +152,12 @@
         <div><button onclick="history_toggle()" class="button_css" style="margin-bottom: 10px;">기록</button></div>
 
         <div id="history" style="display: none;">
-            <div class="loader">
-                <span><i></i></span>
+            <div id="data-container">
+                <div class="loader">
+                    <span><i></i></span>
+                </div>
             </div>
+            <div id="pagination-container"></div>
         </div>
     </div>
 </body>

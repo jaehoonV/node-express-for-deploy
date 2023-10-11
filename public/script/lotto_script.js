@@ -47,33 +47,44 @@ init();
 function lo_record(){
     let output = "";
 
-    output += "<table class='table2'><th>회차</th><th>번호</th><th>번호</th><th>번호</th><th>번호</th><th>번호</th><th>번호</th>"
-            + "<th>보너스번호</th><th>1등 당첨금</th><th>1등 당첨자수</th><th>2등 당첨금</th><th>2등 당첨자수</th><th>일자</th>";
-    for(let obj of results_lo){
-        if(obj.PRIZE1 > 2500000000 && obj.PRIZE1 < 5000000000){
-            output += "<tr class='prize25up'>";
-        } else if(obj.PRIZE1 > 5000000000){
-            output += "<tr class='prize50up'>";
-        } else {
-            output += "<tr>";
+    $('#pagination-container').pagination({
+        dataSource: results_lo,
+        pageSize: 10,
+        callback: function(data, pagination) {
+            // template method of yourself
+            var html = formatResult(data);
+            $('#data-container').html(html);
         }
-        output += "<td class='td_w45 f_8'>" + obj.ROUND  + "</td>";
-        output += makeSmallBallFunc(obj.NUM1);        
-        output += makeSmallBallFunc(obj.NUM2);        
-        output += makeSmallBallFunc(obj.NUM3);        
-        output += makeSmallBallFunc(obj.NUM4);        
-        output += makeSmallBallFunc(obj.NUM5);        
-        output += makeSmallBallFunc(obj.NUM6);        
-        output += makeSmallBallFunc(obj.NUMB);        
-        output += "<td class='td_w90 f_8'>" + obj.PRIZE1_ + "</td>";        
-        output += "<td class='td_w80 f_8'>" + obj.PRIZE1CNT + "</td>";        
-        output += "<td class='td_w90 f_8'>" + obj.PRIZE2_ + "</td>";        
-        output += "<td class='td_w80 f_8'>" + obj.PRIZE2CNT + "</td>";        
-        output += "<td class='td_w150 f_8'>" + obj.ROUND_DATE + "</td></tr>";        
-    }
-    output += "</table>";
+    })
 
-    $('#history').html(output);
+    function formatResult(data) {
+        let html = "<table class='table2'><th>회차</th><th>번호</th><th>번호</th><th>번호</th><th>번호</th><th>번호</th><th>번호</th>"
+                + "<th>보너스번호</th><th>1등 당첨금</th><th>1등 당첨자수</th><th>2등 당첨금</th><th>2등 당첨자수</th><th>일자</th>";
+        for(let obj of data){
+            if(obj.PRIZE1 > 2500000000 && obj.PRIZE1 < 5000000000){
+                html += "<tr class='prize25up'>";
+            } else if(obj.PRIZE1 > 5000000000){
+                html += "<tr class='prize50up'>";
+            } else {
+                html += "<tr>";
+            }
+            html += "<td class='td_w45 f_8'>" + obj.ROUND  + "</td>";
+            html += makeSmallBallFunc(obj.NUM1);        
+            html += makeSmallBallFunc(obj.NUM2);        
+            html += makeSmallBallFunc(obj.NUM3);        
+            html += makeSmallBallFunc(obj.NUM4);        
+            html += makeSmallBallFunc(obj.NUM5);        
+            html += makeSmallBallFunc(obj.NUM6);        
+            html += makeSmallBallFunc(obj.NUMB);        
+            html += "<td class='td_w90 f_8'>" + obj.PRIZE1_ + "</td>";        
+            html += "<td class='td_w80 f_8'>" + obj.PRIZE1CNT + "</td>";        
+            html += "<td class='td_w90 f_8'>" + obj.PRIZE2_ + "</td>";        
+            html += "<td class='td_w80 f_8'>" + obj.PRIZE2CNT + "</td>";        
+            html += "<td class='td_w150 f_8'>" + obj.ROUND_DATE + "</td></tr>";        
+        }
+        html += "</table>";
+        return html;
+    }
 }
 
 function lo_func(type){

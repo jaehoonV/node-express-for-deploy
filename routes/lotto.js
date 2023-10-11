@@ -40,7 +40,9 @@ router.get('/', (req, res) => {
     res.redirect('/login');
     return false;
   } else {
-    res.render('lotto');
+    let master_yn = {"master_yn" : authCheck.isMaster(req, res)};
+
+    res.render('lotto', master_yn);
     return false;
   }
 })
@@ -66,21 +68,26 @@ router.post('/', (req, res) => {
 })
 
 router.post('/save', (req, res) => {
-  console.log(req.body);
-  let sql_lo_insert = "INSERT INTO LOTTO(ROUND,NUM1,NUM2,NUM3,NUM4,NUM5,NUM6,NUMB,PRIZE1,PRIZE1CNT,PRIZE2,PRIZE2CNT,ROUND_DATE,REGDAY,REGID) "
-  + "VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE(), ?); ";
-
-  maria.query(sql_lo_insert,
-              [req.body.round, req.body.num1, req.body.num2, req.body.num3, req.body.num4, req.body.num5, req.body.num6, req.body.numB, req.body.prize1, req.body.prize1cnt, req.body.prize2, req.body.prize2cnt, req.body.round_date, req.body.regid], 
-              function (err, result) {
-    if (err) {
-      console.log(err);
-      res.render('error', {error: err});
-    } else{
-      console.log("1 record inserted!");
-      res.render('lotto');
-    }
-  });
+  let useremail = authCheck.getUseremail(req, res);
+  if (authCheck.isMaster(req, res)) {  
+    let sql_lo_insert = "INSERT INTO LOTTO(ROUND,NUM1,NUM2,NUM3,NUM4,NUM5,NUM6,NUMB,PRIZE1,PRIZE1CNT,PRIZE2,PRIZE2CNT,ROUND_DATE,REGDAY,REGID) "
+    + "VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_DATE(), ?); ";
+    maria.query(sql_lo_insert,
+                [req.body.round, req.body.num1, req.body.num2, req.body.num3, req.body.num4, req.body.num5, req.body.num6, req.body.numB, req.body.prize1, req.body.prize1cnt, req.body.prize2, req.body.prize2cnt, req.body.round_date, useremail], 
+                function (err, result) {
+      if (err) {
+        console.log(err);
+        res.render('error', {error: err});
+      } else{
+        console.log("1 record inserted!");
+        res.send(`<script type="text/javascript">alert("저장되었습니다."); 
+              document.location.href="/lotto";</script>`);
+      }
+    });
+  }else{
+    res.send(`<script type="text/javascript">alert("권한이 없습니다."); 
+              document.location.href="/lotto";</script>`);
+  }
 })
 
 router.post('/extraction', (req, res) => {
