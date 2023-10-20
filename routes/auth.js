@@ -5,6 +5,7 @@ router.use(express.static("public"));
 
 let authCheck = require('../public/script/authCheck.js');
 let template = require('../public/script/template.js');
+let createLog = require('../public/script/createLog.js');
 
 // mariaDB Connection
 const maria = require('../ext/conn_mariaDB');
@@ -188,6 +189,7 @@ router.post('/register', function (request, response) {
               res.render('error', { error: err });
             } else {
               console.log("Register success!");
+              createLog.insertLog(request, response, 'MEMBER REGISTRATION');
               response.send(`<script type="text/javascript">alert("가입되었습니다!"); 
               document.location.href="/";</script>`);
             }
@@ -212,6 +214,8 @@ router.post('/login_process', function (request, response) {
               request.session.email = email;
               request.session.username = results[0].USERNAME;
 
+              createLog.insertLog(request, response, 'LOGIN');
+
               if(results[0].MASTER_YN == 'Y'){ // 마스터권한
                 request.session.is_master = true;
               }
@@ -231,6 +235,7 @@ router.post('/login_process', function (request, response) {
 
 // 로그아웃
 router.get('/logout', function (request, response) {
+  createLog.insertLog(request, response, 'LOGOUT');
   request.session.destroy(function (err) {
       response.redirect('/');
   });

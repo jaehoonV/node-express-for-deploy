@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
 
+let createLog = require('../public/script/createLog.js');
 let authCheck = require('../public/script/authCheck.js');
 // mariaDB Connection
 const maria = require('../ext/conn_mariaDB');
@@ -12,6 +13,7 @@ router.get('/', (req, res) => {
     res.redirect('/login');
     return false;
   } else {
+    createLog.insertLog(req, res, 'MOVE MINESWEEPER PAGE');
     res.render('minesweeper');
     return false;
   }
@@ -32,18 +34,17 @@ router.post('/', (req, res) => {
   })
 
 router.post('/save', (req, res) => {
-    console.log(req.body);
-    let sql_mine_insert = "INSERT INTO MINESWEEPER(SEQ,SCORE,CLICK_CNT,PLAY_TIME,NAME,REGDAY) "
-    + "VALUES( NEXTVAL(MINE_SEQ), ?, ?, ?, ?, CURRENT_DATE()); ";
-  
-    maria.query(sql_mine_insert,
-                [req.body.save_score, req.body.save_click_cnt, req.body.save_play_time, req.body.save_name], 
-                function (err, result) {
+  let sql_mine_insert = "INSERT INTO MINESWEEPER(SEQ,SCORE,CLICK_CNT,PLAY_TIME,NAME,EMAIL,REGDAY) "
+  + "VALUES( NEXTVAL(MINE_SEQ), ?, ?, ?, ?, ?, CURRENT_DATE()); ";
+
+  maria.query(sql_mine_insert,
+              [req.body.save_score, req.body.save_click_cnt, req.body.save_play_time, req.session.username, req.session.email], 
+              function (err, result) {
       if (err) {
         console.log(err);
         res.render('error', {error: err});
       } else{
-        console.log("1 record inserted!");
+        createLog.insertLog(req, res, 'MINESWEEPER RECORD INSERTED');
         res.redirect('/minesweeper');
       }
     });
