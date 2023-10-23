@@ -12,7 +12,7 @@ const maria = require('../ext/conn_mariaDB');
 maria.connect();   // DB 접속
 
 let sql = "SELECT EMAIL, USERNAME, MASTER_YN FROM `MEMBER`";
-var sql_data;
+let sql_data;
 maria.query(sql, function (err, results) {
   if (err) {
       console.log(err);

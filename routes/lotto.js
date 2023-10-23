@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
+let createLog = require('../public/script/createLog.js');
 let authCheck = require('../public/script/authCheck.js');
 // mariaDB Connection
 const maria = require('../ext/conn_mariaDB');
@@ -42,6 +43,7 @@ router.get('/', (req, res) => {
   } else {
     let master_yn = {"master_yn" : authCheck.isMaster(req, res)};
 
+    createLog.insertLog(req, res, 'MOVE LOTTO PAGE');
     res.render('lotto', master_yn);
     return false;
   }
@@ -79,7 +81,7 @@ router.post('/save', (req, res) => {
         console.log(err);
         res.render('error', {error: err});
       } else{
-        console.log("1 record inserted!");
+        createLog.insertLog(req, res, 'LOTTO INSERTED');
         res.send(`<script type="text/javascript">alert("저장되었습니다."); 
               document.location.href="/lotto";</script>`);
       }
