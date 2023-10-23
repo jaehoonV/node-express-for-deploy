@@ -1,5 +1,5 @@
 module.exports = {
-    insertLog: function (req, res, event) {
+    insertLog: function (req, res, event, event_type) {
         var requestIp = require('request-ip');
 
         // mariaDB Connection
