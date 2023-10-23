@@ -5,7 +5,7 @@ module.exports = {
         // mariaDB Connection
         const maria = require('../../ext/conn_mariaDB');
 
-        let sql_login_log = "INSERT INTO EVENT_LOG(SEQ,EMAIL,USERNAME,EVENT,EVENT_IP,REGDAY) VALUES( NEXTVAL(LOG_SEQ), ?, ?, ?, ?, CURRENT_TIMESTAMP); ";
+        let sql_login_log = "INSERT INTO EVENT_LOG(SEQ,EMAIL,USERNAME,EVENT,EVENT_TYPE,EVENT_IP,REGDAY) VALUES( NEXTVAL(LOG_SEQ), ?, ?, ?, ?, ?, CURRENT_TIMESTAMP); ";
 
         let req_email = "";
         let req_username = "";
@@ -18,7 +18,7 @@ module.exports = {
         }
 
         maria.query(sql_login_log,
-            [req_email, req_username, event, requestIp.getClientIp(req)], 
+            [req_email, req_username, event, event_type, requestIp.getClientIp(req)], 
             function (err, log_result) {
             if (err) {
                 console.log(err);

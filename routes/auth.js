@@ -43,6 +43,12 @@ router.get('/main', function(req, res, next) {
   res.render('index', sql_data);
 });
 
+/* POST main */
+router.post('/main', function(req, res, next) {
+  let master_yn = {"master_yn" : authCheck.isMaster(req, res)};
+  res.json(master_yn);
+});
+
 // login page
 router.get('/login', function (request, response) {
   var title = 'Login';
@@ -175,7 +181,7 @@ router.post('/register', function (request, response) {
   if(password == confirm){
     maria.query('SELECT * FROM `MEMBER` WHERE EMAIL = ? ', [email], function (error, results, fields) {
       if (error) throw error;
-      if (results.length > 0) {       // db에서의 반환값이 있으면 해당 이메일이 이미 등록된것
+      if (results.length > 0) { 
         response.send(`<script type="text/javascript">alert("이미 가입된 이메일입니다."); 
               document.location.href="/login";</script>`);
       } else {
@@ -189,7 +195,7 @@ router.post('/register', function (request, response) {
               res.render('error', { error: err });
             } else {
               console.log("Register success!");
-              createLog.insertLog(request, response, 'MEMBER REGISTRATION');
+              createLog.insertLog(request, response, 'MEMBER REGISTRATION', 'ACT');
               response.send(`<script type="text/javascript">alert("가입되었습니다!"); 
               document.location.href="/";</script>`);
             }
@@ -214,7 +220,7 @@ router.post('/login_process', function (request, response) {
               request.session.email = email;
               request.session.username = results[0].USERNAME;
 
-              createLog.insertLog(request, response, 'LOGIN');
+              createLog.insertLog(request, response, 'LOGIN', 'ACT');
 
               if(results[0].MASTER_YN == 'Y'){ // 마스터권한
                 request.session.is_master = true;
@@ -235,7 +241,7 @@ router.post('/login_process', function (request, response) {
 
 // 로그아웃
 router.get('/logout', function (request, response) {
-  createLog.insertLog(request, response, 'LOGOUT');
+  createLog.insertLog(request, response, 'LOGOUT', 'ACT');
   request.session.destroy(function (err) {
       response.redirect('/');
   });

@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     res.redirect('/login');
     return false;
   } else {
-    createLog.insertLog(req, res, 'MOVE MINESWEEPER PAGE');
+    createLog.insertLog(req, res, 'MOVE MINESWEEPER PAGE', 'MOVE');
     res.render('minesweeper');
     return false;
   }
@@ -44,7 +44,7 @@ router.post('/save', (req, res) => {
         console.log(err);
         res.render('error', {error: err});
       } else{
-        createLog.insertLog(req, res, 'MINESWEEPER RECORD INSERTED');
+        createLog.insertLog(req, res, 'MINESWEEPER RECORD INSERTED', 'ACT');
         res.redirect('/minesweeper');
       }
     });

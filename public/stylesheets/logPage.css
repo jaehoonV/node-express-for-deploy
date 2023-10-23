@@ -75,7 +75,7 @@ td {
     font-weight: bold;
 }
 
-#pagination-container{
+.pagination-container{
     width: 350px;
     margin: 20px auto;
  }

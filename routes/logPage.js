@@ -9,7 +9,9 @@ const maria = require('../ext/conn_mariaDB.js');
 router.use(express.static("public"));
 
 /* Log */
-let sql_log = "SELECT SEQ, EMAIL, USERNAME, EVENT, EVENT_IP, REGDAY FROM EVENT_LOG ORDER BY SEQ DESC; ";
+let sql_log = "SELECT SEQ, EMAIL, USERNAME, EVENT, EVENT_TYPE, EVENT_IP, REGDAY FROM EVENT_LOG ORDER BY SEQ DESC; ";
+let sql_log_act = "SELECT SEQ, EMAIL, USERNAME, EVENT, EVENT_TYPE, EVENT_IP, REGDAY FROM EVENT_LOG WHERE EVENT_TYPE = 'ACT' ORDER BY SEQ DESC; ";
+let sql_log_move = "SELECT SEQ, EMAIL, USERNAME, EVENT, EVENT_TYPE, EVENT_IP, REGDAY FROM EVENT_LOG WHERE EVENT_TYPE = 'MOVE' ORDER BY SEQ DESC; ";
 
 router.get('/', (req, res) => {
   if (!authCheck.isOwner(req, res)) {  // login page
@@ -18,7 +20,7 @@ router.get('/', (req, res) => {
   } else {
     let master_yn = {"master_yn" : authCheck.isMaster(req, res)};
 
-    createLog.insertLog(req, res, 'MOVE LOG PAGE');
+    createLog.insertLog(req, res, 'MOVE LOG PAGE', 'MOVE');
     res.render('logPage', master_yn);
     return false;
   }
@@ -26,13 +28,15 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   let sql_data_log;
-  maria.query(sql_log, function (err, results) {
+  maria.query(sql_log + sql_log_act + sql_log_move, function (err, results) {
     if (err) {
       console.log(err);
       res.render('error', { error: err });
     }
     sql_data_log = {
-      "results_log": results
+      "results_log": results[0],
+      "results_log_act": results[1],
+      "results_log_move": results[2]
     }
     res.json(sql_data_log);
   });

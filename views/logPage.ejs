@@ -13,16 +13,32 @@
 </head>
 <body>
     <div style="margin: 0 auto; width: 80%;">
-        <h1 style="margin: 10px auto; width: 550px;">Log Page</h1>
+        <h1 style="margin: 10px auto; width: 150px;">Log Page</h1>
 
         <% if(master_yn){ %>
             <div id="log_history">
-                <div id="data-container">
+                <div id="log_data_container">
                     <div class="loader">
                         <span><i></i></span>
                     </div>
                 </div>
-                <div id="pagination-container"></div>
+                <div class="pagination-container" id="log_container_page"></div>
+            </div>
+            <div id="log_history">
+                <div id="log_act_data_container">
+                    <div class="loader">
+                        <span><i></i></span>
+                    </div>
+                </div>
+                <div class="pagination-container" id="log_act_container_page"></div>
+            </div>
+            <div id="log_history">
+                <div id="log_move_data_container">
+                    <div class="loader">
+                        <span><i></i></span>
+                    </div>
+                </div>
+                <div class="pagination-container" id="log_move_container_page"></div>
             </div>
         <% } %>
     </div>

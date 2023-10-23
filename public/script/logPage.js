@@ -1,4 +1,6 @@
 let results_log;
+let results_log_act;
+let results_log_move;
 
 function init(){
     $.ajax({
@@ -10,6 +12,8 @@ function init(){
     .done(function (json){
         let json_data = JSON.parse(JSON.stringify(json));
         results_log = json_data.results_log;
+        results_log_act = json_data.results_log_act;
+        results_log_move = json_data.results_log_move;
         load_log();
 
     })
@@ -21,13 +25,33 @@ function init(){
 init();
 
 function load_log(){
-    $('#pagination-container').pagination({
+    $('#log_container_page').pagination({
         dataSource: results_log,
         pageSize: 10,
         callback: function(data, pagination) {
             // template method of yourself
             var html = formatResult(data);
-            $('#data-container').html(html);
+            $('#log_data_container').html(html);
+        }
+    })
+
+    $('#log_act_container_page').pagination({
+        dataSource: results_log_act,
+        pageSize: 10,
+        callback: function(data, pagination) {
+            // template method of yourself
+            var html = formatResult(data);
+            $('#log_act_data_container').html(html);
+        }
+    })
+
+    $('#log_move_container_page').pagination({
+        dataSource: results_log_move,
+        pageSize: 10,
+        callback: function(data, pagination) {
+            // template method of yourself
+            var html = formatResult(data);
+            $('#log_move_data_container').html(html);
         }
     })
 

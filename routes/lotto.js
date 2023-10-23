@@ -43,7 +43,7 @@ router.get('/', (req, res) => {
   } else {
     let master_yn = {"master_yn" : authCheck.isMaster(req, res)};
 
-    createLog.insertLog(req, res, 'MOVE LOTTO PAGE');
+    createLog.insertLog(req, res, 'MOVE LOTTO PAGE', 'MOVE');
     res.render('lotto', master_yn);
     return false;
   }
@@ -81,7 +81,7 @@ router.post('/save', (req, res) => {
         console.log(err);
         res.render('error', {error: err});
       } else{
-        createLog.insertLog(req, res, 'LOTTO INSERTED');
+        createLog.insertLog(req, res, 'LOTTO INSERTED', 'ACT');
         res.send(`<script type="text/javascript">alert("저장되었습니다."); 
               document.location.href="/lotto";</script>`);
       }
