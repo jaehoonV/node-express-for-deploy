@@ -21,8 +21,6 @@ td {
 }
 
 .table2 th{
-    position: sticky;
-    top: 0px;
     background: #ddd;
 }
 
