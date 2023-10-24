@@ -8,40 +8,10 @@
   <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
   <link rel="stylesheet" href="/stylesheets/index.css">
 </head>
-<script type="text/javascript">
-  function init(){
-    $.ajax({
-        url : "/main/",
-        type : "POST",
-        dataType : "JSON",
-        data : {"today" : new Date()}
-    })
-    .done(function (json){
-        let json_data = JSON.parse(JSON.stringify(json));
-        let master_yn = json_data.master_yn;
-        if(master_yn){
-          $('#log_page_btn').show();
-        }else{
-          $('#log_page_btn').hide();
-        }
-    })
-    .fail(function (xhr, status, errorThrown){
-        alert("Ajax failed");
-    })
-  }
-  init();
-
-  function movePage(url){
-    location.href = "/" + url;
-  }
-
-  function logout(){
-   if (confirm("로그아웃 하시겠습니까?")) {
-      movePage('logout');
-   }
-  }
-</script>
 <body>
+  <header>
+    <%- include ('sidebar.ejs') %>
+  </header>
   <div style="margin: 0 auto; width: 600px;">
   <h1 style="margin: 10px auto; width: 550px;">NODE JS - MARIA DB - EJS TEST</h1>
   <table class="table1" style="margin: 0 auto;">
@@ -57,12 +27,6 @@
     <% } %>
   </table>
   </div>
-  <div id="lotto_page_btn"><button type="button" onclick="movePage('lotto')">Lotto</button></div>
-  <div id="minesweeper_page_btn"><button type="button" onclick="movePage('minesweeper')">MineSweeper</button></div>
-  <div id="2048daily_page_btn"><button type="button" onclick="movePage('2048_daily')">2048 Daily</button></div>
-  <div id="mywork_page_btn"><button type="button" onclick="movePage('my_work_list')">My Work List</button></div>
-  <div id="chatContainer_page_btn"><button type="button" onclick="movePage('chat_container')">Chat Container</button></div>
-  <div id="log_page_btn"><button type="button" onclick="movePage('logPage')">Log Page</button></div>
-  <div><button type="button" onclick="logout()">logout</button></div>
 </body>
+
 </html>

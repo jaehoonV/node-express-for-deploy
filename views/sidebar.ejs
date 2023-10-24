@@ -1,0 +1,96 @@
+<link rel="stylesheet" href="/stylesheets/sidebar.css">
+
+<div class="navigation">
+   <ul>
+      <li>
+         <a href="#" onclick="movePage('main')">
+            <span class="icon"><i class="fa-solid fa-diagram-project fa-xl"></i></span>
+            <span class="title">NodeJS PROJECT</span>
+         </a>
+      </li>
+      <li>
+         <a href="#" onclick="movePage('lotto')">
+            <span class="icon"><i class="fa-solid fa-money-bill-1-wave fa-xl"></i></span>
+            <span class="title">Lotto</span>
+         </a>
+      </li>
+      <li>
+         <a href="#" onclick="movePage('minesweeper')">
+            <span class="icon"><i class="fa-solid fa-person-digging fa-xl"></i></span>
+            <span class="title">MineSweeper</span>
+         </a>
+      </li>
+      <li>
+         <a href="#" onclick="movePage('2048_daily')">
+            <span class="icon"><i class="fa-solid fa-gamepad fa-xl"></i></span>
+            <span class="title">2048 Daily</span>
+         </a>
+      </li>
+      <li>
+         <a href="#" onclick="movePage('my_work_list')">
+            <span class="icon"><i class="fa-solid fa-list-ul fa-xl"></i></span>
+            <span class="title">My Work List</span>
+         </a>
+      </li>
+      <li>
+         <a href="#" onclick="movePage('chat_container')">
+            <span class="icon"><i class="fa-solid fa-comments fa-xl"></i></span>
+            <span class="title">Chat</span>
+         </a>
+      </li>
+      <li>
+         <a href="#" id="log_page_link" onclick="movePage('logPage')">
+            <span class="icon"><i class="fa-solid fa-gear fa-xl"></i></span>
+            <span class="title">Log Page</span>
+         </a>
+      </li>
+      <li>
+         <a href="#" onclick="logout()">
+            <span class="icon"><i class="fa-solid fa-arrow-right-from-bracket fa-xl"></i></span>
+            <span class="title">Log out</span>
+         </a>
+      </li>
+   </ul>
+   <div class="toggle"></div>
+</div>
+<script src="https://kit.fontawesome.com/f1b7ad5b17.js" crossorigin="anonymous"></script>
+<script>
+   let navigation = document.querySelector('.navigation');
+   let toggle = document.querySelector('.toggle');
+   toggle.onclick = function () {
+      navigation.classList.toggle('active');
+   }
+
+   function init() {
+      $.ajax({
+         url: "/main/",
+         type: "POST",
+         dataType: "JSON",
+         data: { "today": new Date() }
+      })
+         .done(function (json) {
+            let json_data = JSON.parse(JSON.stringify(json));
+            let master_yn = json_data.master_yn;
+            if (master_yn) {
+               $('#log_page_link').show();
+            } else {
+               $('#log_page_link').hide();
+            }
+         })
+         .fail(function (xhr, status, errorThrown) {
+            alert("Ajax failed");
+         })
+   }
+
+   init();
+
+   function movePage(url) {
+      location.href = "/" + url;
+   }
+
+   function logout() {
+      if (confirm("로그아웃 하시겠습니까?")) {
+         movePage('logout');
+      }
+   }
+</script>

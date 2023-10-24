@@ -13,6 +13,9 @@
 </head>
 
 <body>
+   <header>
+      <%- include ('sidebar.ejs') %>
+   </header>
    <header class="header">
       <div class="score-container">
          <span class="score-label">Score</span>
@@ -35,7 +38,6 @@
          <div class="back">
             <div class="box2">
                <form action="/2048_daily/save" method="POST">
-                  <input type="text" id="save_name" name="save_name" placeholder="NAME" maxlength="20">
                   <input type="text" id="save_score" name="save_score" hidden>
                   <button type="submit" id="save_btn">SAVE</button>
                </form>
