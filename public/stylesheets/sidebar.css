@@ -17,6 +17,11 @@ body {
    background: #edf1f4;;
 }
 
+.body_div{
+   width: calc(100% - 120px); 
+   padding-left: 120px;
+}
+
 .navigation {
    position: fixed;
    inset: 20px;
@@ -28,7 +33,18 @@ body {
    box-shadow: 15px 15px 25px rgba(0, 0, 0, 0.05);
    transition: 0.5s;
    z-index: 10;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
 }
+
+.navigation > *{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Ubuntu', sans-serif;
+}
+
 
 .navigation.active {
    width: 225px;

@@ -22,80 +22,82 @@
         <%- include ('sidebar.ejs') %>
     </header>
     <h2> 10 X 10 MineSweeper</h2>
-
-    <div style="width: 600px; display: inline-block; margin-left: 10%;">
-        <!-- 타이머 -->
-        <div class="container">
-            <div class="container-segment">
-                <div class="segment-title">Minutes</div>
-                <div class="segment">
-                    <div class="flip-card" data-minutes-tens>
-                        <div class="top" id="minutes_tens">0</div>
-                        <div class="bottom">0</div>
+    
+    <div class="body_div">
+        <div style="width: 600px; display: inline-block; margin-left: 10%;">
+            <!-- 타이머 -->
+            <div class="container">
+                <div class="container-segment">
+                    <div class="segment-title">Minutes</div>
+                    <div class="segment">
+                        <div class="flip-card" data-minutes-tens>
+                            <div class="top" id="minutes_tens">0</div>
+                            <div class="bottom">0</div>
+                        </div>
+                        <div class="flip-card" data-minutes-ones>
+                            <div class="top" id="minutes_ones">0</div>
+                            <div class="bottom">0</div>
+                        </div>
                     </div>
-                    <div class="flip-card" data-minutes-ones>
-                        <div class="top" id="minutes_ones">0</div>
-                        <div class="bottom">0</div>
+                </div>
+                <div class="container-segment">
+                    <div class="segment-title">Seconds</div>
+                    <div class="segment">
+                        <div class="flip-card" data-seconds-tens>
+                            <div class="top" id="seconds_tens">0</div>
+                            <div class="bottom">0</div>
+                        </div>
+                        <div class="flip-card" data-seconds-ones>
+                            <div class="top" id="seconds_ones">0</div>
+                            <div class="bottom">0</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="container-segment">
-                <div class="segment-title">Seconds</div>
-                <div class="segment">
-                    <div class="flip-card" data-seconds-tens>
-                        <div class="top" id="seconds_tens">0</div>
-                        <div class="bottom">0</div>
-                    </div>
-                    <div class="flip-card" data-seconds-ones>
-                        <div class="top" id="seconds_ones">0</div>
-                        <div class="bottom">0</div>
-                    </div>
-                </div>
+
+            <div id="click_cnt_div">
+                <i class="fa-solid fa-person-digging"></i><span id="left_click_cnt"></span>
+                <i class="fa-sharp fa-solid fa-flag"></i><span id="right_click_cnt"></span>
             </div>
+            <div id="game_board"></div>
         </div>
+        <div id="history_board"></div>
 
-        <div id="click_cnt_div">
-            <i class="fa-solid fa-person-digging"></i><span id="left_click_cnt"></span>
-            <i class="fa-sharp fa-solid fa-flag"></i><span id="right_click_cnt"></span>
-        </div>
-        <div id="game_board"></div>
-    </div>
-    <div id="history_board"></div>
-
-    <dialog id="failed">
-        <i class="fa-solid fa-face-dizzy fa-2xl"></i><br>
-        <div class="click_cnt_div">클릭 :
-            <span class="click_cnt"></span>회
-            <br>
-            시간 :
-            <span class="minutes_time"></span>
-            <span class="seconds_time"></span>초
-        </div>
-        <button class="retry_btn">Retry</button>
-    </dialog>
-
-    <dialog id="won">
-        <i class="fa-solid fa-face-laugh-beam fa-2xl"></i><br>
-        <form action="/minesweeper/save" method="POST">
+        <dialog id="failed">
+            <i class="fa-solid fa-face-dizzy fa-2xl"></i><br>
             <div class="click_cnt_div">클릭 :
                 <span class="click_cnt"></span>회
                 <br>
                 시간 :
                 <span class="minutes_time"></span>
                 <span class="seconds_time"></span>초
-                <br>
-                점수 :
-                <span class="score"></span>
-                <div>
-                    <button type="submit" id="save_btn">SAVE</button>
-                    <input type="text" id="save_score" name="save_score" hidden>
-                    <input type="text" id="save_click_cnt" name="save_click_cnt" hidden>
-                    <input type="text" id="save_play_time" name="save_play_time" hidden>
-                </div>
             </div>
-        </form>
-        <button class="retry_btn">Retry</button>
-    </dialog>
+            <button class="retry_btn">Retry</button>
+        </dialog>
+
+        <dialog id="won">
+            <i class="fa-solid fa-face-laugh-beam fa-2xl"></i><br>
+            <form action="/minesweeper/save" method="POST">
+                <div class="click_cnt_div">클릭 :
+                    <span class="click_cnt"></span>회
+                    <br>
+                    시간 :
+                    <span class="minutes_time"></span>
+                    <span class="seconds_time"></span>초
+                    <br>
+                    점수 :
+                    <span class="score"></span>
+                    <div>
+                        <button type="submit" id="save_btn">SAVE</button>
+                        <input type="text" id="save_score" name="save_score" hidden>
+                        <input type="text" id="save_click_cnt" name="save_click_cnt" hidden>
+                        <input type="text" id="save_play_time" name="save_play_time" hidden>
+                    </div>
+                </div>
+            </form>
+            <button class="retry_btn">Retry</button>
+        </dialog>
+    </div>
 </body>
 
 </html>

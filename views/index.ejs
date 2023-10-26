@@ -12,20 +12,20 @@
   <header>
     <%- include ('sidebar.ejs') %>
   </header>
-  <div style="margin: 0 auto; width: 600px;">
-  <h1 style="margin: 10px auto; width: 550px;">NODE JS - MARIA DB - EJS TEST</h1>
-  <table class="table1" style="margin: 0 auto;">
-      <th>Mail</th>
-      <th>Name</th>
-      <th>Master</th>
-   <% for(var obj of results){ %>
-    <tr>
-      <td class="td_w250"><%= obj.EMAIL %></td>
-      <td class="td_w100"><%= obj.USERNAME %></td>
-      <td class="td_w100"><%= obj.MASTER_YN %></td>
-    </tr>
-    <% } %>
-  </table>
+  <div class="body_div">
+    <h1 style="margin: 10px auto; width: 510px;">NODE JS - MARIA DB - EJS TEST</h1>
+    <table class="table1" style="margin: 0 auto;">
+        <th>Mail</th>
+        <th>Name</th>
+        <th>Master</th>
+      <% for(var obj of results){ %>
+        <tr>
+          <td class="td_w250"><%= obj.EMAIL %></td>
+          <td class="td_w100"><%= obj.USERNAME %></td>
+          <td class="td_w100"><%= obj.MASTER_YN %></td>
+        </tr>
+      <% } %>
+    </table>
   </div>
 </body>
 

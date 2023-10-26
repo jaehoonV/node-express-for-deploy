@@ -16,32 +16,34 @@
    <header>
       <%- include ('sidebar.ejs') %>
    </header>
-   <header class="header">
-      <div class="score-container">
-         <span class="score-label">Score</span>
-         <div class="score-box">
-            <div id="score-amount">0</div>
-         </div>
-      </div>
-   </header>
-   <div id="game-board"></div>
-
-   <div class="col_third">
-      <div class="hover panel">
-         <div class="front">
-            <div class="box1">
-               <p>Your Score :
-               <p id="score1"> </p>
-               </p>
+   <div class="body_div" style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0;">
+      <header class="header">
+         <div class="score-container">
+            <span class="score-label">Score</span>
+            <div class="score-box">
+               <div id="score-amount">0</div>
             </div>
          </div>
-         <div class="back">
-            <div class="box2">
-               <form action="/2048_daily/save" method="POST">
-                  <input type="text" id="save_score" name="save_score" hidden>
-                  <button type="submit" id="save_btn">SAVE</button>
-               </form>
-               <button class="retry_btn">RETRY</button>
+      </header>
+      <div id="game-board"></div>
+
+      <div class="col_third">
+         <div class="hover panel">
+            <div class="front">
+               <div class="box1">
+                  <p>Your Score :
+                  <p id="score1"> </p>
+                  </p>
+               </div>
+            </div>
+            <div class="back">
+               <div class="box2">
+                  <form action="/2048_daily/save" method="POST">
+                     <input type="text" id="save_score" name="save_score" hidden>
+                     <button type="submit" id="save_btn">SAVE</button>
+                  </form>
+                  <button class="retry_btn">RETRY</button>
+               </div>
             </div>
          </div>
       </div>

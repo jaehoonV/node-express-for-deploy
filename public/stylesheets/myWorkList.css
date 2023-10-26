@@ -8,6 +8,8 @@ html{
     justify-content: center;
     align-items: center;
     height: 65vh;
+    padding-top: 20px;
+    padding-left: 120px;
 }
 
 .modal-content>img {
