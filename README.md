@@ -5,7 +5,7 @@
 ## Install
 
 ```
-$ npm i
+$ npm install mysql express-session session-file-store jquery paginationjs request-ip serve-favicon
 ```
 
 ## Running
