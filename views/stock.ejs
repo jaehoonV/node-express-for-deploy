@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stock</title>
+</head>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.13.7/sorting/formatted-numbers.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <!-- chart.js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@1.26.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.1/dist/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.0.0"></script>
+    <script src="https://www.chartjs.org/chartjs-chart-financial/chartjs-chart-financial.js"></script>
+    <!-- chart.js cdn -->
+    <script type="module" src="/script/stock.js" defer></script>
+    <link rel="stylesheet" href="/stylesheets/stock.css">
+<body>
+    <header>
+        <%- include ('sidebar.ejs') %>
+    </header>
+    <div class="container">
+        <input type="text" id="pop_data_itemnm" style="display: none;">
+        <input type="text" id="pop_data_months" style="display: none;">
+        <div class="search_container">
+            <input type="text" id="serviceKey" placeholder="서비스키" style="display: none;">
+            <input type="text" id="numOfRows" placeholder="페이지 결과 수" style="display: none;">
+            <input type="text" id="pageNo" placeholder="페이지 번호" style="display: none;">
+            <input type="text" id="resultType" placeholder="resultType" style="display: none;">
+            <div class="search_box_div">
+                <input type="text" id="basDt" placeholder="기준일자">
+                <input type="text" id="likeItmsNm" placeholder="종목명 검색">
+                <button type="button" id="select_btn">조회</button>
+            </div>
+            <div class="search_box_div2">
+                <input type="text" id="beginBasDt" placeholder="beginBasDt">
+                <input type="text" id="endBasDt" placeholder="endBasDt">
+                <input type="text" id="itmsNm" placeholder="종목명 검색">
+                <button type="button" id="select_btn2">조회</button>
+            </div>
+        </div>
+        <div id="data_screen">
+            <div class="stock_table_div" id="stock_table_div1"></div>
+            <div class="stock_table_div" id="stock_table_div2"></div>
+        </div>
+    </div>
+</body>
+</html>
