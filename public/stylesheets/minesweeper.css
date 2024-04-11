@@ -96,10 +96,12 @@ h2 {
 }
 
 #failed {
+    position: absolute;
     width: 260px;
     border: 1px solid black;
     border-radius: 20px;
     background-color: black;
+    margin: auto;
     color: red;
     text-align: center;
     vertical-align: middle;
@@ -108,10 +110,12 @@ h2 {
 }
 
 #won {
+    position: absolute;
     width: 260px;
     border: 2px solid #9f9191;
     border-radius: 20px;
     background-color: whitesmoke;
+    margin: auto;
     color: #353434;
     text-align: center;
     vertical-align: middle;
