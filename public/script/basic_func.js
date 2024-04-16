@@ -138,7 +138,17 @@ export function getDefualtDate(date) {
 
     if(cal_minus > 2) cal_minus = 2; // 날짜 계산이 2일을 초과하면 2로 세팅
 
-    let defualt_date = new Date(sel_day.setDate(sel_day.getDate() - cal_minus));
+    let temp_date = new Date(sel_day.setDate(sel_day.getDate() - cal_minus));
+    cal_minus = 0;
+    if(temp_date.getDay() == 0) {
+        cal_minus += 2; // 일요일
+        weekend_yn = "Y";
+    } else if(temp_date.getDay() == 6) {
+        cal_minus++; // 토요일
+        weekend_yn = "Y";
+    }
+
+    let defualt_date = new Date(temp_date.setDate(temp_date.getDate() - cal_minus));
     let format_defualt_date = "".concat(defualt_date.getFullYear(), pad(defualt_date.getMonth() + 1, 2), pad(defualt_date.getDate(), 2));
 
     return {'format_defualt_date' : format_defualt_date, 'weekend_yn' : weekend_yn};
