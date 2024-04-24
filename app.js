@@ -14,6 +14,7 @@ let usersRouter = require('./routes/users');
 let minesweeperRouter = require('./routes/minesweeper');
 let daily2048Router = require('./routes/2048_daily');
 let myWorkListRouter = require('./routes/myWorkList');
+let chat_containerRouter = require('./routes/chat_container');
 let stockRouter = require('./routes/stock');
 let logPage = require('./routes/logPage');
 
@@ -46,6 +47,7 @@ app.use('/users', usersRouter);
 app.use('/minesweeper', minesweeperRouter);
 app.use('/2048_daily', daily2048Router);
 app.use('/my_work_list', myWorkListRouter);
+app.use('/chat_container', chat_containerRouter);
 app.use('/stock', stockRouter);
 app.use('/logPage', logPage);
 

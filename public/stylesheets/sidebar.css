@@ -12,9 +12,9 @@
    font-family: 'Ubuntu', sans-serif;
 }
 
-body {
+header>body {
    min-height: 100vh;
-   background: #edf1f4;;
+   background: #edf1f4;
 }
 
 .body_div{

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chat Container</title>
+  <link rel="stylesheet" href="/stylesheets/chat_container.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="/script/chat_container.js" type="module" defer></script>
+</head>
+
+<body>
+  <header>
+    <%- include ('sidebar.ejs') %>
+  </header>
+  <div class="body_div">
+    <div id="chat_list_container"></div>
+    <div id="chat_container">
+      <div id="chat"></div>
+      <div id="chat_input_container">
+        <input type="text" name="chat_input" id="chat_input">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
