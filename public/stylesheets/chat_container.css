@@ -56,6 +56,7 @@ body{
     min-height: 30px;
     width: calc(100% - 20px);
     transition: 0.5s;
+    border-right: 5px solid #445d77;
 }
 
 .my_chat_list:hover{
