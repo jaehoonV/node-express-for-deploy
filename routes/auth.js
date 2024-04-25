@@ -185,7 +185,8 @@ router.post('/register', function (request, response) {
         response.send(`<script type="text/javascript">alert("이미 가입된 이메일입니다."); 
               document.location.href="/login";</script>`);
       } else {
-        let sql_member_insert = "INSERT INTO MEMBER(USERNAME,EMAIL,PASSWORD) VALUES( ?, ?, ? ); ";
+        let sql_member_insert = "INSERT INTO color_memo.MEMBER(MEMBER_SEQ, USERNAME, EMAIL, PASSWORD) "
+                              + "SELECT COALESCE(MAX(MEMBER_SEQ), 0) + 1, ?, ?, ? FROM color_memo.MEMBER; ";
     
         maria.query(sql_member_insert,
           [username, email, password],

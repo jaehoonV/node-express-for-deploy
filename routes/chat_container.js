@@ -24,19 +24,19 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   console.log(req.body);
   let useremail = authCheck.getUseremail(req, res);
-  let sql = "SELECT b.chat_room_name, b.master_seq, (SELECT USERNAME FROM color_memo.MEMBER WHERE EMAIL = e.user_id) AS member_nm, c.member_seq, d.contents, DATE_FORMAT(d.reg_date, '%Y-%m-%d') AS reg_date "
-          + "FROM ex1.chat_member a "
-          + "RIGHT OUTER JOIN ex1.chat_master b "
-          + "ON a.master_seq = b.master_seq "
-          + "RIGHT OUTER JOIN ex1.chat_member c "
-          + "ON a.master_seq = c.master_seq "
-          + "RIGHT OUTER JOIN ex1.v_chat_last_contents d "
-          + "ON a.master_seq = d.master_seq "
-          + "RIGHT OUTER JOIN ex1.chat_user e "
-          + "ON c.member_seq = e.user_seq "
-          + "WHERE a.member_seq = (SELECT user_seq FROM ex1.chat_user WHERE user_id = ?) "
-          + "AND c.member_seq != (SELECT user_seq FROM ex1.chat_user WHERE user_id = ?) "
-          + "ORDER BY reg_date ";
+  let sql = "SELECT B.CHAT_ROOM_NAME, B.MASTER_SEQ, C.MEMBER_SEQ, E.USERNAME AS MEMBER_NM, D.CONTENTS, DATE_FORMAT(D.REG_DATE, '%Y-%m-%d') AS REG_DATE "
+          + "FROM ex1.CHAT_MEMBER A "
+          + "RIGHT OUTER JOIN ex1.CHAT_MASTER B "
+          + "ON A.MASTER_SEQ = B.MASTER_SEQ "
+          + "RIGHT OUTER JOIN ex1.CHAT_MEMBER C "
+          + "ON A.MASTER_SEQ = C.MASTER_SEQ "
+          + "RIGHT OUTER JOIN ex1.V_CHAT_LAST_CONTENTS_LIST D "
+          + "ON A.MASTER_SEQ = D.MASTER_SEQ "
+          + "RIGHT OUTER JOIN color_memo.MEMBER E "
+          + "ON C.MEMBER_SEQ = E.MEMBER_SEQ "
+          + "WHERE A.MEMBER_SEQ = (SELECT MEMBER_SEQ FROM color_memo.MEMBER WHERE EMAIL = ?) "
+          + "AND C.MEMBER_SEQ != (SELECT MEMBER_SEQ FROM color_memo.MEMBER WHERE EMAIL = ?) "
+          + "ORDER BY D.REG_DATE ";
   let sql_data;
   maria.query(sql, [useremail, useremail], function (err, results) {
     if (err) {
@@ -53,13 +53,13 @@ router.post('/', (req, res) => {
 router.post('/chat_contents', (req, res) => {
     console.log(req.body);
     let useremail = authCheck.getUseremail(req, res);
-    let sql = "SELECT a.contents, a.reg_id, a.reg_date, DATE_FORMAT(a.reg_date, '%Y-%m-%d') reg_day, DATE_FORMAT(a.reg_date, '%h:%i') reg_time, "
-            + "CASE WHEN reg_id = ? THEN 'mine' ELSE 'other' END mine_div, "
-            + "COUNT(b.member_seq) - COUNT(b.read_date) unread_num "
-            + "FROM ex1.chat_contents a, ex1.chat_read_history b "
-            + "WHERE a.contents_seq = b.contents_seq AND a.master_seq = ? "
-            + "GROUP BY a.contents, a.reg_id, a.reg_date "
-            + "ORDER BY a.reg_date";
+    let sql = "SELECT A.CONTENTS, A.REG_ID, A.REG_DATE, DATE_FORMAT(A.REG_DATE, '%Y-%m-%d') REG_DAY, DATE_FORMAT(A.REG_DATE, '%h:%i') REG_TIME, "
+            + "CASE WHEN REG_ID = ? THEN 'mine' ELSE 'other' END MINE_DIV, "
+            + "COUNT(B.MEMBER_SEQ) - COUNT(B.READ_DATE) UNREAD_NUM "
+            + "FROM ex1.CHAT_CONTENTS A, ex1.CHAT_READ_HISTORY B "
+            + "WHERE A.CONTENTS_SEQ = B.CONTENTS_SEQ AND A.MASTER_SEQ = ? "
+            + "GROUP BY A.CONTENTS, A.REG_ID, A.REG_DATE "
+            + "ORDER BY A.REG_DATE";
     let sql_data;
     maria.query(sql, [useremail, req.body.master_seq], function (err, results) {
       if (err) {
@@ -79,7 +79,7 @@ router.post('/insert', async (req, res) => {
     let chk = 'Y';
 
     // contents_seq 조회
-    const sql_contents_seq_select = "SELECT NEXTVAL(ex1.contents_seq) AS seq FROM DUAL;";
+    const sql_contents_seq_select = "SELECT NVL(MAX(CONTENTS_SEQ), 0) + 1 AS SEQ FROM ex1.CHAT_CONTENTS;";
     const result = await new Promise((resolve, reject) => {
       maria.query(sql_contents_seq_select, function (err, result) {
         if (err) {
@@ -95,7 +95,7 @@ router.post('/insert', async (req, res) => {
     const contents_seq = results[0].seq;
 
     // chat_contents에 데이터 삽입
-    const sql_chat_insert = "INSERT INTO ex1.chat_contents(master_seq, contents_seq, contents, reg_id, reg_date) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP);";
+    const sql_chat_insert = "INSERT INTO ex1.CHAT_CONTENTS(MASTER_SEQ, CONTENTS_SEQ, CONTENTS, REG_ID, REG_DATE) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP);";
     await new Promise((resolve, reject) => {
       maria.query(sql_chat_insert, [req.body.master_seq, contents_seq, req.body.contents, useremail], function (err, result) {
         if (err) {
@@ -110,7 +110,7 @@ router.post('/insert', async (req, res) => {
     });
 
     // chat_read_history에 데이터 삽입
-    const sql_chat_history_insert = "INSERT INTO ex1.chat_read_history(contents_seq, member_seq) SELECT ?, member_seq FROM ex1.chat_member WHERE master_seq = ?;";
+    const sql_chat_history_insert = "INSERT INTO ex1.CHAT_READ_HISTORY(CONTENTS_SEQ, MEMBER_SEQ) SELECT ?, MEMBER_SEQ FROM ex1.CHAT_MEMBER WHERE MASTER_SEQ = ?;";
     await new Promise((resolve, reject) => {
       maria.query(sql_chat_history_insert, [contents_seq, req.body.master_seq], function (err, result) {
         if (err) {

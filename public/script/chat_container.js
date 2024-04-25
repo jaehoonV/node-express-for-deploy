@@ -21,15 +21,15 @@ init();
 function create_chat_list(chat_list){
     let chat_result = "";
     for(let chat of chat_list){
-        let chat_room_name = chat.chat_room_name;
-        let master_seq = chat.master_seq;
-        let member_seq = chat.member_seq;
-        let member_nm = chat.member_nm;
-        let contents = chat.contents;
-        let reg_date = chat.reg_date;
-        chat_result += "<div class='my_chat_list' data-seq='" + master_seq + "'>"
-                    + "<em class='chat_user'>" + member_nm + "</em>" 
-                    + "<em class='chat_summary'>" + contents + "</em>" 
+        let CHAT_ROOM_NAME = chat.CHAT_ROOM_NAME;
+        let MASTER_SEQ = chat.MASTER_SEQ;
+        let MEMBER_SEQ = chat.MEMBER_SEQ;
+        let MEMBER_NM = chat.MEMBER_NM;
+        let CONTENTS = chat.CONTENTS;
+        let REG_DATE = chat.REG_DATE;
+        chat_result += "<div class='my_chat_list' data-seq='" + MASTER_SEQ + "'>"
+                    + "<em class='chat_user'>" + MEMBER_NM + "</em>" 
+                    + "<em class='chat_summary'>" + CONTENTS + "</em>"  
                     + "</div>"; 
     }
 
@@ -64,21 +64,21 @@ function create_chat_container(chat_contents){
     let chat_result = "";
 
     for(let chat of chat_contents){
-        let reg_day = chat.reg_day;
-        let reg_time = chat.reg_time;
-        if(chat.mine_div == 'mine'){
+        let REG_DAY = chat.REG_DAY;
+        let REG_TIME = chat.REG_TIME;
+        if(chat.MINE_DIV == 'mine'){
             chat_result += "<div class='my_chat_box'>"; 
-            if(chat.unread_num != 0){
-                chat_result += "<em class='em_yellow'>" + chat.unread_num +"</em>";
+            if(chat.UNREAD_NUM != 0){
+                chat_result += "<em class='em_yellow'>" + chat.UNREAD_NUM +"</em>";
             }
-            chat_result += "<em>" + reg_time +"</em>";
-            chat_result += "<span>"+ chat.contents + "</span>"
+            chat_result += "<em>" + REG_TIME +"</em>";
+            chat_result += "<span>"+ chat.CONTENTS + "</span>"
         }else{
-            chat_result += "<div class='chat_box'><span>" + chat.contents + "</span>"
-            if(chat.unread_num != 0){
-                chat_result += "<em class='em_yellow'>" + chat.unread_num +"</em>";
+            chat_result += "<div class='chat_box'><span>" + chat.CONTENTS + "</span>"
+            if(chat.UNREAD_NUM != 0){
+                chat_result += "<em class='em_yellow'>" + chat.UNREAD_NUM +"</em>";
             }
-            chat_result += "<em>" + reg_time +"</em>";
+            chat_result += "<em>" + REG_TIME +"</em>";
         }
         chat_result += "</div>";
     }
