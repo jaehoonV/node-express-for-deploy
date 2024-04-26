@@ -24,13 +24,14 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   console.log(req.body);
   let useremail = authCheck.getUseremail(req, res);
-  let sql = "SELECT D.CHAT_ROOM_NAME, D.MASTER_SEQ, D.MEMBER_NM, E.CONTENTS, "
+  let sql = "SELECT D.CHAT_ROOM_NAME, D.MASTER_SEQ, CONCAT(LEFT(D.MEMBER_NM, 20), IF(CHAR_LENGTH(D.MEMBER_NM) > 20, '...', '')) AS MEMBER_NM, "
+          + "CONCAT(LEFT(E.CONTENTS, 25), IF(CHAR_LENGTH(E.CONTENTS) > 25, '...', '')) AS CONTENTS, D.USER_CNT, "
           + "CASE WHEN CURRENT_DATE() = DATE_FORMAT(E.REG_DATE, '%Y-%m-%d') THEN DATE_FORMAT(E.REG_DATE, '%h:%i') "
           + "   WHEN DATE_FORMAT(CURRENT_DATE()-1, '%Y-%m-%d') = DATE_FORMAT(E.REG_DATE, '%Y-%m-%d') THEN 'Yesterday' "
           + "   ELSE DATE_FORMAT(E.REG_DATE, '%Y-%m-%d') END AS REG_DATE, "
           + "NVL(F.UNREAD_CNT, 0) AS UNREAD_CNT "
           + "FROM "
-          + "   (SELECT A.CHAT_ROOM_NAME, A.MASTER_SEQ, GROUP_CONCAT(C.USERNAME ORDER BY B.MEMBER_SEQ separator ', ') AS MEMBER_NM "
+          + "   (SELECT A.CHAT_ROOM_NAME, A.MASTER_SEQ, GROUP_CONCAT(C.USERNAME ORDER BY B.MEMBER_SEQ separator ', ') AS MEMBER_NM, COUNT(C.USERNAME) USER_CNT "
           + "   FROM ex1.CHAT_MASTER A "
           + "       LEFT OUTER JOIN ex1.CHAT_MEMBER B ON A.MASTER_SEQ = B.MASTER_SEQ AND MEMBER_SEQ != (SELECT MEMBER_SEQ FROM color_memo.MEMBER WHERE EMAIL = ? ) "
           + "       LEFT OUTER JOIN color_memo.MEMBER C ON B.MEMBER_SEQ = C.MEMBER_SEQ "
@@ -39,8 +40,9 @@ router.post('/', (req, res) => {
           + "   LEFT OUTER JOIN ex1.V_CHAT_LAST_CONTENTS_LIST E ON D.MASTER_SEQ = E.MASTER_SEQ "
           + "   LEFT OUTER JOIN (SELECT MASTER_SEQ, COUNT(CONTENTS_SEQ) UNREAD_CNT "
           + "       FROM ex1.V_CHAT_NOT_READ_CONTENTS "
-          + "       WHERE MEMBER_SEQ = (SELECT MEMBER_SEQ FROM color_memo.MEMBER WHERE EMAIL = ? )) F "
-          + "   ON D.MASTER_SEQ = F.MASTER_SEQ; ";
+          + "       WHERE MEMBER_SEQ = (SELECT MEMBER_SEQ FROM color_memo.MEMBER WHERE EMAIL = ? ) GROUP BY MASTER_SEQ) F "
+          + "   ON D.MASTER_SEQ = F.MASTER_SEQ "
+          + "ORDER BY E.REG_DATE DESC; ";
   let sql_data;
   maria.query(sql, [useremail, useremail, useremail], function (err, results) {
     if (err) {

@@ -5,11 +5,15 @@ body{
 }
 
 .body_div{
+    height: 100vh;
+}
+
+.chat_body{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     margin: 0px; 
 }
 
@@ -20,14 +24,46 @@ body{
     height: 536px;
     background-color: #445d77;
     padding: 5px;
+    transition: 0.5s;
+    box-shadow: 15px 15px 25px rgba(99, 99, 99, 0.75);
+}
+
+#chat_container{
+    box-shadow: 15px 15px 25px rgba(99, 99, 99, 0.75);
 }
 
 #chat{
     width: 400px;
     border-top-right-radius: 5px;
-    height: 500px;
+    height: 502px;
     background-color: #dbdbdb;
     padding: 5px;
+    overflow-y: auto;
+    transition: 0.5s;
+}
+
+#chat::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+#chat::-webkit-scrollbar-button {
+    width: 10px;
+    height: 10px;
+}
+
+#chat::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+#chat::-webkit-scrollbar-thumb {
+    background: #999;
+    border: 1px solid #999;
+    border-radius: 7px;
+}
+#chat::-webkit-scrollbar-track {
+    background: transparent;
+    border: 0 none transparent;
 }
 
 #chat_input_container{
@@ -50,10 +86,9 @@ body{
     flex-direction: column;
     justify-content: space-between;
     color: #ffffff;
-    text-align: right;
     margin: 7px 5px 7px 0px;
     padding: 5px;
-    min-height: 30px;
+    min-height: 45px;
     width: calc(100% - 20px);
     transition: 0.5s;
     border-right: 5px solid #445d77;
@@ -87,6 +122,12 @@ body{
     font-weight: bold;
 }
 
+.chat_user>.chat_user_cnt{
+    margin: 1px 1px 1px 10px;
+    font-size: 15px;
+    color:#94b1cd;
+}
+
 .chat_list_data1>.chat_reg_date{
     margin: 1px;
     font-size: 12px;
@@ -105,19 +146,45 @@ body{
     background: #dbdbdb;
     color: #445d77;
     border-radius: 8px;
-    padding: 2px 5px;
+    padding: 3px 5px 1px 5px;
 }
 
 .my_chat_box{
-    text-align: right;
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
     margin: 12px;
     font-size: 16px;
 }
 
 .chat_box{
-    text-align: left;
+    position: relative;
+    display: flex;
+    flex-direction: row;
     margin: 12px;
     font-size: 16px;
+}
+
+.chat_r{
+    position: absolute;
+    bottom: 0px;
+    right: -2.4px;
+    background-color: #ffffff;
+    display: block;
+    width: 8px;
+    height: 6px;
+    transform: rotate(58deg) skew(-35deg);
+}
+
+.chat_l{
+    position: absolute;
+    bottom: 0px;
+    left: -2px;
+    background-color: #435f7a;
+    display: block;
+    width: 8px;
+    height: 6px;
+    transform: rotate(-4deg) skew(-35deg);
 }
 
 .my_chat_box>span{
@@ -135,9 +202,8 @@ body{
 }
 
 .my_chat_box>em, .chat_box>em{
-    margin: 5px;
+    margin: auto 5px 2px 5px;
     font-size: 11px;
-    vertical-align: bottom;
 }
 
 .em_unread_cnt{
