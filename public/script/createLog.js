@@ -24,7 +24,7 @@ module.exports = {
                 console.log(err);
                 res.render('error', {error: err});
             } else{
-                console.log(event + " Log inserted!");
+                console.log("'" + event + "' Log inserted!");
             }
         });
     }
