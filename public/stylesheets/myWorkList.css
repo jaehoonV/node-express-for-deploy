@@ -2,6 +2,12 @@ html{
     height: 200%;
 }
 
+body{
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #edf1f4;
+    margin: 0px; 
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;

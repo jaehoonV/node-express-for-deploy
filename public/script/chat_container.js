@@ -1,5 +1,9 @@
 let master_seq;
 
+/**
+ * 채팅방 데이터를 조회한다.(초기 세팅)
+ * @param {String} seq 채팅방 seq
+ */
 function init(seq){
     $.ajax({
         url : "/chat_container/",
@@ -12,6 +16,7 @@ function init(seq){
         let not_read_cnt = json_data.results_not_read_cnt[0].NOT_READ_CNT;
         let username = json_data.username;
         create_chat_list(chat_list, not_read_cnt, seq, username);
+        refresh_not_read_cnt();
     })
     .fail(function (xhr, status, errorThrown){
         alert("Ajax failed")
@@ -20,16 +25,24 @@ function init(seq){
 
 init();
 
+/**
+ * 채팅방 데이터를 세팅한다.
+ * @param {Array} chat_list 채팅방 데이터
+ * @param {String} not_read_cnt 읽지않은 전체 채팅수 
+ * @param {String} seq 채팅방 seq
+ * @param {String} username 사용자명
+ */
 function create_chat_list(chat_list, not_read_cnt, seq, username){
     let num = 1; // 순서
-    let chat_result = "<div class='chat_list_top_div'><div class='chat_username'><span>" + username + "</span>";
+    /* let chat_result = "<div class='chat_list_top_div'><div class='chat_username'><span>" + username + "</span>";
     if(not_read_cnt > 0){
         chat_result += "<span class='not_read_cnt'>+ " + not_read_cnt + "</span></div>";
     }else{
         chat_result += "</div>";
     }
     chat_result += "<div><ion-icon name='add-circle-outline' class='add_chat'></ion-icon></div></div>"
-                + "<div class='chat_list_div'>";
+                + "<div class='chat_list_div'>"; */
+    let chat_result = "";
     for(let chat of chat_list){
         let CHAT_ROOM_NAME = chat.CHAT_ROOM_NAME;
         let MASTER_SEQ = chat.MASTER_SEQ;
@@ -79,7 +92,8 @@ function create_chat_list(chat_list, not_read_cnt, seq, username){
     }
     chat_result += "</div>";
 
-    $('#chat_list_container').html(chat_result);
+    //$('#chat_list_container').html(chat_result);
+    $('.chat_list_div').html(chat_result);
 }
 
 $(document).on("click",".my_chat_list",function(e){ 
@@ -89,10 +103,15 @@ $(document).on("click",".my_chat_list",function(e){
     });
     $(this).addClass('selected');
     master_seq = $(this).data('seq');
-    setChat(master_seq);
+    setChat(master_seq, 1);
 })
 
-function setChat(seq){
+/**
+ * 채팅 데이터를 조회한다.
+ * @param {Array} seq 채팅방 seq
+ * @param {String} div 후처리 구분
+ */
+function setChat(seq, div){ 
     $('#chat_input').val('');
     $.ajax({
         url : "/chat_container/chat_contents",
@@ -103,14 +122,19 @@ function setChat(seq){
     .done(function (json){
         let json_data = JSON.parse(JSON.stringify(json));
         let chat_contents = json_data.results;
-        create_chat_container(chat_contents);
+        create_chat_container(chat_contents, div);
     })
     .fail(function (xhr, status, errorThrown){
         alert("Ajax failed")
     })
 }
 
-function create_chat_container(chat_contents){
+/**
+ * 채팅 데이터를 세팅한다. 
+ * @param {Array} chat_contents 채팅 데이터
+ * @param {String} div 후처리 구분
+ */
+function create_chat_container(chat_contents, div){
     let chat_result = "";
     let temp_reg_id = "";
     let temp_reg_day = "";
@@ -160,7 +184,12 @@ function create_chat_container(chat_contents){
 
     $('#chat').html(chat_result);
     MoveFocus();
-    setChatList();
+    if(div == 0){ // div가 0이면 채팅목록 전체 새로고침
+        setChatList();
+    }else{
+        refresh_chat(); // 해당하는 채팅방 unread_cnt 제거
+    }
+    
 }
 
 function MoveFocus() {
@@ -182,6 +211,52 @@ function setChatList(){
     }, 200);
 }
 
+function refresh_chat(){
+    setTimeout(() => {
+        let seq = master_seq;
+        refresh_selected_chat_list(seq);
+        refresh_not_read_cnt();
+    }, 200);
+}
+
+/**
+ * 선택된 채팅방의 읽지않은 채팅수를 제거한다. 
+ * @param {String} seq 채팅방 seq
+ */
+function refresh_selected_chat_list(seq){
+    $('.my_chat_list').each(function(index, item){
+        if($(item).hasClass('selected')){
+            $(item).find('.chat_unread_cnt').remove();
+        }
+    });
+}
+
+/**
+ * 읽지않은 전체 채팅수를 조회하고 세팅한다. 
+ */
+function refresh_not_read_cnt(){
+    $.ajax({
+        url : "/chat_container/select_not_read_cnt",
+        type : "POST",
+        dataType : "JSON",
+    })
+    .done(function (json){
+        let json_data = JSON.parse(JSON.stringify(json));
+        let not_read_cnt = json_data.results.NOT_READ_CNT;
+
+        if(not_read_cnt > 0){
+            $('.not_read_cnt_span').html("<span class='not_read_cnt'>+ " + not_read_cnt + "</span>");
+        }
+        
+    })
+    .fail(function (xhr, status, errorThrown){
+        alert("Ajax failed")
+    })
+}
+
+/**
+ * 채팅을 저장한다. 
+ */
 function send_chat(){
     let contents = $('#chat_input').val();
     let seq = master_seq;
@@ -195,7 +270,7 @@ function send_chat(){
     .done(function (json){
         let json_data = JSON.parse(JSON.stringify(json));
         let chk = json_data.chk;
-        setChat(seq);
+        setChat(seq, 0);
     })
     .fail(function (xhr, status, errorThrown){
         alert("Ajax failed")
@@ -204,6 +279,13 @@ function send_chat(){
 
 $(document).on("click",".add_chat",function(e){ 
     e.preventDefault();
+    select_chat_users_list();
+})
+
+/**
+ * 전체 채팅 유저 목록을 조회한다. 
+ */
+function select_chat_users_list(){
     $.ajax({
         url : "/chat_container/get_chat_users",
         type : "POST",
@@ -217,8 +299,12 @@ $(document).on("click",".add_chat",function(e){
     .fail(function (xhr, status, errorThrown){
         alert("Ajax failed")
     })
-})
+}
 
+/**
+ * 전체 채팅 유저 목록을 세팅한다. 
+ * @param {Array} chat_users 전체 채팅 유저
+ */
 function create_chat_users_list(chat_users){
     let user_result = "<ul class='create_chat_user_list_ul'>";
 
@@ -227,7 +313,7 @@ function create_chat_users_list(chat_users){
         let EMAIL = user.EMAIL;
         let USERNAME = user.USERNAME;
 
-        user_result += "<li class='chat_user_list_li' data-seq='" + MEMBER_SEQ + "'>" + USERNAME + "<input class='chat_user_list_chk' type='checkbox'><label></label></li>";
+        user_result += "<li class='chat_user_list_li' data-seq='" + MEMBER_SEQ + "'><span class='chat_user_name_span'>" + USERNAME + "</span><input class='chat_user_list_chk' type='checkbox'><label></label></li>";
     }
     user_result += "</ul>";
 
@@ -279,7 +365,7 @@ $(document).on("click","#create_chat_btn",function(e){
             let json_data = JSON.parse(JSON.stringify(json));
             master_seq = json_data.master_seq;
             init(master_seq);
-            setChat(master_seq);
+            setChat(master_seq, 0);
         })
         .fail(function (xhr, status, errorThrown){
             alert("Ajax failed")
@@ -306,3 +392,4 @@ $(document).on("click",".chat_user_list_li",function(e){
     if(chk) $(this).find(".chat_user_list_chk").prop('checked',false);
     else $(this).find(".chat_user_list_chk").prop('checked',true);
 })
+

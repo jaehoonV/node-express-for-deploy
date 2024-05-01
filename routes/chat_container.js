@@ -13,10 +13,11 @@ router.get('/', (req, res) => {
     res.redirect('/login');
     return false;
   } else {
-    let master_yn = {"master_yn" : authCheck.isMaster(req, res)};
+    let data = {"master_yn" : authCheck.isMaster(req, res),
+                "username" : authCheck.getUsername(req, res)};
     
     createLog.insertLog(req, res, 'CHAT PAGE', 'MOVE');
-    res.render('chat_container', master_yn);
+    res.render('chat_container', data);
     return false;
   }
 })
@@ -335,6 +336,24 @@ router.post('/create', async (req, res) => {
     console.log(err);
     res.render('error', { error: err });
   }
+})
+
+router.post('/select_not_read_cnt', (req, res) => {
+  let useremail = authCheck.getUseremail(req, res);
+  let sql_not_read_cnt = "SELECT COUNT(*) AS NOT_READ_CNT "
+                        + "FROM ex1.V_CHAT_NOT_READ_CONTENTS "
+                        + "WHERE MEMBER_SEQ = (SELECT MEMBER_SEQ FROM color_memo.MEMBER WHERE EMAIL = ?); ";
+  let sql_data;
+  maria.query(sql_not_read_cnt, [useremail], function (err, results) {
+    if (err) {
+        console.log(err);
+        res.render('error', {error: err});
+    }
+    sql_data = {
+      "results" : results[0]
+    }
+    res.json(sql_data);
+  });
 })
 
 // 404 Error Handling

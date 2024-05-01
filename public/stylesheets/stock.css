@@ -14,6 +14,8 @@ input{
 .search_container{
     width: 1400px;
     margin: 10px auto;
+    display: flex;
+    justify-content: center;
 }
 
 .search_box_div{
@@ -26,7 +28,8 @@ input{
 }
 
 .search_box_div2{
-    display: inline-block;
+    /* display: inline-block; */
+    display: none;
     width: 650px;
     margin: 10px;
     border: 1px solid #dddddd;
@@ -43,6 +46,7 @@ input{
     gap: 3px;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 table.dataTable tbody th, table.dataTable tbody td {
@@ -50,9 +54,9 @@ table.dataTable tbody th, table.dataTable tbody td {
 }
 
 .stock_table_div{
-    width: 850px;
+    width: 820px;
     min-height: 700px;
-    margin: 10px auto;
+    margin: 10px;
     padding: 0 20px;
     border: 1px solid #dddddd;
     border-radius: 10px;
@@ -164,7 +168,8 @@ table.dataTable tbody th, table.dataTable tbody td {
 .view_chart{
     display: inline-block;
     width: 36px;
-    height: 20px;
+    height: 15px;
+    line-height: 10px;
     text-align: center;
     margin: 0 3px;
     padding: 1px;

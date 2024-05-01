@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MineSweeper</title>
     <link rel="stylesheet" href="/stylesheets/minesweeper.css">
-    <!-- <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
     <script src="https://kit.fontawesome.com/f1b7ad5b17.js" crossorigin="anonymous"></script>
     <script src="/script/minesweeper_script.js" type="module" defer></script>
     <!-- 마우스 우클릭 방지 -->
@@ -22,9 +21,9 @@
         <%- include ('sidebar.ejs') %>
     </header>
     <h2> 10 X 10 MineSweeper</h2>
-    
-    <div class="body_div">
-        <div style="width: 600px; display: inline-block; margin-left: 10%;">
+
+    <div class="body_div" style="display: flex; justify-content: center;">
+        <div style="width: 600px; display: inline-block;">
             <!-- 타이머 -->
             <div class="container">
                 <div class="container-segment">
@@ -63,6 +62,18 @@
         </div>
         <div id="history_board"></div>
 
+        <!-- <div id="failed">
+            <i class="fa-solid fa-face-dizzy fa-2xl"></i><br>
+            <div class="click_cnt_div">클릭 :
+                <span class="click_cnt"></span>회
+                <br>
+                시간 :
+                <span class="minutes_time"></span>
+                <span class="seconds_time"></span>초
+            </div>
+            <button class="retry_btn">Retry</button>
+        </div> -->
+
         <dialog id="failed">
             <i class="fa-solid fa-face-dizzy fa-2xl"></i><br>
             <div class="click_cnt_div">클릭 :
@@ -74,6 +85,30 @@
             </div>
             <button class="retry_btn">Retry</button>
         </dialog>
+
+        <!-- <div id="won">
+            <i class="fa-solid fa-face-laugh-beam fa-2xl"></i><br>
+            <form action="/minesweeper/save" method="POST">
+                <div class="click_cnt_div">클릭 :
+                    <span class="click_cnt"></span>회
+                    <br>
+                    시간 :
+                    <span class="minutes_time"></span>
+                    <span class="seconds_time"></span>초
+                    <br>
+                    점수 :
+                    <span class="score"></span>
+                    <div>
+                        <input type="text" id="save_name" name="save_name" placeholder="NAME" maxlength="20">
+                        <button type="submit" id="save_btn">SAVE</button>
+                        <input type="text" id="save_score" name="save_score" hidden>
+                        <input type="text" id="save_click_cnt" name="save_click_cnt" hidden>
+                        <input type="text" id="save_play_time" name="save_play_time" hidden>
+                    </div>
+                </div>
+            </form>
+            <button class="retry_btn">Retry</button>
+        </div> -->
 
         <dialog id="won">
             <i class="fa-solid fa-face-laugh-beam fa-2xl"></i><br>

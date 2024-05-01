@@ -19,7 +19,18 @@
   </header>
   <div class="body_div">
     <div class="chat_body">
-      <div id="chat_list_container"></div>
+      <div id="chat_list_container">
+        <div class='chat_list_top_div'>
+          <div class='chat_username'>
+            <span><%= username %></span>
+            <span class='not_read_cnt_span'></span>
+          </div>
+          <div>
+            <ion-icon name='add-circle-outline' class='add_chat'></ion-icon>
+          </div>
+        </div>
+        <div class='chat_list_div'></div>
+      </div>
       <div id="chat_container">
         <div id="chat"></div>
         <div id="chat_input_container">
