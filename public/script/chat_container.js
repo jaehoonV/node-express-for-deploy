@@ -19,7 +19,7 @@ function init(seq){
         refresh_not_read_cnt();
     })
     .fail(function (xhr, status, errorThrown){
-        alert("Ajax failed")
+        alert("Ajax failed");
     })
 }
 
@@ -48,6 +48,7 @@ function create_chat_list(chat_list, not_read_cnt, seq, username){
         let MASTER_SEQ = chat.MASTER_SEQ;
         let MEMBER_SEQ = chat.MEMBER_SEQ;
         let MEMBER_NM = chat.MEMBER_NM;
+        let FULL_MEMBER_NM = chat.FULL_MEMBER_NM;
         let CONTENTS = chat.CONTENTS;
         let USER_CNT = chat.USER_CNT;
         let REG_DATE = chat.REG_DATE;
@@ -62,15 +63,15 @@ function create_chat_list(chat_list, not_read_cnt, seq, username){
         if(USER_CNT > 1){ // 채팅 유저 수 표시
             USER_CNT++;
             if(CHAT_ROOM_NAME.length > 0){
-                chat_result += "<span class='chat_user'>" + CHAT_ROOM_NAME + "<span class='chat_user_cnt'>" + USER_CNT + "</span></span>"; 
+                chat_result += "<span class='chat_user' title='" + FULL_MEMBER_NM + "'>" + CHAT_ROOM_NAME + "<span class='chat_user_cnt'>" + USER_CNT + "</span></span>"; 
             }else{
-                chat_result += "<span class='chat_user'>" + MEMBER_NM + "<span class='chat_user_cnt'>" + USER_CNT + "</span></span>";
+                chat_result += "<span class='chat_user' title='" + FULL_MEMBER_NM + "'>" + MEMBER_NM + "<span class='chat_user_cnt'>" + USER_CNT + "</span></span>";
             }
         }else{
             if(CHAT_ROOM_NAME.length > 0){
-                chat_result += "<span class='chat_user'>" + CHAT_ROOM_NAME + "</span>"; 
+                chat_result += "<span class='chat_user' title='" + FULL_MEMBER_NM + "'>" + CHAT_ROOM_NAME + "</span>"; 
             }else{
-                chat_result += "<span class='chat_user'>" + MEMBER_NM + "</span>"; 
+                chat_result += "<span class='chat_user' title='" + FULL_MEMBER_NM + "'>" + MEMBER_NM + "</span>"; 
             }
         }
 
@@ -92,7 +93,6 @@ function create_chat_list(chat_list, not_read_cnt, seq, username){
     }
     chat_result += "</div>";
 
-    //$('#chat_list_container').html(chat_result);
     $('.chat_list_div').html(chat_result);
 }
 

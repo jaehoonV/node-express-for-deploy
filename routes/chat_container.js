@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   let useremail = authCheck.getUseremail(req, res);
   let username = authCheck.getUsername(req, res);
-  let sql = "SELECT D.CHAT_ROOM_NAME, D.MASTER_SEQ, CONCAT(LEFT(D.MEMBER_NM, 25), IF(CHAR_LENGTH(D.MEMBER_NM) > 25, '...', '')) AS MEMBER_NM, "
+  let sql = "SELECT D.CHAT_ROOM_NAME, D.MASTER_SEQ, CONCAT(LEFT(D.MEMBER_NM, 25), IF(CHAR_LENGTH(D.MEMBER_NM) > 25, '...', '')) AS MEMBER_NM, D.MEMBER_NM AS FULL_MEMBER_NM, "
           + "CONCAT(LEFT(E.CONTENTS, 25), IF(CHAR_LENGTH(E.CONTENTS) > 25, '...', '')) AS CONTENTS, D.USER_CNT, "
           + "CASE WHEN CURRENT_DATE() = DATE_FORMAT(E.REG_DATE, '%Y-%m-%d') THEN DATE_FORMAT(E.REG_DATE, '%h:%i') "
           + "   WHEN DATE_FORMAT(CURRENT_DATE()-1, '%Y-%m-%d') = DATE_FORMAT(E.REG_DATE, '%Y-%m-%d') THEN 'Yesterday' "
