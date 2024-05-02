@@ -162,7 +162,8 @@ body{
     display: flex;
     flex-direction: row-reverse;
     margin: 12px;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .chat_box{
@@ -170,7 +171,8 @@ body{
     display: flex;
     flex-direction: row;
     margin: 12px;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .chat_r{
@@ -197,21 +199,21 @@ body{
 
 .my_chat_box>span{
     background-color: #ffffff;
-    color: #435f7a;
+    color: #384857;
     border-radius: 5px;
-    padding: 4px 7px;
+    padding: 6px 7px;
 }
 
 .chat_box>span{
     background-color: #435f7a;
     color: #ffffff;
     border-radius: 5px;
-    padding: 4px 7px;
+    padding: 6px 7px;
 }
 
 .my_chat_box>em, .chat_box>em{
     margin: auto 5px 2px 5px;
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .em_unread_cnt{
@@ -265,7 +267,7 @@ body{
 }
 
 .chat_reg_day{
-    font-size: 12px;
+    font-size: 11px;
     background: aliceblue;
     padding: 4px 15px;
     border-radius: 10px;
