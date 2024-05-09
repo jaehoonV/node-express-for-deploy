@@ -102,6 +102,10 @@ $(document).on("click",".my_chat_list",function(e){
         $(item).removeClass('selected');
     });
     $(this).addClass('selected');
+
+    if(master_seq == $(this).data('seq')){
+        return;
+    }
     master_seq = $(this).data('seq');
     setChat(master_seq, 1);
 })
@@ -113,6 +117,12 @@ $(document).on("click",".my_chat_list",function(e){
  */
 function setChat(seq, div){ 
     $('#chat_input').val('');
+    if(div == 1){
+        $('#chat_container').css('visibility', 'hidden');
+        $('#chat').css('padding', '0px');
+        $('#chat').css('height', '0px');
+    }
+    
     $.ajax({
         url : "/chat_container/chat_contents",
         type : "POST",
@@ -135,9 +145,11 @@ function setChat(seq, div){
  * @param {String} div 후처리 구분
  */
 function create_chat_container(chat_contents, div){
+    $('#chat').html(""); // 채팅 초기화
     let chat_result = "";
     let temp_reg_id = "";
     let temp_reg_day = "";
+    let temp_reg_time = "";
 
     for(let chat of chat_contents){
         let CONTENTS = chat.CONTENTS;
@@ -165,7 +177,7 @@ function create_chat_container(chat_contents, div){
             }
             chat_result += "<div class='chat_r'></div>"
         }else{
-            if(temp_reg_id != REG_ID){ // 사용자명 태그 생성
+            if(temp_reg_id != REG_ID || temp_reg_time != REG_TIME){ // 사용자명 태그 생성 (사용자 ID가 다른 경우, 채팅 시간이 다른 경우)
                 chat_result += "<div class='chat_user_box'>" + USERNAME + "</div>"; 
             }
             chat_result += "<div class='chat_box'><span>" + CONTENTS + "</span>"
@@ -180,10 +192,22 @@ function create_chat_container(chat_contents, div){
         chat_result += "</div>";
         temp_reg_id = REG_ID;
         temp_reg_day = REG_DAY;
+        temp_reg_time = REG_TIME;
     }
 
-    $('#chat').html(chat_result);
-    MoveFocus();
+    if(div == 0){
+        $('#chat').html(chat_result);
+        MoveFocus();
+    }else{
+        setTimeout(() => {
+            $('#chat_container').css('visibility', 'visible');
+            $('#chat').css('height', '602px');
+            $('#chat').css('padding', '5px');
+            $('#chat').html(chat_result);
+            MoveFocus();
+        }, 500);
+    }
+    
     if(div == 0){ // div가 0이면 채팅목록 전체 새로고침
         setChatList();
     }else{
@@ -198,7 +222,16 @@ function MoveFocus() {
 }
 
 $('#chat_input').on("keydown", function(e){
-    if(e.which==13){
+    if (e.altKey && e.keyCode === 13) { // Alt key + Enter key is pressed
+        $('#chat_input').blur();
+        $('#chat_input').val($('#chat_input').val() + "\n");
+        $('#chat_input').focus();
+        e.preventDefault();
+    }else if(e.which===13){
+        e.preventDefault();
+        if(!master_seq){
+            return;
+        }
         send_chat();
         setChatList();
     }
@@ -392,4 +425,3 @@ $(document).on("click",".chat_user_list_li",function(e){
     if(chk) $(this).find(".chat_user_list_chk").prop('checked',false);
     else $(this).find(".chat_user_list_chk").prop('checked',true);
 })
-

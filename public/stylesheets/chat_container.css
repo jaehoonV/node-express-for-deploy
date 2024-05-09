@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 body{
-    font-family: 'Ubuntu', sans-serif;
+    font-family: "Noto Sans", sans-serif;
     background-color: #edf1f4;
     margin: 0px; 
 }
@@ -15,13 +17,13 @@ body{
     align-items: center;
     height: 100%;
     margin: 0px; 
+    gap: 30px;
 }
 
 #chat_list_container{
     width: 400px;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
-    height: 536px;
+    border-radius: 7px;
+    height: 670px;
     background-color: #445d77;
     padding: 5px;
     transition: 0.5s;
@@ -30,18 +32,20 @@ body{
 
 #chat_container{
     box-shadow: 10px 10px 20px rgba(99, 99, 99, 0.75);
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-radius: 7px;
     padding-right: 2px;
     background-color: #dbdbdb;
+    visibility: hidden;
 }
 
 #chat{
-    width: 400px;
-    border-top-right-radius: 5px;
-    height: 502px;
+    width: 440px;
+    border-radius: 7px;
+    /* height: 602px; */
+    height: 0px;
     background-color: #dbdbdb;
-    padding: 5px;
+    /* padding: 5px; */
+    padding: 0px;
     overflow-y: auto;
     transition: 0.5s;
 }
@@ -71,18 +75,20 @@ body{
 }
 
 #chat_input_container{
-    width: 400px;
+    width: 440px;
     padding: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
     background-color: #ffffff;
 }
 
 #chat_input{
-    height: 20px;
+    height: 50px;
     padding: 2px;
     outline: none;
     border: 0;
     width: calc(100% - 10px);
+    resize: none;
 }
 
 .my_chat_list{
@@ -150,11 +156,12 @@ body{
     background: #dbdbdb;
     color: #445d77;
     border-radius: 8px;
-    padding: 3px 5px 1px 5px;
+    padding: 1px 5px;
 }
 
 .chat_user_box{
     font-weight: bold;
+    padding: 0px 10px;
 }
 
 .my_chat_box{
@@ -162,8 +169,7 @@ body{
     display: flex;
     flex-direction: row-reverse;
     margin: 12px;
-    font-size: 13px;
-    font-weight: bold;
+    font-size: 14px;
 }
 
 .chat_box{
@@ -171,8 +177,7 @@ body{
     display: flex;
     flex-direction: row;
     margin: 12px;
-    font-size: 13px;
-    font-weight: bold;
+    font-size: 14px;
 }
 
 .chat_r{
@@ -202,6 +207,7 @@ body{
     color: #384857;
     border-radius: 5px;
     padding: 6px 7px;
+    white-space: break-spaces;
 }
 
 .chat_box>span{
@@ -209,11 +215,12 @@ body{
     color: #ffffff;
     border-radius: 5px;
     padding: 6px 7px;
+    white-space: break-spaces;
 }
 
 .my_chat_box>em, .chat_box>em{
     margin: auto 5px 2px 5px;
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .em_unread_cnt{
@@ -230,7 +237,7 @@ body{
 
 .chat_list_div{
     overflow-y: auto;
-    height: 500px;
+    height: 630px;
 }
 
 .chat_list_div::-webkit-scrollbar {
@@ -481,4 +488,3 @@ body{
 #create_chat_btn:hover, #create_chat_close_btn:hover{
     box-shadow: 2px 2px 3px #9c9c9c;
 }
-

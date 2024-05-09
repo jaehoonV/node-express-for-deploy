@@ -90,7 +90,7 @@ router.post('/chat_contents', async (req, res) => {
 
     // CHAT_CONTENTS 조회
     let sql_data;
-    const sql_chat_contents = "SELECT A.CONTENTS, A.REG_ID, A.REG_DATE, DATE_FORMAT(A.REG_DATE, '%Y-%m-%d') AS REG_DAY, DATE_FORMAT(A.REG_DATE, '%h:%i') AS REG_TIME, "
+    const sql_chat_contents = "SELECT REPLACE(A.CONTENTS, CHAR(10), '<br>') AS CONTENTS, A.REG_ID, A.REG_DATE, DATE_FORMAT(A.REG_DATE, '%Y-%m-%d') AS REG_DAY, DATE_FORMAT(A.REG_DATE, '%h:%i') AS REG_TIME, "
                             + "CASE WHEN A.CHAT_DIV = 'SYSTEM' THEN 'sys' "
                             + "   WHEN A.REG_ID = ? THEN 'mine' " 
                             + "   ELSE 'other' END AS MINE_DIV, "
