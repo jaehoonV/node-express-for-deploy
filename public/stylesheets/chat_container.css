@@ -291,7 +291,8 @@ body{
 }
 
 #create_chat_popup {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -302,11 +303,13 @@ body{
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 9999;
+    transition: 0.5s;
 }
 
 /* 배경 불투명도 */
 #overlay {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -314,6 +317,7 @@ body{
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9998;
+    transition: 0.5s;
 }
 
 #create_chat_roomName{
