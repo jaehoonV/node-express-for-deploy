@@ -50,17 +50,26 @@ $(document).on('click', '.item', function (e) {
 
 function movePage(url){
     let index = url + 'index.html';
-    $(location).attr("href", index);
-    let e = window.event;
-    e.stopPropagation();
+    let label = url.substring(14, url.length - 1).replaceAll('_', ' ');
+    let _width = '1200';
+    let _height = '800';
+    let _top = Math.ceil((window.screen.height - _height)/2);
+    let _left = Math.ceil((window.screen.width - _width)/2);
+    let option = 'width='+ _width + ',height=' + _height + ',top=' + _top + ',left=' + _left + ',resizable=yes ';
+    window.open(index, label, option);
+    movePage_colsed();
 }
 
 $('#cancel').on('click', () => {
+    movePage_colsed();
+});
+
+function movePage_colsed(){
     $('#movePage_confirmed').css({opacity:1}).animate({opacity:0},500);
     setTimeout(() => {
         $('#movePage_confirmed').css('display','none');
     }, '500')
-});
+}
 
 $('#confirm').on('click', () => {
     movePage(select_page);
