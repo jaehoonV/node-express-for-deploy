@@ -1,0 +1,1420 @@
+﻿<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="swiperJS/swiper-bundle.min.js"></script>
+    <link href="swiperJS/swiper-bundle.min.css" rel="stylesheet">
+    <title>DASHBOARD</title>
+</head>
+<script>
+    $(function(){
+        function disasterData(){ /* 재난문자방송 발령현황 */
+            let sb = "";
+            let disasterList = ["6월17일 ~ 6월18일 사이에 폭염이 예상되오니 지역 주민 여러분께서는 한낮 야외활동을 자제해 주시기 바랍니다.",
+                                "[신안군] 장산면 오음2리 ~ 시미리 구간 침수로 인한 도로 통제",
+                                "[김포시청]지반이 약해져 나무가 쓰러지고 임야 토사·도로유실 및 포트홀이 자주 발생되어 위험하오니 인명피해 없도록 주의하시기 바랍니다.",
+                                "[신안군] 지도읍 국도 24호선 접속도로(감정리 1256번지) 약 100M 구간 1차선 통제",
+                                "[경상남도]폭염특보 발효중, 체감온도 33-35도 내외로 고온다습하여 온열질환 발생이 높아 야외작업장, 농작업, 축산농가, 실외기화재 대비 등 건강관리유의바랍니다."]
+            disasterList.forEach(el => {
+                sb += "<div class='swiper-slide'>" + el + "</div>";
+            });
+                
+            $("#disaster_div").html(sb);
+            
+            swiperJS();
+        }
+        
+        function swiperJS(){
+            var swiper = new Swiper('.swiper-container', {
+            direction: 'vertical',
+            slidesPerView: 1,
+            spaceBetween: 30,
+            mousewheel: true,
+            grabCursor: true,
+            speed : 1000,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            }
+            });
+        }
+
+        function bar_effect(){
+            $(".status-bar-plan").css("width", "46%");
+            count_func($(".status-bar-plan-value"), 46, 20, 0);
+            $(".status-bar-actual").css("width", "41%");
+            count_func($(".status-bar-actual-value"), 41, 20, 0);
+
+            $(".field-info-bar").css("width", "80%");
+
+            let data_map = [
+                        {pjt_cd: "01", ic_ratio: 54.6, ip_ratio: 92.1, ta_ratio: 92.4, te_ratio: 101.6},
+                        {pjt_cd: "02", ic_ratio: 32.6, ip_ratio: 31.1, ta_ratio: 42.4, te_ratio: 44.6},
+                        {pjt_cd: "03", ic_ratio: 21.3, ip_ratio: 22.6, ta_ratio: 13.7, te_ratio: 18.2},
+                        {pjt_cd: "04", ic_ratio: 45.1, ip_ratio: 41.9, ta_ratio: 48.1, te_ratio: 44.9},
+                        {pjt_cd: "05", ic_ratio: 51.3, ip_ratio: 52.1, ta_ratio: 34.4, te_ratio: 31.3},
+                        {pjt_cd: "06", ic_ratio: 77.7, ip_ratio: 58.4, ta_ratio: 52.8, te_ratio: 48.8},
+                        {pjt_cd: "07", ic_ratio: 66.3, ip_ratio: 62.3, ta_ratio: 42.3, te_ratio: 41.3},
+                        {pjt_cd: "08", ic_ratio: 38.6, ip_ratio: 33.6, ta_ratio: 41.2, te_ratio: 40.2},
+                        {pjt_cd: "09", ic_ratio: 14.3, ip_ratio: 18.1, ta_ratio: 23.5, te_ratio: 23.2},
+                        {pjt_cd: "10", ic_ratio: 14.3, ip_ratio: 18.1, ta_ratio: 23.5, te_ratio: 23.2}
+                            ];
+
+
+            $.each(data_map, function(index, item) {
+                var pjt_cd = item.pjt_cd;
+                
+                var ic_ratio = item.ic_ratio; // 인프라 케이블 비율
+                var ic_ratio_css = ic_ratio + "%"; // for bar css
+                var ip_ratio = item.ip_ratio; // 인프라 관로 비율
+                var ip_ratio_css = ip_ratio + "%"; // for bar css
+                var te_ratio = item.te_ratio; // 전송 주요장비 비율
+                var te_ratio_css = te_ratio + "%"; // for bar css
+                var ta_ratio = item.ta_ratio; // 전송 부대 비율
+                var ta_ratio_css = ta_ratio + "%"; // for bar css
+                
+                var pjt_div;
+                switch(pjt_cd){
+                    case "01": pjt_div = $('#pjt01_div'); break;
+                    case "02": pjt_div = $('#pjt02_div'); break; 
+                    case "03": pjt_div = $('#pjt03_div'); break; 
+                    case "04": pjt_div = $('#pjt04_div'); break; 
+                    case "05": pjt_div = $('#pjt05_div'); break; 
+                    case "06": pjt_div = $('#pjt06_div'); break; 
+                    case "07": pjt_div = $('#pjt07_div'); break; 
+                    case "08": pjt_div = $('#pjt08_div'); break; 
+                    case "09": pjt_div = $('#pjt09_div'); break; 
+                    default: console.log(" planWorkData \n pjt_cd = " + pjt_cd + " : There is no matching project code."); break;
+                }
+                
+                if(pjt_div){
+                    count_func(pjt_div.find('.ic_ratio'), ic_ratio, 20, 1);
+                    pjt_div.find('.ic_bar').css("width", ic_ratio_css);
+
+                    count_func(pjt_div.find('.ip_ratio'), ip_ratio, 20, 1);
+                    pjt_div.find('.ip_bar').css("width", ip_ratio_css);
+
+                    count_func(pjt_div.find('.te_ratio'), te_ratio, 20, 1);
+                    pjt_div.find('.te_bar').css("width", te_ratio_css);
+
+                    count_func(pjt_div.find('.ta_ratio'), ta_ratio, 20, 1);
+                    pjt_div.find('.ta_bar').css("width", ta_ratio_css);
+                }
+
+                if(pjt_cd == "10"){
+                    console.log(pjt_cd);
+                    pjt_div = $('#pjt10_div');
+                    count_func(pjt_div.find('.plan_ratio'), 58.2, 20, 1);
+                    pjt_div.find('.plan-bar').css("width", "58.2%");
+
+                    count_func(pjt_div.find('.actual_ratio'), 55.8, 20, 1);
+                    pjt_div.find('.actual-bar').css("width", "55.8%");
+                }
+            });
+        }
+
+        function count_func(div_class, cnt, interval_time, decimal ) {
+            setTimeout(() => counter(div_class, cnt, interval_time, decimal), 50);
+        }
+
+        function counter(div_class, cnt, interval_time, decimal){
+            if(decimal == 0){
+                let init = 0;
+                const handle = setInterval(() => {
+                    if (init == cnt) {
+                        clearInterval(handle);
+                    }else{
+                        init++;
+                        $(div_class).text(init);
+                    }
+                }, interval_time);
+            }
+            if(decimal == 1){
+                let init = 0;
+                let de_val = cnt * 10 % 10;
+                cnt = Math.floor(cnt);
+                const handle = setInterval(() => {
+                    if (init == cnt) {
+                        clearInterval(handle);
+                    }else{
+                        init++;
+                        $(div_class).text(init + "." + de_val);
+                    }
+                }, interval_time);
+            }
+        }
+
+        disasterData();
+        bar_effect();
+    });
+</script>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div class="logo-header"><img src="images/logo.png" /></div>
+        </div>
+        <div class="fx-between">
+            <div style="width: 470px; margin-right: 7px;">
+                <!-- 종합공정현황 -->
+                <div class="cont-box" style="height: 195px; margin-bottom: 7px;">
+                    <div class="fx-between">
+                        <div class="cont-tit">종합모니터링</div>
+                        <div class="fx-end">
+                            <div style="font-size: 14px; opacity: 0.6; margin-right: 3px;">(대비 : 99%)</div>
+                            <div class="status-light fx-start">
+                                <div class="bg-color-normal"></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-box-inner" style="width: 100%; height: 122px; padding: 25px 20px;">
+                        <div class="fx-between" style="margin-bottom: 10px;">
+                            <div class="status-bar-tit">계획</div>
+                            <div class="status-bar-bg">
+                                <div class="status-bar bg-color-plan status-bar-plan" style="width: 0%;"></div>
+                            </div>
+                            <div class="status-bar-data color-plan fx-end">
+                                <font class="status-bar-plan-value">0</font><font>%</font>
+                            </div>
+                        </div>
+                        <div class="fx-between">
+                            <div class="status-bar-tit">실적</div>
+                            <div class="status-bar-bg">
+                                <div class="status-bar bg-color-actual status-bar-actual " style="width: 0%;"></div>
+                            </div>
+                            <div class="status-bar-data color-actual fx-end">
+                                <font class="status-bar-actual-value">0</font><font>%</font>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 인력투입현황 -->
+                <div class="cont-box" style="height: 518px; margin-bottom: 7px;">
+                    <div class="cont-tit">인력투입현황 <font style="font-size: 14px; opacity: 0.6;">(명)</font></div>
+                    <div class="mp-status">
+                        <div class="mp-status-head fx-between">
+                            <div>공구</div>
+                            <div>전일</div>
+                            <div>금일</div>
+                            <div>누계</div>
+                        </div>
+                        <div class="mp-status-body-odd fx-between">
+                            <div>1공구</div>
+                            <div>99</div>
+                            <div>99</div>
+                            <div>99</div>
+                        </div>
+                        <div class="mp-status-body-even fx-between">
+                            <div>2공구</div>
+                            <div>99</div>
+                            <div>99</div>
+                            <div>99</div>
+                        </div>
+                        <div class="mp-status-body-odd fx-between">
+                            <div>3공구</div>
+                            <div>99</div>
+                            <div>99</div>
+                            <div>99</div>
+                        </div>
+                        <div class="mp-status-body-even fx-between">
+                            <div>4공구</div>
+                            <div>99</div>
+                            <div>99</div>
+                            <div>99</div>
+                        </div>
+                        <div class="mp-status-body-odd fx-between">
+                            <div>5공구</div>
+                            <div>99</div>
+                            <div>99</div>
+                            <div>99</div>
+                        </div>
+                        <div class="mp-status-body-even fx-between">
+                            <div>6공구</div>
+                            <div>99</div>
+                            <div>99</div>
+                            <div>99</div>
+                        </div>
+                        <div class="mp-status-body-odd fx-between">
+                            <div>7공구</div>
+                            <div>99</div>
+                            <div>99</div>
+                            <div>99</div>
+                        </div>
+                        <div class="mp-status-body-even fx-between">
+                            <div>8공구</div>
+                            <div>99</div>
+                            <div>99</div>
+                            <div>99</div>
+                        </div>
+                        <div class="mp-status-body-odd fx-between">
+                            <div>9공구</div>
+                            <div>99</div>
+                            <div>99</div>
+                            <div>99</div>
+                        </div>
+                        <div class="mp-status-body-even fx-between">
+                            <div>10공구</div>
+                            <div>99</div>
+                            <div>99</div>
+                            <div>99</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 재난알림 -->
+                <div class="cont-box" style="height: 154px;">
+                    <div class="cont-tit">재난알림</div>
+                    <div class="cont-box-inner fx-between" style="height: 80px; padding:10px;">
+                        <div style="margin:16px 7px 0 0;"><img src="images/ico_alert.png"></div>
+                        <div class="swiper-container" style="width: 100%; height: 60px; overflow: hidden; line-height: 20px;">
+                        	<div class="swiper-wrapper" id="disaster_div"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 공구별 공정현황 -->
+            <div class="cont-box field-map" style="flex: 1; height: 881px;">
+                <div class="cont-tit">공구별 공정현항</div>
+                <!-- 공구별 - 위치 -->
+                <div>
+                    <!-- 1공구 -->
+                    <div class="field-location location1">
+                        <ul>
+                            <li>1</li>
+                            <li>공구</li>
+                        </ul>
+                    </div>
+                    <!-- 2공구 -->
+                    <div class="field-location location2">
+                        <ul>
+                            <li>2</li>
+                            <li>공구</li>
+                        </ul>
+                    </div>
+                    <!-- 3공구 -->
+                    <div class="field-location location3">
+                        <ul>
+                            <li>3</li>
+                            <li>공구</li>
+                        </ul>
+                    </div>
+                    <!-- 4공구 -->
+                    <div class="field-location location4">
+                        <ul>
+                            <li>4</li>
+                            <li>공구</li>
+                        </ul>
+                    </div>
+                    <!-- 5공구 -->
+                    <div class="field-location location5">
+                        <ul>
+                            <li>5</li>
+                            <li>공구</li>
+                        </ul>
+                    </div>
+                    <!-- 6공구 -->
+                    <div class="field-location location6">
+                        <ul>
+                            <li>6</li>
+                            <li>공구</li>
+                        </ul>
+                    </div>
+                    <!-- 7공구 -->
+                    <div class="field-location location7">
+                        <ul>
+                            <li>7</li>
+                            <li>공구</li>
+                        </ul>
+                    </div>
+                    <!-- 8공구 -->
+                    <div class="field-location location8">
+                        <ul>
+                            <li>8</li>
+                            <li>공구</li>
+                        </ul>
+                    </div>
+                    <!-- 9공구 -->
+                    <div class="field-location location9">
+                        <ul>
+                            <li>9</li>
+                            <li>공구</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 공구별 - 현황 -->
+                <div>
+                    <!-- 1공구 -->
+                    <div class="field-info info1">
+                        <div class="field-info-head fx-between">
+                            <ul class="fx-start">
+                                <li>1</li>
+                                <li>공구</li>
+                            </ul>
+                            <div>대전광역시</div>
+                        </div>
+                        <div class="field-info-body">
+                            <div class="fx-between" style="margin-bottom: 5px;">
+                                <div class="fx-center field-info-weather">
+                                    <div><img src="images/ico_dept_wea02.png"></div>
+                                    <div class="temp">26°</div>
+                                    <div class="temp-hi-low">
+                                        <ul>
+                                            <li class="color-temp-low">20°</li>
+                                            <li class="color-temp-hi">26°</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="fx-between field-info-noaccident">
+                                    <div>무사고</div>
+                                    <div>
+                                        <ul class="fx-end">
+                                            <li>9,999</li>
+                                            <li>일</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-info-status" id="pjt01_div">
+                                <table>
+                                    <colgroup style="width: 18%;"></colgroup>
+                                    <colgroup style="width: 82%;"></colgroup>
+                                    <tr>
+                                        <td rowspan="2">인프라</td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between" >
+                                                <div class="field-info-name" style="letter-spacing: 2px;"><font style="letter-spacing: 3px;">케이</font>블</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ic_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ic_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">관</font>로</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ip_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ip_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"><font>전</font><font>송</font></td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name">주요장비</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer te_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="te_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>  
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">부</font>대</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer ta_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="ta_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 2공구 -->
+                    <div class="field-info info2">
+                        <div class="field-info-head fx-between">
+                            <ul class="fx-start">
+                                <li>2</li>
+                                <li>공구</li>
+                            </ul>
+                            <div>의정부시</div>
+                        </div>
+                        <div class="field-info-body">
+                            <div class="fx-between" style="margin-bottom: 5px;">
+                                <div class="fx-center field-info-weather">
+                                    <div><img src="images/ico_dept_wea03.png"></div>
+                                    <div class="temp">26°</div>
+                                    <div class="temp-hi-low">
+                                        <ul>
+                                            <li class="color-temp-low">20°</li>
+                                            <li class="color-temp-hi">26°</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="fx-between field-info-noaccident">
+                                    <div>무사고</div>
+                                    <div>
+                                        <ul class="fx-end">
+                                            <li>9,999</li>
+                                            <li>일</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-info-status" id="pjt02_div">
+                                <table>
+                                    <colgroup style="width: 18%;"></colgroup>
+                                    <colgroup style="width: 82%;"></colgroup>
+                                    <tr>
+                                        <td rowspan="2">인프라</td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between" >
+                                                <div class="field-info-name" style="letter-spacing: 2px;"><font style="letter-spacing: 3px;">케이</font>블</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ic_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ic_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">관</font>로</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ip_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ip_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"><font>전</font><font>송</font></td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name">주요장비</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer te_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="te_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>  
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">부</font>대</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer ta_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="ta_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 3공구 -->
+                    <div class="field-info info3">
+                        <div class="field-info-head fx-between">
+                            <ul class="fx-start">
+                                <li>3</li>
+                                <li>공구</li>
+                            </ul>
+                            <div>춘천시</div>
+                        </div>
+                        <div class="field-info-body">
+                            <div class="fx-between" style="margin-bottom: 5px;">
+                                <div class="fx-center field-info-weather">
+                                    <div><img src="images/ico_dept_wea01.png"></div>
+                                    <div class="temp">26°</div>
+                                    <div class="temp-hi-low">
+                                        <ul>
+                                            <li class="color-temp-low">20°</li>
+                                            <li class="color-temp-hi">26°</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="fx-between field-info-noaccident">
+                                    <div>무사고</div>
+                                    <div>
+                                        <ul class="fx-end">
+                                            <li>9,999</li>
+                                            <li>일</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-info-status" id="pjt03_div">
+                                <table>
+                                    <colgroup style="width: 18%;"></colgroup>
+                                    <colgroup style="width: 82%;"></colgroup>
+                                    <tr>
+                                        <td rowspan="2">인프라</td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between" >
+                                                <div class="field-info-name" style="letter-spacing: 2px;"><font style="letter-spacing: 3px;">케이</font>블</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ic_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ic_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">관</font>로</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ip_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ip_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"><font>전</font><font>송</font></td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name">주요장비</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer te_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="te_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>  
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">부</font>대</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer ta_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="ta_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 4공구 -->
+                    <div class="field-info info4">
+                        <div class="field-info-head fx-between">
+                            <ul class="fx-start">
+                                <li>4</li>
+                                <li>공구</li>
+                            </ul>
+                            <div>안양시</div>
+                        </div>
+                        <div class="field-info-body">
+                            <div class="fx-between" style="margin-bottom: 5px;">
+                                <div class="fx-center field-info-weather">
+                                    <div><img src="images/ico_dept_wea04.png"></div>
+                                    <div class="temp">26°</div>
+                                    <div class="temp-hi-low">
+                                        <ul>
+                                            <li class="color-temp-low">20°</li>
+                                            <li class="color-temp-hi">26°</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="fx-between field-info-noaccident">
+                                    <div>무사고</div>
+                                    <div>
+                                        <ul class="fx-end">
+                                            <li>9,999</li>
+                                            <li>일</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-info-status" id="pjt04_div">
+                                <table>
+                                    <colgroup style="width: 18%;"></colgroup>
+                                    <colgroup style="width: 82%;"></colgroup>
+                                    <tr>
+                                        <td rowspan="2">인프라</td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between" >
+                                                <div class="field-info-name" style="letter-spacing: 2px;"><font style="letter-spacing: 3px;">케이</font>블</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ic_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ic_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">관</font>로</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ip_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ip_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"><font>전</font><font>송</font></td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name">주요장비</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer te_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="te_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>  
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">부</font>대</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer ta_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="ta_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 5공구 -->
+                    <div class="field-info info5">
+                        <div class="field-info-head fx-between">
+                            <ul class="fx-start">
+                                <li>5</li>
+                                <li>공구</li>
+                            </ul>
+                            <div>오산시</div>
+                        </div>
+                        <div class="field-info-body">
+                            <div class="fx-between" style="margin-bottom: 5px;">
+                                <div class="fx-center field-info-weather">
+                                    <div><img src="images/ico_dept_wea01.png"></div>
+                                    <div class="temp">26°</div>
+                                    <div class="temp-hi-low">
+                                        <ul>
+                                            <li class="color-temp-low">20°</li>
+                                            <li class="color-temp-hi">26°</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="fx-between field-info-noaccident">
+                                    <div>무사고</div>
+                                    <div>
+                                        <ul class="fx-end">
+                                            <li>9,999</li>
+                                            <li>일</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-info-status"  id="pjt05_div">
+                                <table>
+                                    <colgroup style="width: 18%;"></colgroup>
+                                    <colgroup style="width: 82%;"></colgroup>
+                                    <tr>
+                                        <td rowspan="2">인프라</td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between" >
+                                                <div class="field-info-name" style="letter-spacing: 2px;"><font style="letter-spacing: 3px;">케이</font>블</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ic_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ic_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">관</font>로</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ip_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ip_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"><font>전</font><font>송</font></td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name">주요장비</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer te_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="te_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>  
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">부</font>대</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer ta_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="ta_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 6공구 -->
+                    <div class="field-info info6">
+                        <div class="field-info-head fx-between">
+                            <ul class="fx-start">
+                                <li>6</li>
+                                <li>공구</li>
+                            </ul>
+                            <div>이천시</div>
+                        </div>
+                        <div class="field-info-body">
+                            <div class="fx-between" style="margin-bottom: 5px;">
+                                <div class="fx-center field-info-weather">
+                                    <div><img src="images/ico_dept_wea05.png"></div>
+                                    <div class="temp">26°</div>
+                                    <div class="temp-hi-low">
+                                        <ul>
+                                            <li class="color-temp-low">20°</li>
+                                            <li class="color-temp-hi">26°</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="fx-between field-info-noaccident">
+                                    <div>무사고</div>
+                                    <div>
+                                        <ul class="fx-end">
+                                            <li>9,999</li>
+                                            <li>일</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-info-status" id="pjt06_div">
+                                <table>
+                                    <colgroup style="width: 18%;"></colgroup>
+                                    <colgroup style="width: 82%;"></colgroup>
+                                    <tr>
+                                        <td rowspan="2">인프라</td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between" >
+                                                <div class="field-info-name" style="letter-spacing: 2px;"><font style="letter-spacing: 3px;">케이</font>블</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ic_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ic_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">관</font>로</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ip_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ip_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"><font>전</font><font>송</font></td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name">주요장비</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer te_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="te_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>  
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">부</font>대</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer ta_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="ta_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 7공구 -->
+                    <div class="field-info info7">
+                        <div class="field-info-head fx-between">
+                            <ul class="fx-start">
+                                <li>7</li>
+                                <li>공구</li>
+                            </ul>
+                            <div>대전광역시</div>
+                        </div>
+                        <div class="field-info-body">
+                            <div class="fx-between" style="margin-bottom: 5px;">
+                                <div class="fx-center field-info-weather">
+                                    <div><img src="images/ico_dept_wea06.png"></div>
+                                    <div class="temp">26°</div>
+                                    <div class="temp-hi-low">
+                                        <ul>
+                                            <li class="color-temp-low">20°</li>
+                                            <li class="color-temp-hi">26°</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="fx-between field-info-noaccident">
+                                    <div>무사고</div>
+                                    <div>
+                                        <ul class="fx-end">
+                                            <li>9,999</li>
+                                            <li>일</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-info-status" id="pjt07_div">
+                                <table>
+                                    <colgroup style="width: 18%;"></colgroup>
+                                    <colgroup style="width: 82%;"></colgroup>
+                                    <tr>
+                                        <td rowspan="2">인프라</td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between" >
+                                                <div class="field-info-name" style="letter-spacing: 2px;"><font style="letter-spacing: 3px;">케이</font>블</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ic_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ic_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">관</font>로</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ip_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ip_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"><font>전</font><font>송</font></td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name">주요장비</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer te_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="te_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>  
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">부</font>대</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer ta_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="ta_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 8공구 -->
+                    <div class="field-info info8">
+                        <div class="field-info-head fx-between">
+                            <ul class="fx-start">
+                                <li>8</li>
+                                <li>공구</li>
+                            </ul>
+                            <div>남원시</div>
+                        </div>
+                        <div class="field-info-body">
+                            <div class="fx-between" style="margin-bottom: 5px;">
+                                <div class="fx-center field-info-weather">
+                                    <div><img src="images/ico_dept_wea03.png"></div>
+                                    <div class="temp">26°</div>
+                                    <div class="temp-hi-low">
+                                        <ul>
+                                            <li class="color-temp-low">20°</li>
+                                            <li class="color-temp-hi">26°</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="fx-between field-info-noaccident">
+                                    <div>무사고</div>
+                                    <div>
+                                        <ul class="fx-end">
+                                            <li>9,999</li>
+                                            <li>일</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-info-status" id="pjt08_div">
+                                <table>
+                                    <colgroup style="width: 18%;"></colgroup>
+                                    <colgroup style="width: 82%;"></colgroup>
+                                    <tr>
+                                        <td rowspan="2">인프라</td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between" >
+                                                <div class="field-info-name" style="letter-spacing: 2px;"><font style="letter-spacing: 3px;">케이</font>블</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ic_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ic_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">관</font>로</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ip_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ip_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"><font>전</font><font>송</font></td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name">주요장비</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer te_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="te_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>  
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">부</font>대</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer ta_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="ta_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 9공구 -->
+                    <div class="field-info info9">
+                        <div class="field-info-head fx-between">
+                            <ul class="fx-start">
+                                <li>9</li>
+                                <li>공구</li>
+                            </ul>
+                            <div>김해시</div>
+                        </div>
+                        <div class="field-info-body">
+                            <div class="fx-between" style="margin-bottom: 5px;">
+                                <div class="fx-between" style="width: 100%;">
+                                    <div class="field-info-weather">
+                                        <div class="temp-s fx-between">
+                                            <div>김해</div>
+                                            <ul style="text-align: center;">
+                                                <li><img src="images/ico_dept_wea07.png"></li>
+                                                <li>26°</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="field-info-weather">
+                                        <div class="temp-s fx-between">
+                                            <div>대구</div>
+                                            <ul style="text-align: center;">
+                                                <li><img src="images/ico_dept_wea02.png"></li>
+                                                <li>26°</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fx-between field-info-noaccident">
+                                    <div>무사고</div>
+                                    <div>
+                                        <ul class="fx-end">
+                                            <li>9,999</li>
+                                            <li>일</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-info-status" id="pjt09_div">
+                                <table>
+                                    <colgroup style="width: 18%;"></colgroup>
+                                    <colgroup style="width: 82%;"></colgroup>
+                                    <tr>
+                                        <td rowspan="2">인프라</td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between" >
+                                                <div class="field-info-name" style="letter-spacing: 2px;"><font style="letter-spacing: 3px;">케이</font>블</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ic_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ic_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">관</font>로</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-infra ip_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-infra">
+                                                    <ul class="fx-end">
+                                                        <li class="ip_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"><font>전</font><font>송</font></td>
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name">주요장비</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer te_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="te_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>  
+                                        <td style="padding: 5px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-name"><font style="letter-spacing: 17px;">부</font>대</div>
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar bg-color-transfer ta_bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data color-transfer">
+                                                    <ul class="fx-end">
+                                                        <li class="ta_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 10공구 -->
+                    <div class="field-info info10">
+                        <div class="field-info-head fx-between">
+                            <ul class="fx-start">
+                                <li>10</li>
+                                <li>공구</li>
+                            </ul>
+                            <div>대전광역시</div>
+                        </div>
+                        <div class="field-info-body">
+                            <div class="fx-between" style="margin-bottom: 5px;">
+                                <div class="fx-center field-info-weather">
+                                    <div><img src="images/ico_dept_wea01.png"></div>
+                                    <div class="temp">26°</div>
+                                    <div class="temp-hi-low">
+                                        <ul>
+                                            <li class="color-temp-low">20°</li>
+                                            <li class="color-temp-hi">26°</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="fx-between field-info-noaccident">
+                                    <div>무사고</div>
+                                    <div>
+                                        <ul class="fx-end">
+                                            <li>9,999</li>
+                                            <li>일</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field-info-status" id="pjt10_div">
+                                <table>
+                                    <colgroup style="width: 18%;"></colgroup>
+                                    <colgroup style="width: 82%;"></colgroup>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #ccc;"><font style="letter-spacing: 5px;">계</font>획</td>
+                                        <td style="padding: 10px;">
+                                            <div class="fx-between" >
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar field-bg-color-plan plan-bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data field-color-plan">
+                                                    <ul class="fx-end">
+                                                        <li class="plan_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight: 600; text-align: center; border-right: 1px solid #ccc;"><font style="letter-spacing: 5px;">실</font>적</td>
+                                        <td style="padding: 10px;">
+                                            <div class="fx-between">
+                                                <div class="field-info-bar-bg">
+                                                    <div style="position: absolute; z-index: 10; width: 100%; text-align: center; color: #fff;">999 / 9,999 ㎞</div>
+                                                    <div class="field-info-bar field-bg-color-actual actual-bar" style="width: 0%;"></div>
+                                                </div>
+                                                <div class="field-info-data field-color-actual">
+                                                    <ul class="fx-end">
+                                                        <li class="actual_ratio">0</li>
+                                                        <li>%</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

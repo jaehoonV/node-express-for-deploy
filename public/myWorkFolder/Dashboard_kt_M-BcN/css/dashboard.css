@@ -1,0 +1,125 @@
+﻿@charset "utf-8";
+
+/* Font */
+@font-face {font-family:"DroidSansFallback"; src:url("../font/DroidSansFallback.woff") format("woff"), url("../font/DroidSansFallback.ttf") format("truetype");}
+
+#wrap {width:100%; height:100%; background:#242a38; padding:0 12px 12px 12px;} 
+
+/* Header */
+#header {width:100%; height:38px; overflow: hidden;}
+.logo-header {margin:5px 0 0 5px;}
+
+/********************************************************
+                        Content 
+*********************************************************/
+/* 종합공정현황 */
+.status-light div {width: 15px; height: 15px; border-radius: 15px; background: #454f6b; margin-left: 5px;}
+.status-bar-tit {font-size: 16px; font-weight: 600; margin: 6px 12px 0 0;}
+.status-bar-bg {flex: 1; height: 31px; border-radius: 3px; background: #343d52; overflow: hidden;}
+.status-bar {height: 31px; transition: 1s;}
+.status-bar-data {width: 80px;}
+.status-bar-data font:nth-child(1) {font-family: "DroidSansFallback"; font-size: 30px; margin-right: 2px;}
+.status-bar-data font:nth-child(2) {margin-top: 10px;}
+.bg-color-normal {background: #3d915f !important;}
+.bg-color-caution {background: #db704f !important;}
+.bg-color-warning {background: #e4394d !important;}
+.bg-color-plan {background: #4186c7;}
+.bg-color-actual {background: #b52374;}
+.color-plan {color: #53abfc;}
+.color-actual {color: #ee54a9;}
+
+/* 인력투입현황 */
+.mp-status {width: 100%;}
+.mp-status-head div {width: 100%; height: 36px; border-radius: 5px; background: #454f6b; margin-right: 5px; text-align: center; padding-top: 10px; font-size: 16px; margin-bottom: 5px;}
+.mp-status-head div:last-child {margin-right:0;}
+.mp-status-body-odd div {width: 100%; height: 36px; border-radius: 5px; background: #373d4e; margin-right: 5px; text-align: center; padding-top: 10px; font-size: 16px; margin-bottom: 5px;}
+.mp-status-body-odd div:nth-child(n+2) {font-family: "DroidSansFallback"; font-size: 24px; padding-top: 6px;}
+.mp-status-body-odd div:last-child {margin-right:0;}
+.mp-status-body-even div {width: 100%; height: 36px; border-radius: 5px; background: #464c5c; margin-right: 5px; text-align: center; padding-top: 10px; font-size: 16px; margin-bottom: 5px;}
+.mp-status-body-even div:nth-child(n+2) {font-family: "DroidSansFallback"; font-size: 24px; padding-top: 6px;}
+.mp-status-body-even div:last-child {margin-right:0;}
+
+/* 공구별 공정현황 */
+.field-map {position: relative; background: url(../images/map_bg.png) !important;}
+.field-location {width: 52px; height: 66px; padding-top: 5px; background: url(../images/location_bg.png);}
+.field-location ul li {text-align: center; color: #089db5; font-weight: 600;}
+.field-location ul li:nth-child(1) {font-size: 22px;}
+.location1 {position: absolute; top:286px; left: 619px;}
+.location2 {position: absolute; top:86px; left: 594px;}
+.location3 {position: absolute; top:102px; left: 732px;}
+.location4 {position: absolute; top:136px; left: 544px;}
+.location5 {position: absolute; top:188px; left: 586px;}
+.location6 {position: absolute; top:161px; left: 648px;}
+.location7 {position: absolute; top:254px; left: 674px;}
+.location8 {position: absolute; top:446px; left: 570px;}
+.location9 {position: absolute; top:352px; left: 757px;}
+
+.field-info {width: 290px; height: 192px; border-radius: 5px; overflow: hidden;}
+.field-info-head {width: 100%; height: 34px; background: #04a3bb; padding: 4px 12px 0 10px; font-weight: bold;}
+.field-info-head ul li:nth-child(1) {font-size: 22px; font-weight: 600;}
+.field-info-head ul li:nth-child(2) {margin: 5px 0 0 3px;}
+.field-info-head div {margin-top: 4px;}
+.field-info-body {width: 100%; height: 158px; background: #fff; color: #333; padding: 5px;}
+.field-info-weather {width: 100%; height: 36px; background: #f2f2f2; border-radius: 3px; margin-right: 3px; padding: 3px 5px;}
+.field-info-noaccident {width: 100%; height: 36px; background: #f2f2f2; border-radius: 3px; padding: 7px 10px; color: #808080;}
+.field-info-noaccident div:nth-child(1) {margin-top: 3px; font-weight: 600;}
+.field-info-noaccident ul li:nth-child(1) {font-family: "DroidSansFallback"; font-size: 20px; color: #333;}
+.field-info-noaccident ul li:nth-child(2) {margin-top: 4px;}
+
+.temp {font-family: "DroidSansFallback"; font-size: 24px; margin: 3px 8px;}
+.temp-s div {font-size: 12px; font-weight: 600; color: #808080; margin: 9px 0 0 2px;}
+.temp-s ul li:nth-child(1) img {width: 16px; height: auto; margin-right: 5px;}
+.temp-s ul li:nth-child(2) {font-family: "DroidSansFallback"; font-size: 13px;}
+.temp-hi-low {font-family: "DroidSansFallback"; font-size: 15px;}
+.color-temp-low {color: #406ee9;}
+.color-temp-hi {color: #dc0100;}
+
+.field-info-status {width: 100%; height: 107px; border: 2px solid #ccc; border-radius: 5px; overflow: hidden;}
+.field-info-status table {width: 100%; height: 103px;}
+.field-info-status table td {border-bottom: 1px solid #ccc; font-weight: bold;}
+.field-info-status table tr:nth-child(1) td:first-child {border-right: 1px solid #ccc; text-align: center; font-weight: 600; letter-spacing: -2px;}
+.field-info-status table tr:nth-child(3) td:first-child {border-right: 1px solid #ccc; text-align: center; font-weight: 600;}
+.field-info-status table tr:nth-child(3) td:first-child font:first-child {letter-spacing: 6px;}
+.field-info-status table tr:nth-last-child(1) td {border-bottom: none;}
+.field-info-status table tr:nth-last-child(2) td:nth-child(1) {border-bottom: none;}
+.field-info-bar-bg {position: relative; flex:1; height: 15px; background: #b3b3b3; border-radius: 3px; overflow: hidden;}
+.field-info-bar {height: 15px;  transition: 1s;}
+.field-info-data {width: 46px;}
+.field-info-data ul li:nth-child(1) {font-weight: 600;}
+.field-info-data ul li:nth-child(2) {font-size: 10px; margin: 3px 0 0 1px;}
+.field-info-name {font-size: 12px; width: 46px; letter-spacing: -2px; margin-top: 2px;}
+.bg-color-infra {background: #e0606f;}
+.bg-color-transfer {background: #da9f15;}
+.color-infra {color: #e0606f;}
+.color-transfer {color: #d49400;}
+.field-bg-color-plan {background: #4186c7;}
+.field-bg-color-actual {background: #c43785;}
+.field-color-plan {color: #4186c7;}
+.field-color-actual {color: #c43785;}
+
+.info1 {position: absolute; top:665px; left: 400px;}
+.info2 {position: absolute; top:55px; left: 49px;}
+.info3 {position: absolute; top:258px; left: 49px;}
+.info4 {position: absolute; top:461px; left: 49px;}
+.info5 {position: absolute; top:666px; left: 49px;}
+.info6 {position: absolute; top:55px; left: 1061px;}
+.info7 {position: absolute; top:258px; left: 1061px;}
+.info8 {position: absolute; top:461px; left: 1061px;}
+.info9 {position: absolute; top:666px; left: 1061px;}
+.info10 {position: absolute; top:665px; left: 700px;}
+
+/********************************************************
+                          공통 
+*********************************************************/
+.cont-box {width: 100%; background: #2c3345; border-radius: 5px; padding: 20px;}
+.cont-box-inner {width: 100%; background: #242a38; border-radius: 5px;}
+.cont-tit {font-family: "DroidSansFallback"; font-size: 18px; margin-bottom: 15px;}
+
+
+
+
+
+
+
+
+
