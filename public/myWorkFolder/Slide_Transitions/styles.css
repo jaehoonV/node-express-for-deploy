@@ -1,0 +1,66 @@
+body {
+   overflow-x: hidden;
+}
+
+.page {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   transition: transform 0.7s ease-in-out;
+   z-index: 1;
+}
+
+#page-1 {
+   background-color: red;
+}
+
+#page-2 {
+   background-color: blue;
+   transform: translateX(100%);
+}
+
+#page-3 {
+   background-color: green;
+   transform: translateX(200%);
+}
+
+#page-4 {
+   background-color: yellow;
+   transform: translateX(300%);
+}
+
+.btn_big_box {
+   position: absolute;
+   bottom: 15px;
+   left: calc(50% - 60px);
+   z-index: 2;
+}
+
+.btn_box {
+   gap: 5px;
+   display: flex;
+   justify-content: center;
+}
+
+.page h1,
+.page h3 {
+   text-align: center;
+}
+
+.slide_btn {
+   width: 30px;
+   background: rgba(209, 206, 206, 0.342);
+   height: 10px;
+   border-radius: 10px;
+}
+
+.slide_btn:hover{
+   cursor: pointer;
+   background: rgb(165 161 161 / 34%);
+}
+
+.slide_btn.active{
+   background: rgb(139, 139, 139);
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Progress Bar</title>
+</head>
+<link rel="stylesheet" href="styles.css">
+<body>
+    <div class="fix-wrapper">
+        <div id="progress-read" class="basic"></div>
+    </div>
+    <div>
+        <span>Progress-Bar1</span>
+        <div class="empty-div"></div>
+        <span>Progress-Bar2</span>
+        <div class="empty-div"></div>
+        <span>Progress-Bar3</span>
+        <div class="empty-div"></div>
+        <span>Progress-Bar4</span>
+        <div class="empty-div"></div>
+        <span>Progress-Bar5</span>
+        <div class="empty-div"></div>
+        <span>Progress-Bar6</span>
+    </div>
+    <script>
+        window.addEventListener("scroll", function (event) {
+            var scroll = this.scrollY;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = scroll / height * 100 + "%";
+            document.getElementById('progress-read').style.width = progress;
+        });
+    </script>
+</body>
+
+</html>

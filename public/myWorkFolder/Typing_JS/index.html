@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing JS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="div_box1">
+        <h1>Typing JS</h1>
+        <fieldset>
+            <legend>Repeat option</legend>
+            <p class="typing_JS" id="result1"></p><br>
+            <p class="typing_JS" id="result2"></p><br>
+            <p class="typing_JS" id="result3"></p><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Speed option(Default 120)</legend>
+            <p class="p_label">"none" :</p><p class="typing_JS" id="result4"></p><br>
+            <p class="p_label">"none", 50 :</p><p class="typing_JS" id="result5"></p><br>
+            <p class="p_label">"none", 200 :</p><p class="typing_JS" id="result6"></p><br>
+            <p class="p_label">"repeat", 50 :</p><p class="typing_JS" id="result7"></p><br>
+        </fieldset>
+    </div>
+</body>
+<script src="script.js?ver=1"></script>
+<script>
+    typing_JS("Create Typing JS... Create Typing JS... ", "result1", "repeat");
+    typing_JS("Create Typing JS... Create Typing JS... ", "result2", "repeat");
+    typing_JS("Create Typing JS... Create Typing JS... ", "result3", "repeat");
+    typing_JS("타이핑 제이에스... Create Typing JS... ", "result4", "none");
+    typing_JS("Create Typing JS... Create Typing JS... ", "result5", "none", 50);
+    typing_JS("타이핑 제이에스... Create Typing JS... ", "result6", "none", 200);
+    typing_JS("Create Typing JS... Create Typing JS... ", "result7", "repeat", 50);
+</script>
+</html>

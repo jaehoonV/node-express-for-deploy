@@ -1,0 +1,49 @@
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.main_container {
+    position: relative;
+    width: 50px;
+    height: 130px;
+    margin: 0 auto;
+}
+
+#container {
+    width: 40px;
+    height: 120px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    background-color: #ddd;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    margin: 20px auto;
+}
+
+#rectangle {
+    width: 96%;
+    height: 12px;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    background-color: rgba(47, 47, 243, 0.699);
+    position: absolute;
+    bottom: 0;
+    cursor: ns-resize;
+    transition: 0.3s;
+}
+
+#percentageInput {
+    position: relative;
+    background-color: rgba(255, 0, 0, 0);
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    width: 30px;
+    height: 10px;
+    margin: auto auto;
+    border: 0;
+    outline: none;
+}

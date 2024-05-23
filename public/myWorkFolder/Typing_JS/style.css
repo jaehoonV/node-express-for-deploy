@@ -1,0 +1,60 @@
+#div_box1{
+    width: 600px;
+    height: 600px;
+    margin: 140px auto;
+}
+
+#div_box1 h1{
+    text-align: center;
+}
+
+.typing_JS{
+    animation: cursor 0.8s infinite;
+    border-right: 1px solid #000;
+    box-sizing: border-box;
+    display: inline-block;
+    padding-right: 2px;
+}
+
+#result1 {
+    font-size: 30px;
+    line-height: 30px;
+    padding-right: 2px;
+}
+
+#result3{
+    background-color: black;
+    color: white;
+    width: 150px;
+    height: 50px;
+    text-decoration: underline;
+}
+
+#result5{
+    text-decoration: underline;
+}
+
+@keyframes cursor {
+    0% {
+        border-right: 1px solid transparent;
+    }
+
+    50% {
+        border-right: 2.2px solid #000
+    }
+
+    100% {
+        border-right: 1px solid transparent;
+    }
+}
+
+fieldset{
+    border-radius: 7px;
+    margin: 10px;
+}
+
+.p_label{
+    width: 170px;
+    display: inline-block; 
+    margin-right: 5px;
+}

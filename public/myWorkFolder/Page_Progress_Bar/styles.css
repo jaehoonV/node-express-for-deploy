@@ -1,0 +1,17 @@
+body {
+  height: 2000px;
+}
+
+.fix-wrapper {
+  position: fixed;
+  width: 100%;
+}
+
+.fix-wrapper .basic {
+  width: 0;
+  border: 2px solid red;
+}
+
+.empty-div{
+  height: 300px;
+}
