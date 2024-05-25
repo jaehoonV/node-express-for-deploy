@@ -22,7 +22,7 @@ window.addEventListener('load', function() {
 
 function init(){
     let workList = ['', 'Animated_Action_Menu', 'Animated_Circular_Progress_Bar', 'Animated_Gaming_Website', 'Animated_Search_Box', 'Color_Switch_Page'
-        , 'Countdown_Flip_Timer', 'Custom_Input_Range_Slider', 'Dashboard_kt_M-BcN', 'Dashboard_Sidebar_Menu', 'Delete_Button_Animation_Effects'
+        , 'Countdown_Flip_Timer', 'Custom_Input_Range_Slider', 'Dashboard_Mokyang', 'Dashboard_kt_M-BcN', 'Dashboard_Sidebar_Menu', 'Delete_Button_Animation_Effects'
         , 'Dynamic_Expandable_Content_Only_CSS', 'Highlighter_effect(Pseudo_Element)', 'Infinite_Ticker_CSS_Animation_Effects', 'Infinity_scroll'
         , 'Input_Field_Gradient_Border_Animation_Effects', 'MapData_To_Text_File', 'Page_Progress_Bar', 'Playing_Card_Hover_Effect', 'Progress_Bar'
         , 'Slide_Transitions', 'Spinning_Wheel_Game', 'Typing_JS'
