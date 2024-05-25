@@ -1,0 +1,422 @@
+﻿﻿ 
+ @charset "utf-8";
+
+#container_overview {
+	width: 1255px;
+	height: 853px;
+	background: url(../images/bg_0.gif);
+}
+
+.tab4_ext_tag {
+    font-size: 12px !important;
+    font-family: malgun;
+    position: relative;
+    top: 20px;
+    right: -6px;
+    display: inline-block;
+    color: #a7a7a7;
+    left: 147px;
+}
+
+#map_container {
+	width: 1194px;
+	height: 717px;
+}
+
+#map_area {
+	position: absolute;
+    background-size: 539px 732px !important;
+    width: 660px;
+    height: 722px;
+    background: url(../images/map_kr.png);
+    border-radius: 12px;
+    background-repeat: no-repeat;
+    margin-top: 55px;
+    margin-left: 25px;
+}
+
+#map_area>#project_count {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+}
+
+.cm {
+	float: left;
+	width: 158px;
+	height: 45px;
+	text-align: center;
+	padding-top: 12px;
+}
+
+.cm span:first-child {
+	color: #a9aaae;
+}
+
+.cm span:last-child {
+	color: #ffffff;
+	font-family: malgunbd;
+	font-size: 15px;
+}
+
+.confirm {
+	float: left;
+	width: 157px;
+	height: 45px;
+	text-align: center;
+	padding-top: 12px;
+}
+
+.confirm span:first-child {
+	color: #a9aaae;
+}
+
+.confirm span:last-child {
+	color: #ffffff;
+	font-family: malgunbd;
+	font-size: 15px;
+}
+
+#map_area>#world_clock {
+	position: absolute;
+	left: 396px;
+	top: 5px;
+	width: 713px;
+	height: 65px;
+}
+
+#clock1 {
+	position: absolute;
+}
+
+#clock2 {
+	position: absolute;
+	left: 120px;
+}
+
+#clock3 {
+	position: absolute;
+	left: 240px;
+}
+
+#clock4 {
+	position: absolute;
+	left: 360px;
+}
+
+#clock5 {
+	position: absolute;
+	left: 480px;
+}
+
+#clock6 {
+	position: absolute;
+	left: 600px;
+}
+
+.clockText1 {
+	position: absolute;
+	top: 14px;
+	left: 75px;
+}
+
+.clockText1 span:first-child {
+	color: #a9aaae;
+}
+
+.clockText1 span:last-child {
+	color: #ffffff;
+	font-family: malgunbd;
+	font-size: 15px;
+}
+
+/*국내 프로젝트*/
+#map_area>#map_kr {
+	position: absolute;
+	top: 77px;
+	left: 12px;
+	width: 295px;
+	height: 314px;
+}
+
+#seoul {
+	position: absolute;
+	top: 16px;
+    left: 133px;
+}
+
+#incheon {
+	position: absolute;
+	top: 6px;
+    left: 48px;
+}
+
+#gyeonggi {
+	position: absolute;
+	top: 60px;
+    left: 183px;
+}
+
+#gangwon {
+	position: absolute;
+	top: 7px;
+    left: 303px;
+}
+
+#chungnam {
+	position: absolute;
+	top: 142px;
+    left: 78px;
+}
+
+#chungbuk {
+	position: absolute;
+	top: 112px;
+    left: 244px;
+}
+
+#sejong {
+	position: absolute;
+	top: 158px;
+    left: 138px;
+}
+
+#daejeon {
+	position: absolute;
+	top: 191px;
+    left: 181px;
+}
+
+#gyeongnam {
+	position: absolute;
+	top: 348px;
+    left: 280px;
+}
+
+#gyeongbuk {
+	position: absolute;
+	top: 173px;
+    left: 358px;
+}
+
+#daegu {
+	position: absolute;
+	top: 262px;
+    left: 326px;
+}
+
+#busan {
+	position: absolute;
+	top: 360px;
+    left: 378px;
+}
+
+#ulsan {
+	position: absolute;
+	top: 297px;
+    left: 413px;
+}
+
+#jeonnam {
+	position: absolute;
+	top: 430px;
+    left: 72px;
+}
+
+#jeonbuk {
+	position: absolute;
+	top: 283px;
+    left: 141px;
+}
+
+#gwangju {
+	position: absolute;
+	top: 350px;
+    left: 105px;
+}
+
+#jeju {
+	position: absolute;
+	top: 541px;
+    left: 70px;
+}
+
+#ulleung {
+	position: absolute;
+	top: 46px;
+    left: 480px;
+}
+
+#overseas {
+	position: absolute;
+	top: 552px;
+    left: 459px;
+}
+
+#etc{
+	position: absolute;
+	top: 552px;
+    left: 527px;
+}
+
+.count {
+	width: 36px;
+    height: 28px;
+    text-align: center;
+    line-height: 8px;
+    padding-top: 8px;
+    z-index: 9;
+    cursor: pointer;
+	background-color: white;
+	border-radius: 50%;
+	position: relative;
+    font-family: SpoqaHanSansBold !important;
+}
+
+.triangle{
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 28px solid white;
+	position: absolute;
+	bottom: -6px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.count_span{
+	color: rgb(209 62 62);
+    font-size: 14px !important;
+    font-family: SpoqaHanSansBold !important;
+    margin-left: -5.5px;
+    position: absolute;
+    margin-top: 5px;
+}
+
+.count:hover .count_span{
+	color:white;
+}
+
+.count:hover{
+	background-color: rgb(209 62 62);
+}
+
+.count:hover .triangle{
+	border-top: 28px solid rgb(209 62 62);
+}
+
+.count_city{
+	color:white; 
+	font-size: 14px !important;
+	font-family: SpoqaHanSansBold !important;
+}
+.count_city_length{
+	position: absolute;
+    margin-left: -26px;
+    width: 52px;
+}
+
+.cart_total_cnt_small{
+	font-size : 30px;
+}
+
+.chart_bar.blue {
+	background-color: #00A9FF;
+}
+
+.chart_bar.yellow {
+	background-color: #FFB840;
+}
+
+.chart_bar.red {
+	background-color: #FF5A46;
+}
+
+.chart_bar.green {
+	background-color: #00BD9F;
+}
+
+.chart_bar.purple {
+	background-color: #785FFF;
+}
+
+.chart_bar.pink {
+	background-color: #F28B8C;
+}
+
+.chart_bar.grey {
+	background-color: #989486;
+}
+
+.chart_bar.indigo {
+	background-color: #516F7D;
+}
+
+.chart_bar.mint {
+	background-color: #28E6EB;
+}
+
+.chart_bar.darkgreen {
+	background-color: #28695F;
+}
+
+.chart_bar.yellowgreen {
+	background-color: #96C85A;
+}
+
+.chart_bar.lightgreen {
+	background-color: #96C85A;
+}
+
+.chart_bar.darkblue {
+	background-color: #295BA0;
+}
+
+.chart_bar.darkblue2 {
+	background-color: #2A4175;
+}
+
+.chart_bar.darkgreen2 {
+	background-color: #289399;
+}
+
+.chart_bar.darkmint {
+	background-color: #66C8D3;
+}
+
+.chart_bar.grey2 {
+	background-color: #617178;
+}
+
+.chart_bar.lightgrey {
+	background-color: #8A9A9A;
+}
+
+.chart_bar.lightgrey2 {
+	background-color: #BEBEBE;
+}
+
+.chart_bar.grey3 {
+	background-color: #374B5A;
+}
+
+.bg_grey {
+	background-color: #f3efef;
+}
+
+.all_border {
+	border: 1px solid #afadad;
+}
+
+.no_border_r {
+	border-right: 0;
+}
+
+.num_align {
+	text-align: right !important;
+}
+
+.chart_legend_tr td:first-child {
+	text-align: left;
+}

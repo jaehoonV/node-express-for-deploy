@@ -1,0 +1,544 @@
+@charset"utf-8";
+
+#wrap_header{
+	width:100%;
+	height:71px;
+	background:#FFFFFF;
+	border-bottom:4px solid #ec6424;
+	background:url(../../image/pjt_overview/bg_top.gif) repeat-x;
+}
+
+#header{
+	width:1430px;
+	height:71px;
+	margin:0 auto;
+	position:relative;
+}
+
+h1 a{
+	display: block;
+	width: 110px;
+	height: 65px;
+	background: url(../../image/pjt_overview/top_logo.png?v3) no-repeat;
+	text-indent: -3000px;
+}
+
+#main_nav{
+	position:absolute;
+	right:0;
+	top:0;
+}
+
+#main_nav li{
+	float:left; 
+	display:block;
+	text-indent: -3000px;
+	background-position:0px -71px;
+}
+
+
+#main_nav li a{
+	display:block;
+	height:61px;
+	text-indent: -3000px;
+	background-position:0px -71px;
+}
+
+
+#main_nav li a.selected,#main_nav li a:hover{background-position:0 0;}
+
+#menu1 a{
+	background:gray;
+	background: url(../../image/pjt_overview/top_btn1.gif) no-repeat;	
+	width:101px;
+}
+#menu2 a{
+	background: url(../../image/pjt_overview/top_btn2.gif) no-repeat;
+	width:101px;
+}
+#menu3 a{
+	background: url(../../image/pjt_overview/top_btn3.gif) no-repeat;
+	width:101px;
+}
+#menu4 a{
+	background: url(../../image/pjt_overview/top_btn4.gif) no-repeat;
+	width:101px;
+}
+#menu5 a{
+	background: url(../../image/pjt_overview/top_btn5.gif) no-repeat;
+	width:101px;
+}
+
+#menu6 a{
+	background: url(../../image/pjt_overview/top_btn6.png) no-repeat;
+	width:121px;
+}
+
+
+
+#tab_btn{
+	position:relative;	
+}
+
+#tab_btn ul{
+	position:absolute;
+	top:0;
+	left:0;	
+}
+
+#tab_btn ul li{
+	float:left; 
+	margin-right:2px;
+}
+
+#tab_btn ul li a{
+	display: block;
+	height: 36px;
+	background-color: #e3e1e0;
+	color: #6f6e6e;
+	line-height: 36px;
+	font-weight: 700;
+	padding-left: 5px;
+	padding-right: 5px;
+	min-width: 100px;
+	text-align: center;
+}
+
+#tab_btn ul li.selected a,
+#tab_btn ul li a:hover{
+	background-color: #ec6424;
+	color: #FFF;
+}
+
+#wrap_contents{
+	width:100%;
+	padding-top:22px;
+	position: relative;
+}
+
+#flash_contents{
+	width:1221px;
+	height:705px;	
+}
+
+#main_contents{
+	width:1221px;
+	height:705px;	
+	margin:0 auto;
+}
+
+#sub_contents{
+	width:1222px;
+	height:705px;	
+	margin:0 auto;
+	border:1px solid #A2A2A2 ;
+	border-radius:10px; 
+	padding:10px;
+	background:#FFFFFF;
+}
+
+
+#tab_btn{
+	width:auto;
+	height:38px;
+	color:white;
+	padding:0px 0 0 25px;
+}
+
+
+
+#main_container{
+		width:1220px;
+		height:740px;
+		margin:0 auto;
+		
+	}
+	
+	#container_header{
+		padding:15px;
+		width:1190px;
+		height:179px;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px; 
+		background:#9D9D9D;
+	}
+	
+	#dday{
+		float:left;
+		width:240px;
+		height:179px;
+		margin-right:10px;
+		border-radius:10px;
+		background:white;
+	}
+	
+	#dday_top{
+		margin:0 auto;
+		width:220px;
+		height:100px;
+		border-bottom:1px dashed  #B9B9B9;
+		background:none;
+	}
+	
+	#dday_top  ul{
+		padding:10px;
+		font-family:arial, malgun;
+	}
+	
+	#dday_top li:nth-child(1){
+		height:40px;
+		padding-left:14px;
+		background:url(/ext/project_design/STND_PMIS/image/pjt_overview/dday.png) no-repeat;
+	}
+	
+	#dday_top li:nth-child(3){
+		font-family:arialBold, malgunBold;
+		height:30px;
+		line-height:30px;
+		font-size:2.2em;
+	}
+	
+	#dday_top li:nth-child(3) span{
+		vertical-align: middle; 
+	}
+	
+	#dday_bottom{
+		margin:0 auto;
+		width:220px;
+		height:78px;
+		background:none;
+	}
+	
+	#milestone{
+		float:left;
+ 	 	width: 938px; 
+ 	 	height: 179px; 
+		border-radius:10px; 
+		background:white;
+	}
+	
+	#contents{
+		width:1218px;
+		height:531px;
+		border:1px solid #A2A2A2;
+		background:#FFFFFF;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px; 
+	}
+	
+	#content_left, #content_right{
+			float:left;
+			background:none;
+	}
+
+	#content_left{
+		border-right:1px solid #D0D0D0;
+		width:320px;
+		height:531px;
+		background:none;
+	}
+
+	#content_left_top , #content_left_bottom
+	{
+		width:300px;
+		height:224px;
+		position:relative;
+		padding:20px 10px;
+		background:url(/ext/project_design/STND_PMIS/image/pjt_overview/guage_bg.png) no-repeat center 70px; 
+	}
+	
+	#content_left_top {
+		border-bottom:1px solid #D0D0D0;
+	}
+	
+
+	#content_left_top > div:first-child, #content_left_bottom > div:first-child{
+		width:100%;
+		height:50px;
+		position:relative;
+		background:none;
+	}
+	
+	 div:first-child  > span, #content_left_bottom > div:first-child > span{
+		font-family:malgunBold;
+		font-size:1.3em;
+	}
+	
+	#content_right_top, #content_right_bottom{
+		width:877px;
+		padding:20px 10px;
+	}
+	
+	
+	
+	#content_right_top{
+		height:280px;
+		border-bottom:1px solid #D0D0D0;
+	}
+	
+	#content_left_bottom .legend{
+		top:30px;
+	}
+	
+	
+	#content_right_bottom{
+		height:170px;
+	}
+	
+	#dday_header{
+		color:#9999A3;
+	}
+	
+	#dday_view{
+		color:#EA545D;
+	}
+	
+	#dday_unit{
+		display:inline-block;
+		margin-top:0px;
+		font-size:0.8em;
+		color:#EA545D;
+	}
+	
+	#progress_bar{
+		margin-top:16px;
+	    border-radius:10px;
+	    position:relative;
+	    width:100%;
+	    height:20px;
+        overflow:hidden;
+	    background-color: #9D9D9D;
+    }
+
+    #progress_div{
+	    position:absolute;
+	    width:100%;
+	    height:20px;
+	    background:#EC1F26;
+    }
+
+	#progress_text{
+		position:absolute;
+		width:100%;
+		margin-top:5px;
+		text-align:center;
+	    color:white;
+	    z-index:1;
+    }
+    
+    #period{
+    	padding:8px;
+    	font-family: arial;
+    }
+    
+    #period  ul{ width:100%; position:relactive; }
+    #period  li:fist-child { float:left; }
+    #period  li:last-child{ float:right;  margin-top:-13px;}
+    
+    #guage1, #guage2{
+    	position:relative;
+		margin:146px auto 0px;
+    	left:-11px;
+    	top:-11px;
+    	width:11px;
+    	height:11px;
+    }
+    
+    #arrow_blue1, #arrow_blue2{
+    	left:-112px;
+    	top:6px;
+    	position:absolute;
+    	width:123px;
+    	height:10px;
+		z-index:1;
+		background:url(/ext/project_design/STND_PMIS/image/pjt_overview/arrow_blue.png);
+    }
+    
+     #arrow_red1, #arrow_red2{
+     	left:-91px;
+    	top:6px;
+     	position:absolute;
+    	width:102px;
+    	height:10px;
+		z-index:2;
+		background:url(/ext/project_design/STND_PMIS/image/pjt_overview/arrow_red.png);
+    }
+    
+    #arrow_circle{
+    	position:absolute;
+    	width:22px;
+    	height:22px;
+		z-index:3;
+    	background:url(/ext/project_design/STND_PMIS/image/pjt_overview/arrow_circle.png);
+    }
+    
+    .detail{
+		top:234px;
+		width:320px;
+		height:20px;
+		position:absolute;
+		font-family:malgun;
+		background:none;
+    }
+ 	
+    .detail > ul > li {
+    	width:30%;
+    	padding-left:8px;
+    	float:left;
+    	background:url(/ext/project_design/STND_PMIS/image/pjt_overview/bullet.png)  no-repeat   0 center;
+    }
+    
+    .detail span{
+    	font-family:malgunBold;
+    }
+    
+    .legend  {
+		font-family:malgunBold;
+		top:0px;
+		right:0px;
+		position:absolute;
+		background:none;
+	}
+	
+	.legend >li{
+		width:40px;
+		height:18px;
+		padding-left:10px;
+		background:yellow;
+	}
+	
+    .legend >li:first-child {
+		background:url(/ext/project_design/STND_PMIS/image/pjt_overview/plan_bullet.png) no-repeat 0 center;
+	}
+	
+	
+	.legend>li:last-child {
+		background:url(/ext/project_design/STND_PMIS/image/pjt_overview/actual_bullet.png) no-repeat 0 center;
+	}
+	
+    .light
+	{
+		right:0px;
+		top:0px;
+		position:absolute;
+	}
+
+	.light > li{
+		width:20px;
+		height:20px;
+		margin:3px;
+		border-radius: 10px;
+		float:left;
+		text-indent: -1000px;
+	}
+	
+	.light > li:nth-child(1){
+/* 		background:#0171BD; */
+		background:#CBCBCB;
+	}
+	
+	.light  > li:nth-child(2)
+	{
+/* 		background:#F3B60D; */
+		background:#CBCBCB;
+	}
+	
+	.light > li:nth-child(3)
+	{
+/* 		background:#EA1F25; */
+		background:#CBCBCB;
+	}
+
+	 .light_total1{
+	 	background:#0171BD;
+		width:20px;
+		height:20px;
+		margin:0px;
+		border-radius: 10px;
+		float:left;
+		text-indent: -1000px;
+		}
+	.light_total2{
+		background:#F3B60D;
+		width:20px;
+		height:20px;
+		margin:0px;
+		border-radius: 10px;
+		float:left;
+		text-indent: -1000px;
+		}
+	.light_total3{
+		background:#EA1F25;
+		width:20px;
+		height:20px;
+		margin:0px;
+		border-radius: 10px;
+		float:left;
+		text-indent: -1000px;
+		}
+
+    #totalSum, #plan{ color:#0173BC; }
+    #chargeSum, #actual{ color:#ED1E26; }
+    #paymentRate, #contrast{ color:#565656; }
+
+
+/* CSS Message Boxes */
+.info,.success,.warning,.error,.validation{border:none;background-repeat:no-repeat;background-position:10px center;position:fixed;top:0;left:0;right:0;width:60%;text-align:center;margin-left:auto;margin-right:auto;z-index:99999;padding:15px 10px 15px 50px;opacity:0.9;}
+.info{color:#00529B;background-color:#BDE5F8;background-image:url(../image/info.png);}
+.success{color:#4F8A10;background-color:#DFF2BF;background-image:url(../image/success.png);}
+.warning{color:#9F6000;background-color:#FEEFB3;background-image:url(../image/warning.png);}
+.error{color:#D8000C;background-color:#FFBABA;background-image:url(../image/error.png);}
+@media all and (max-width: 900px) {
+.info,.success,.warning,.error,.validation{width:auto;border-left:none;border-right:none;}
+}
+/* END CSS Message Boxes */
+
+/* Ajax Loading */
+.pmis-loading,.pmis-proc-loading{width:100%;height:100%;top:0;left:0;position:fixed;display:block;opacity:0.7;background-image:url(../image/ajax-loader2.gif);background-repeat:no-repeat;background-position:center center;background-color:#fff;z-index:20;text-align:center;}
+/* END Ajax Loading */
+
+/* Disabled Frame */
+.pmis-disabled-wrapper{position:relative;}
+.pmis-disabled{width:100%;height:100%;top:0;left:0;position:absolute;display:block;opacity:0.7;background-image:none;background-color:#fff;z-index:10;text-align:center;}
+
+/* START jqgrid */
+.ui-jqgrid-btable span{ color: #000000; line-height: 1.5; }
+.ui-jqgrid .ui-jqgrid-htable TH DIV { line-height: 1.5; }
+.ui-jqgrid-btable select { width: 100%; }
+.sangah-ui-jqgrid-plus { background-position: -15px -128px; }
+.sangah-ui-jqgrid-minus { background-position: -47px -128px; }
+.sangah-ui-jqgrid-leaf-folder { background-position: -15px -96px; }
+.sangah-ui-jqgrid-leaf-dot { background-position: -79px -144px; }
+/* END jqgrid */
+
+.input-error {
+	color: red !important;
+}
+
+/* disable popup background image */
+.ui-widget-overlay{ background-image: none; filter: Alpha(Opacity=50); opacity: 0.5;}
+
+.notice{ font-size:9pt; color:#F37D11; }
+
+/* jqGrid footer row */
+table.ui-jqgrid-ftable tr.footrow td {
+	background-color: #e4f1fb;
+}
+
+/* jqGrid Height Mix Setting */
+/*
+.ui-jqgrid .ui-jqgrid-htable th div{ height: 31px;}
+*/
+
+.menulist .icon_tree_root{background-image:url(/ext/style/COMMON/image/icon/tree_icon2_14.png);background-repeat:no-repeat;background-position:0 2px;padding-left:20px;}
+.menulist .icon_tree_level2{background-image:url(/ext/style/COMMON/image/icon/tree_icon3_14.png);background-repeat:no-repeat;background-position:0 2px;padding-left:20px;}
+.menulist .icon_tree_level3{background-image:url(/ext/style/COMMON/image/icon/tree_icon5.png);background-repeat:no-repeat;background-position:5px 4px;padding-left:20px;}
+.menulist .icon_tree_level4{background-image:url(/ext/style/COMMON/image/icon/tree_icon6.png);background-repeat:no-repeat;background-position:5px 4px;padding-left:20px;}
+.menulist td span{display:inline-block;height:18px;line-height:18px;}
+
+
+.paging_area th, .paging_area td {background-color: #EEEEEE;height: 20px;line-height:16px;padding-right: 5px;padding-left: 5px;}
+
+.tab_area_bottom_line, .iframe_area{
+	border-top:2px solid #ec6424 !important;
+}

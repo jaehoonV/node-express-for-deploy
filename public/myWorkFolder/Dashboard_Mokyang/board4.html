@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>board4</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/overview.css" />
+    <link rel="stylesheet" type="text/css" href="css/chart.css" />
+    <link rel="stylesheet" type="text/css" href="css/SpoqaHanSans.css" />
+    <link rel="stylesheet" type="text/css" href="css/board4.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css" />
+    <script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
+    <script type="text/javascript" src="script/board4.js" defer></script>
+</head>
+<body>
+    <table class="fixTableWidth" style="width:100%;">
+		<colgroup>
+			<col style="width: 529px;">
+			<col style="width: 460px;">
+			<col style="width: 460px;">
+		</colgroup>
+		<tbody>
+			<tr>
+				<td rowspan="2" style="padding: 4px;">
+					<!--Map 영역 시작-->
+					<div style="background: #3c3c3c; border-radius: 7px; width: 622px; height: 822px;">
+					<span class="tab4_ext_tag"><img alt="지역선택" src="images/ico_location.png">&nbsp;&nbsp;지역을 선택하시면 상세정보를 보실 수 있습니다.</span>
+				        <div id="map_area">
+				            <div id="map_kr">
+				                <div id="seoul" class="count" value="서울특별시"></div>
+				                <div id="incheon" class="count" value="인천광역시"></div>
+				                <div id="gyeonggi" class="count" value="경기도"></div>
+				                <div id="gangwon" class="count" value="강원도"></div>
+				                <div id="chungnam" class="count" value="충청남도"></div>
+				                <div id="chungbuk" class="count" value="충청북도"></div>
+				                <div id="sejong" class="count" value="세종특별자치시"></div>
+				                <div id="daejeon" class="count" value="대전광역시"></div>
+				                <div id="gyeongnam" class="count" value="경상남도"></div>
+				                <div id="gyeongbuk" class="count" value="경상북도"></div>
+				                <div id="daegu" class="count" value="대구광역시"></div>
+				                <div id="busan" class="count" value="부산광역시"></div>
+				                <div id="ulsan" class="count" value="울산광역시"></div>
+				                <div id="jeonnam" class="count" value="전라남도"></div>
+				                <div id="jeonbuk" class="count" value="전라북도"></div>
+				                <div id="gwangju" class="count" value="광주광역시"></div>
+				                <div id="jeju" class="count" value="제주특별자치도"></div>
+				                <div id="ulleung" class="count" value="울릉군"></div>
+				                <div id="overseas" class="count" value="해외"></div>
+				                <div id="etc" class="count" value="기타"></div>
+				            </div>
+				        </div>
+				    </div>
+				    <!--Map 영역 끝-->
+				</td>
+				<td colspan="2" style="padding: 4px;">
+					<div class="chart_container" style="height: 429px; margin-top: -1px;">
+						<div class="chart_box">
+						<div id="chart-area1" style="margin-right: 30px;"></div>
+						<div class="chart_total" id=chart1_total style="width: 60px; top: 44%; left:16.5%;">
+							<span class="chart_total_kr">전체</span>
+							<br/>
+							<span id="chart1_total_cnt" style="font-size: 30px;"></span>
+						</div>
+						<div id="chart_title_city" class="chart_title" style="font-size: 21px; top:2%; left:-12%;">지역별 사업분포</div>
+						<div class="chart_legend" style="margin-right: 60px; height:340px;">
+							<table>
+								<colgroup>
+									<col style="width: 35%">
+									<col style="width: 35%">
+									<col>
+								</colgroup>
+								<tbody>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar blue"></span><span>서울</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt0"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate0"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar yellow"></span><span>부산</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt1"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate1"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar red"></span><span>인천</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt2"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate2"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar green"></span><span>경기</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt3"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate3"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar purple"></span><span>충남</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt4"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate4"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar pink"></span><span>충북</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt5"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate5"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar grey"></span><span>세종</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt6"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate6"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar indigo"></span><span>대전</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt7"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate7"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar mint"></span><span>강원</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt8"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate8"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar darkgreen"></span><span>경남</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt9"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate9"></span><span>%)</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="chart_legend" style="height:340px;">
+							<table>
+								<colgroup>
+									<col style="width: 35%">
+									<col style="width: 35%">
+									<col>
+								</colgroup>
+								<tbody>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar yellowgreen"></span><span>경북</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt10"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate10"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar lightgreen"></span><span>울산</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt11"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate11"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar darkblue"></span><span>대구</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt12"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate12"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar darkblue2"></span><span>전남</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt13"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate13"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar darkgreen2"></span><span>전북</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt14"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate14"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar darkmint"></span><span>광주</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt15"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate15"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar grey2"></span><span>제주</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt16"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate16"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar lightgrey"></span><span>울릉</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt17"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate17"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar lightgrey2"></span><span>해외</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt18"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate18"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr chart1_legend_tr">
+										<td><span class="chart_bar grey3"></span><span>기타</span></td>
+										<td><span class="chart_cnt" id="chart1_cnt19"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart1_rate19"></span><span>%)</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>	
+				<td style="padding: 4px;">
+					<div class="chart_container chart_containerTwo">
+						<div class="chart_box">
+						<div id="chart-area2"></div>
+						<div class="chart_total" id=chart2_total style="width: 50px; left:22.5%;">
+							<span class="chart_total_kr">전체</span>
+							<br/>
+							<span id="chart2_total_cnt" class="cart_total_cnt_small"></span>
+						</div>
+						<div class="chart_title">사업 유형별 분포</div>
+						<div class="chart_legend">
+							<table>
+								<colgroup>
+									<col style="width: 35%">
+									<col style="width: 35%">
+									<col>
+								</colgroup>
+								<tbody>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar blue"></span><span>건진법</span></td>
+										<td><span class="chart_cnt" id="chart2_cnt1"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart2_rate1"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar yellow"></span><span>주택법</span></td>
+										<td><span class="chart_cnt" id="chart2_cnt2"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart2_rate2"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar red"></span><span>건축법</span></td>
+										<td><span class="chart_cnt" id="chart2_cnt3"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart2_rate3"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar green"></span><span>전력법</span></td>
+										<td><span class="chart_cnt" id="chart2_cnt4"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart2_rate4"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar purple"></span><span>소방법</span></td>
+										<td><span class="chart_cnt" id="chart2_cnt5"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart2_rate5"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar pink"></span><span>통신법</span></td>
+										<td><span class="chart_cnt" id="chart2_cnt6"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart2_rate6"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar grey"></span><span>기타&nbsp;&nbsp;&nbsp;</span></td>
+										<td><span class="chart_cnt" id="chart2_cnt7"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart2_rate7"></span><span>%)</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						</div>
+					</div>
+				</td>
+				<td style="padding: 4px;">
+					<div class="chart_container chart_containerTwo">
+						<div class="chart_box">
+						<div id="chart-area3"></div>
+						<div class="chart_total" id=chart3_total style="width: 50px; left: 22.5%;">
+							<span class="chart_total_kr">전체</span>
+							<br/>
+							<span id="chart3_total_cnt" class="cart_total_cnt_small"></span>
+						</div>
+						<div class="chart_title">사업 구분별 분포</div>
+						<div class="chart_legend">
+							<table>
+								<colgroup>
+									<col style="width: 38%">
+									<col style="width: 35%">
+									<col>
+								</colgroup>
+								<tbody>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar blue"></span><span>건진법</span></td>
+										<td><span class="chart_cnt" id="chart3_cnt1"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart3_rate1"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar yellow"></span><span>국방</span></td>
+										<td><span class="chart_cnt" id="chart3_cnt2"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart3_rate2"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar red"></span><span>도시공사</span></td>
+										<td><span class="chart_cnt" id="chart3_cnt3"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart3_rate3"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar green"></span><span>전력법</span></td>
+										<td><span class="chart_cnt" id="chart3_cnt4"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart3_rate4"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar purple"></span><span>주택법</span></td>
+										<td><span class="chart_cnt" id="chart3_cnt5"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart3_rate5"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar pink"></span><span>토목</span></td>
+										<td><span class="chart_cnt" id="chart3_cnt6"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart3_rate6"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar grey"></span><span>소방법</span></td>
+										<td><span class="chart_cnt" id="chart3_cnt7"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart3_rate7"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar indigo"></span><span>건축법</span></td>
+										<td><span class="chart_cnt" id="chart3_cnt8"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart3_rate8"></span><span>%)</span></td>
+									</tr>
+									<tr class="chart_legend_tr">
+										<td><span class="chart_bar mint"></span><span>기타</span></td>
+										<td><span class="chart_cnt" id="chart3_cnt9"></span><span>건</span></td>
+										<td class="td_grey"><span>(</span><span id="chart3_rate9"></span><span>%)</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

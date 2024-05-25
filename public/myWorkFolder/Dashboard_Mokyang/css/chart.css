@@ -1,0 +1,263 @@
+#sub_contents {
+    width: 100%;
+    height: 940px;
+    margin: 0 auto;
+    border: 0;
+    border-radius: 7px;
+    padding: 10px;
+    background: #4e4e4e;
+}
+
+#selYear {
+    font-size: 12px;
+    font-weight: 600;
+	vertical-align:initial;
+}
+
+#main_contents_container{
+	width:100%;
+}
+
+.iframe_area{
+	border-top: 0 !important;
+}
+
+#tab_nav1{
+	padding: 0px 5px;
+    border-radius: 7px;
+   	height: 875px;
+    width: 110px;
+}
+
+#tab_nav1 div {
+	display: block;
+    height: 213.5px;
+    background-color: #424242;
+    color: #adacac;
+    line-height: 13px;
+    font-weight: 700;
+    padding-left: 5px;
+    padding-right: 5px;
+    min-width: 80px;
+    text-align: center;
+    position: relative;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+#tab_nav1 div:last-child{
+	margin-bottom: 0px;
+}
+
+#tab_nav1 div span{
+	position: absolute;
+    display: inline-block;
+    top: 41%;
+    left: 32%;
+    font-family: malgunBold;
+    font-size: 1.1em;
+    line-height: 20px;
+}
+
+#tab_nav1 div.selected, #tab_nav1 div:hover{
+	background-color: #BC1A24;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.btn_prev_view{
+	position: absolute;
+    display: inline-block;
+    top: -5px;
+    right: 0px;
+    border-radius: 4px;
+    font-weight: 600;
+    width: 92px !important;
+    height: 30px !important;
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+    background: #BC1A24;
+    text-align: center;
+    line-height: 27px;
+    z-index: 1;
+}
+
+.btn_prev_view:hover{
+	background: #ad1720;
+}
+
+.active_img{
+	position: absolute;
+    clip: rect(35px,36px,75px,-2px);
+    margin-left: -17px;
+    margin-top: -60px;
+}
+
+.hide_img{
+	position: absolute;
+    clip: rect(0px,35px,37px,0px);
+    margin-left: -17px;
+    margin-top: -24px;
+}
+
+.selectbox{
+	width: 82px;
+    height: 21px;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 2px;
+    font-family: 'Roboto';
+    font-style: normal;
+}
+
+.topImg{
+	background-image: url("../images/logo_top.png");
+	background-repeat: no-repeat;
+	height: 42px;
+	margin-left: 20px;
+	
+}
+
+table {
+	border-collapse: collapse;
+	table-layout: fixed;
+	empty-cells: show;
+	width:100%;
+}
+
+.chart_total{
+	position: absolute;
+    top: 39%;
+    left: 23.5%;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1;
+    font-family: SpoqaHanSansBold !important;
+}
+
+.chart_total_kr{
+	font-size: 15px; 
+	color : #939191;
+}
+
+.chart_container{
+	position: relative;
+	display: flex;
+    gap: 10px;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid #e9e6e6;
+    border-radius: 5px;
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+}
+.chart_sum{
+	flex-direction: column; 
+	gap: 2px; 
+	height: 335px;
+}
+.chart_sum_total{
+	height: 113px;
+}
+.chart_comment{
+	margin-top: 5px;
+}
+
+.total_background{
+	background-color:#e2efff; 
+}
+.total_sub_background{
+	background-color:#f3f3e8; 
+}
+
+.chart_box{
+	padding: 7px;
+}
+
+.danwi{
+	text-align: right;
+}
+
+td, th {
+	padding: 2px 5px;
+	text-align: center;
+	min-width: 14.28%;
+	max-width: 14.28%;
+	border-left:none !important;
+	font-family:malgun;
+	font-size: 9pt;
+}
+
+#table-area1, #table-area2, #table-area3{
+	font-weight: 600;
+}
+
+.chart_legend1{
+	text-align: right;
+    left: 36%;
+    bottom: 3%;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 0.8;
+    z-index: 1;
+    margin-bottom: 5px;
+}
+
+.chart_legend2{
+	text-align: right;
+    left: 42%;
+    bottom: 3%;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 0.8;
+    z-index: 1;
+    margin-bottom: 5px;
+}
+
+.legend_box{
+	width: 13px;
+    height: 13px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.Trheight{
+	height: 25px;
+}
+
+#data_legend1{background-color: #c0504d96}
+#data_legend2{background-color: #c0504d96}
+#target_legend1{background-color: #83acdfd1}
+#target_legend2{background-color: #92d0509c}
+
+.sub_contents_area{
+    width: 100%;
+    height: calc(100% - 20px);
+}
+
+.sub_contents{
+    width: 100%;
+    height: 100%;
+    min-width: 1720px;
+}
+
+.category_name{
+    font-size: 1.1em !important;
+}
+
+@media print {
+    .topImg{
+        display: none;
+    }
+
+    #tab_container{
+        display: none;
+    }
+
+    .btn_prev_view{
+        display: none;
+    }
+}

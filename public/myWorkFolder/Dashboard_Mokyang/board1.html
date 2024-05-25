@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>board1</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/overview.css" />
+    <link rel="stylesheet" type="text/css" href="css/chart.css" />
+    <link rel="stylesheet" type="text/css" href="css/SpoqaHanSans.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css" />
+    <script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
+    <script type="text/javascript" src="script/board1.js"></script>
+</head>
+<body>
+    <div class="iframe_area">
+        <div class="wrap_detail_sub">
+            <table class="fixTableWidth" style="margin: 0px auto; width: 100%;">
+                <colgroup>
+                    <col style="width: 514px;">
+                    <col style="width: 788px;">
+                    <col style="width: 411px;">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td colspan="3">
+                            <div class="chart_container" style="flex-direction: column;">
+                                <div class="chart_box">
+                                    <table id="table-area1">
+                                        <colgroup>
+                                            <col style="width: 5.5%">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col>
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="18" class="danwi">
+                                                    [단위:억원, VAT별도]
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="all_border bg_grey" rowspan="2" colspan="3">구분</td>
+                                                <td class="all_border bg_grey" rowspan="2">수주<br>목표액</td>
+                                                <td class="all_border bg_grey" colspan="12"><span
+                                                        class="year_span"></span>년도</td>
+                                                <td class="all_border bg_grey" rowspan="2">계</td>
+                                                <td class="all_border bg_grey no_border_r" rowspan="2">달성율(%)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="all_border bg_grey">1월</td>
+                                                <td class="all_border bg_grey">2월</td>
+                                                <td class="all_border bg_grey">3월</td>
+                                                <td class="all_border bg_grey">4월</td>
+                                                <td class="all_border bg_grey">5월</td>
+                                                <td class="all_border bg_grey">6월</td>
+                                                <td class="all_border bg_grey">7월</td>
+                                                <td class="all_border bg_grey">8월</td>
+                                                <td class="all_border bg_grey">9월</td>
+                                                <td class="all_border bg_grey">10월</td>
+                                                <td class="all_border bg_grey">11월</td>
+                                                <td class="all_border bg_grey">12월</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border " rowspan="5" colspan="2"
+                                                    style="font-size: 15px;">CM용역</th>
+                                                <td class="all_border ">경기법인</td>
+                                                <td class="all_border num_align" id="plan_CG"></td>
+                                                <td class="all_border num_align" id="CG_MONTH_01"></td>
+                                                <td class="all_border num_align" id="CG_MONTH_02"></td>
+                                                <td class="all_border num_align" id="CG_MONTH_03"></td>
+                                                <td class="all_border num_align" id="CG_MONTH_04"></td>
+                                                <td class="all_border num_align num_align" id="CG_MONTH_05"></td>
+                                                <td class="all_border num_align" id="CG_MONTH_06"></td>
+                                                <td class="all_border num_align" id="CG_MONTH_07"></td>
+                                                <td class="all_border num_align" id="CG_MONTH_08"></td>
+                                                <td class="all_border num_align" id="CG_MONTH_09"></td>
+                                                <td class="all_border num_align" id="CG_MONTH_10"></td>
+                                                <td class="all_border num_align" id="CG_MONTH_11"></td>
+                                                <td class="all_border num_align" id="CG_MONTH_12"></td>
+                                                <td class="all_border num_align" id="CG_MONTH_TOTAL"></td>
+                                                <td class="all_border num_align no_border_r" id="CG_rate"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">서울법인</td>
+                                                <td class="all_border num_align" id="plan_CS"></td>
+                                                <td class="all_border num_align" id="CS_MONTH_01"></td>
+                                                <td class="all_border num_align" id="CS_MONTH_02"></td>
+                                                <td class="all_border num_align" id="CS_MONTH_03"></td>
+                                                <td class="all_border num_align" id="CS_MONTH_04"></td>
+                                                <td class="all_border num_align" id="CS_MONTH_05"></td>
+                                                <td class="all_border num_align" id="CS_MONTH_06"></td>
+                                                <td class="all_border num_align" id="CS_MONTH_07"></td>
+                                                <td class="all_border num_align" id="CS_MONTH_08"></td>
+                                                <td class="all_border num_align" id="CS_MONTH_09"></td>
+                                                <td class="all_border num_align" id="CS_MONTH_10"></td>
+                                                <td class="all_border num_align" id="CS_MONTH_11"></td>
+                                                <td class="all_border num_align" id="CS_MONTH_12"></td>
+                                                <td class="all_border num_align" id="CS_MONTH_TOTAL"></td>
+                                                <td class="all_border num_align no_border_r" id="CS_rate"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">전북법인</td>
+                                                <td class="all_border num_align" id="plan_CJ"></td>
+                                                <td class="all_border num_align" id="CJ_MONTH_01"></td>
+                                                <td class="all_border num_align" id="CJ_MONTH_02"></td>
+                                                <td class="all_border num_align" id="CJ_MONTH_03"></td>
+                                                <td class="all_border num_align" id="CJ_MONTH_04"></td>
+                                                <td class="all_border num_align" id="CJ_MONTH_05"></td>
+                                                <td class="all_border num_align" id="CJ_MONTH_06"></td>
+                                                <td class="all_border num_align" id="CJ_MONTH_07"></td>
+                                                <td class="all_border num_align" id="CJ_MONTH_08"></td>
+                                                <td class="all_border num_align" id="CJ_MONTH_09"></td>
+                                                <td class="all_border num_align" id="CJ_MONTH_10"></td>
+                                                <td class="all_border num_align" id="CJ_MONTH_11"></td>
+                                                <td class="all_border num_align" id="CJ_MONTH_12"></td>
+                                                <td class="all_border num_align" id="CJ_MONTH_TOTAL"></td>
+                                                <td class="all_border num_align no_border_r" id="CJ_rate"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">전남법인</td>
+                                                <td class="all_border num_align" id="plan_CC"></td>
+                                                <td class="all_border num_align" id="CC_MONTH_01"></td>
+                                                <td class="all_border num_align" id="CC_MONTH_02"></td>
+                                                <td class="all_border num_align" id="CC_MONTH_03"></td>
+                                                <td class="all_border num_align" id="CC_MONTH_04"></td>
+                                                <td class="all_border num_align" id="CC_MONTH_05"></td>
+                                                <td class="all_border num_align" id="CC_MONTH_06"></td>
+                                                <td class="all_border num_align" id="CC_MONTH_07"></td>
+                                                <td class="all_border num_align" id="CC_MONTH_08"></td>
+                                                <td class="all_border num_align" id="CC_MONTH_09"></td>
+                                                <td class="all_border num_align" id="CC_MONTH_10"></td>
+                                                <td class="all_border num_align" id="CC_MONTH_11"></td>
+                                                <td class="all_border num_align" id="CC_MONTH_12"></td>
+                                                <td class="all_border num_align" id="CC_MONTH_TOTAL"></td>
+                                                <td class="all_border num_align no_border_r" id="CC_rate"></td>
+                                            </tr>
+                                            <tr class="Trheight total_sub_background">
+                                                <td class="all_border total_sub_background">소계</td>
+                                                <td class="all_border num_align total_sub_background" id="plan_C_ALL">
+                                                </td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_01"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_02"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_03"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_04"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_05"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_06"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_07"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_08"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_09"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_10"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_11"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_12"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_TOTAL"></td>
+                                                <td class="all_border num_align no_border_r total_sub_background"
+                                                    id="C_ALL_rate"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border " rowspan="5" colspan="2"
+                                                    style="font-size: 15px;">설계용역</th>
+                                                <td class="all_border ">경기법인</td>
+                                                <td class="all_border num_align" id="plan_AG"></td>
+                                                <td class="all_border num_align" id="AG_MONTH_01"></td>
+                                                <td class="all_border num_align" id="AG_MONTH_02"></td>
+                                                <td class="all_border num_align" id="AG_MONTH_03"></td>
+                                                <td class="all_border num_align" id="AG_MONTH_04"></td>
+                                                <td class="all_border num_align" id="AG_MONTH_05"></td>
+                                                <td class="all_border num_align" id="AG_MONTH_06"></td>
+                                                <td class="all_border num_align" id="AG_MONTH_07"></td>
+                                                <td class="all_border num_align" id="AG_MONTH_08"></td>
+                                                <td class="all_border num_align" id="AG_MONTH_09"></td>
+                                                <td class="all_border num_align" id="AG_MONTH_10"></td>
+                                                <td class="all_border num_align" id="AG_MONTH_11"></td>
+                                                <td class="all_border num_align" id="AG_MONTH_12"></td>
+                                                <td class="all_border num_align" id="AG_MONTH_TOTAL"></td>
+                                                <td class="all_border num_align no_border_r" id="AG_rate"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">서울법인</td>
+                                                <td class="all_border num_align" id="plan_AS"></td>
+                                                <td class="all_border num_align" id="AS_MONTH_01"></td>
+                                                <td class="all_border num_align" id="AS_MONTH_02"></td>
+                                                <td class="all_border num_align" id="AS_MONTH_03"></td>
+                                                <td class="all_border num_align" id="AS_MONTH_04"></td>
+                                                <td class="all_border num_align" id="AS_MONTH_05"></td>
+                                                <td class="all_border num_align" id="AS_MONTH_06"></td>
+                                                <td class="all_border num_align" id="AS_MONTH_07"></td>
+                                                <td class="all_border num_align" id="AS_MONTH_08"></td>
+                                                <td class="all_border num_align" id="AS_MONTH_09"></td>
+                                                <td class="all_border num_align" id="AS_MONTH_10"></td>
+                                                <td class="all_border num_align" id="AS_MONTH_11"></td>
+                                                <td class="all_border num_align" id="AS_MONTH_12"></td>
+                                                <td class="all_border num_align" id="AS_MONTH_TOTAL"></td>
+                                                <td class="all_border num_align no_border_r" id="AS_rate"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">전북법인</td>
+                                                <td class="all_border num_align" id="plan_AJ"></td>
+                                                <td class="all_border num_align" id="AJ_MONTH_01"></td>
+                                                <td class="all_border num_align" id="AJ_MONTH_02"></td>
+                                                <td class="all_border num_align" id="AJ_MONTH_03"></td>
+                                                <td class="all_border num_align" id="AJ_MONTH_04"></td>
+                                                <td class="all_border num_align" id="AJ_MONTH_05"></td>
+                                                <td class="all_border num_align" id="AJ_MONTH_06"></td>
+                                                <td class="all_border num_align" id="AJ_MONTH_07"></td>
+                                                <td class="all_border num_align" id="AJ_MONTH_08"></td>
+                                                <td class="all_border num_align" id="AJ_MONTH_09"></td>
+                                                <td class="all_border num_align" id="AJ_MONTH_10"></td>
+                                                <td class="all_border num_align" id="AJ_MONTH_11"></td>
+                                                <td class="all_border num_align" id="AJ_MONTH_12"></td>
+                                                <td class="all_border num_align" id="AJ_MONTH_TOTAL"></td>
+                                                <td class="all_border num_align no_border_r" id="AJ_rate"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">전남법인</td>
+                                                <td class="all_border num_align" id="plan_AC"></td>
+                                                <td class="all_border num_align" id="AC_MONTH_01"></td>
+                                                <td class="all_border num_align" id="AC_MONTH_02"></td>
+                                                <td class="all_border num_align" id="AC_MONTH_03"></td>
+                                                <td class="all_border num_align" id="AC_MONTH_04"></td>
+                                                <td class="all_border num_align" id="AC_MONTH_05"></td>
+                                                <td class="all_border num_align" id="AC_MONTH_06"></td>
+                                                <td class="all_border num_align" id="AC_MONTH_07"></td>
+                                                <td class="all_border num_align" id="AC_MONTH_08"></td>
+                                                <td class="all_border num_align" id="AC_MONTH_09"></td>
+                                                <td class="all_border num_align" id="AC_MONTH_10"></td>
+                                                <td class="all_border num_align" id="AC_MONTH_11"></td>
+                                                <td class="all_border num_align" id="AC_MONTH_12"></td>
+                                                <td class="all_border num_align" id="AC_MONTH_TOTAL"></td>
+                                                <td class="all_border num_align no_border_r" id="AC_rate"></td>
+                                            </tr>
+                                            <tr class="Trheight total_sub_background">
+                                                <td class="all_border total_sub_background">소계</td>
+                                                <td class="all_border num_align total_sub_background" id="plan_A_ALL">
+                                                </td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_01"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_02"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_03"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_04"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_05"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_06"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_07"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_08"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_09"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_10"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_11"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_12"></td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_TOTAL"></td>
+                                                <td class="all_border num_align no_border_r total_sub_background"
+                                                    id="A_ALL_rate"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border total_background" rowspan="2" colspan="2"
+                                                    style="font-size: 15px;">총계</th>
+                                                <td class="all_border total_background">합계</td>
+                                                <td class="all_border num_align total_background" id="plan_ALL"></td>
+                                                <td class="all_border num_align total_background" id="ALL_MONTH_01">
+                                                </td>
+                                                <td class="all_border num_align total_background" id="ALL_MONTH_02">
+                                                </td>
+                                                <td class="all_border num_align total_background" id="ALL_MONTH_03">
+                                                </td>
+                                                <td class="all_border num_align total_background" id="ALL_MONTH_04">
+                                                </td>
+                                                <td class="all_border num_align total_background" id="ALL_MONTH_05">
+                                                </td>
+                                                <td class="all_border num_align total_background" id="ALL_MONTH_06">
+                                                </td>
+                                                <td class="all_border num_align total_background" id="ALL_MONTH_07">
+                                                </td>
+                                                <td class="all_border num_align total_background" id="ALL_MONTH_08">
+                                                </td>
+                                                <td class="all_border num_align total_background" id="ALL_MONTH_09">
+                                                </td>
+                                                <td class="all_border num_align total_background" id="ALL_MONTH_10">
+                                                </td>
+                                                <td class="all_border num_align total_background" id="ALL_MONTH_11">
+                                                </td>
+                                                <td class="all_border num_align total_background" id="ALL_MONTH_12">
+                                                </td>
+                                                <td class="all_border num_align total_background" id="ALL_MONTH_TOTAL">
+                                                </td>
+                                                <td class="all_border num_align no_border_r total_background"
+                                                    id="ALL_rate"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border total_background">비율</td>
+                                                <td class="all_border total_background"></td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_01_RATE"></td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_02_RATE"></td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_03_RATE"></td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_04_RATE"></td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_05_RATE"></td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_06_RATE"></td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_07_RATE"></td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_08_RATE"></td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_09_RATE"></td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_10_RATE"></td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_11_RATE"></td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_12_RATE"></td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_TOTAL_RATE"></td>
+                                                <td class="all_border no_border_r total_background"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="chart_sum_total">
+                        <td rowspan="2">
+                            <div class="chart_container chart_comment">
+                                <div class="chart_box">
+                                    <div class="chart_legend1">
+                                        <span class="legend_box" id="target_legend1"></span>
+                                        <span>계획</span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span class="legend_box" id="data_legend1"></span>
+                                        <span>수주</span>
+                                    </div>
+                                    <div id="chart-area1"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td rowspan="2">
+                            <div class="chart_container chart_comment">
+                                <div class="chart_box">
+                                    <div class="chart_legend2">
+                                        <span class="legend_box" id="target_legend2"></span>
+                                        <span>계획</span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span class="legend_box" id="data_legend2"></span>
+                                        <span>수주</span>
+                                    </div>
+                                    <div id="chart-area2"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td rowspan="1" colspan="1">
+                            <div class="chart_container" style="flex-direction: column;">
+                                <div class="chart_box">
+                                    <table id="table-area2">
+                                        <colgroup>
+                                            <col style="width: 45%">
+                                            <col>
+                                        </colgroup>
+                                        <tbody>
+                                            <tr style="height: 28px">
+                                                <td class="all_border bg_grey total_background">CM전략부</td>
+                                                <td class="all_border num_align no_border_r" id="table2_c_all"></td>
+                                            </tr>
+                                            <tr style="height: 28px">
+                                                <td class="all_border bg_grey total_background">설계전략부</td>
+                                                <td class="all_border num_align no_border_r" id="table2_a_all"></td>
+                                            </tr>
+                                            <tr style="height: 28px">
+                                                <td class="all_border bg_grey">계</td>
+                                                <td class="all_border bg_grey num_align no_border_r" id="table2_all">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="chart_container chart_sum">
+                                <div class="chart_box">
+                                    <!-- <div style="margin: 2px; font-size: 15px; font-weight: 600;">법인별 수주금액</div> -->
+                                    <table id="table-area3">
+                                        <colgroup>
+                                            <col style="width: 45%">
+                                            <col style="width: 25%">
+                                            <col>
+                                        </colgroup>
+                                        <tbody>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey total_background" rowspan="2">경기</td>
+                                                <td class="all_border ">CM</td>
+                                                <td class="all_border num_align no_border_r" id="table3_cg"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">설계</td>
+                                                <td class="all_border num_align no_border_r" id="table3_ag"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey" id="table3_g_rate"></td>
+                                                <td class="all_border bg_grey">소계</td>
+                                                <td class="all_border bg_grey num_align no_border_r" id="table3_g_all">
+                                                </td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey total_background" rowspan="2">서울</td>
+                                                <td class="all_border ">CM</td>
+                                                <td class="all_border num_align no_border_r" id="table3_cs"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">설계</td>
+                                                <td class="all_border num_align no_border_r" id="table3_as"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey" id="table3_s_rate"></td>
+                                                <td class="all_border bg_grey ">소계</td>
+                                                <td class="all_border bg_grey num_align no_border_r" id="table3_s_all">
+                                                </td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey total_background" rowspan="2">전북</td>
+                                                <td class="all_border ">CM</td>
+                                                <td class="all_border num_align no_border_r" id="table3_cj"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">설계</td>
+                                                <td class="all_border num_align no_border_r" id="table3_aj"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey" id="table3_j_rate"></td>
+                                                <td class="all_border bg_grey ">소계</td>
+                                                <td class="all_border bg_grey num_align no_border_r" id="table3_j_all">
+                                                </td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey total_background" rowspan="2">전남</td>
+                                                <td class="all_border ">CM</td>
+                                                <td class="all_border num_align no_border_r" id="table3_cc"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">설계</td>
+                                                <td class="all_border num_align no_border_r" id="table3_ac"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey" id="table3_c_rate"></td>
+                                                <td class="all_border bg_grey ">소계</td>
+                                                <td class="all_border bg_grey num_align no_border_r" id="table3_c_all">
+                                                </td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey total_background" colspan="2">계</td>
+                                                <td class="all_border bg_grey num_align no_border_r total_background"
+                                                    id="table3_all"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

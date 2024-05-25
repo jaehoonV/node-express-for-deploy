@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>board2</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/overview.css" />
+    <link rel="stylesheet" type="text/css" href="css/chart.css" />
+    <link rel="stylesheet" type="text/css" href="css/SpoqaHanSans.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css" />
+    <script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
+    <script type="text/javascript" src="script/board2.js"></script>
+</head>
+<body>
+    <div class="iframe_area">
+        <div class="wrap_detail_sub">
+            <table class="fixTableWidth" style="margin: 0px auto; width: 100%;">
+                <colgroup>
+                    <col style="width: 514px;">
+                    <col style="width: 788px;">
+                    <col style="width: 411px;">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <td colspan="3">
+                            <div class="chart_container" style="flex-direction: column;">
+                                <div class="chart_box">
+                                    <table id="table-area1">
+                                        <colgroup>
+                                            <col style="width: 5.5%">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col style="width: 5.5%;">
+                                            <col>
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="18" class="danwi">
+                                                    [단위:억원, VAT별도]
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="all_border bg_grey" rowspan="2"
+                                                    colspan="3">구분</td>
+                                                <td class="all_border bg_grey" rowspan="2">수금계획</td>
+                                                <td class="all_border bg_grey" colspan="12"><span
+                                                        class="year_span">2023</span>년도</td>
+                                                <td class="all_border bg_grey" rowspan="2">계</td>
+                                                <td class="all_border bg_grey no_border_r"
+                                                    rowspan="2">달성율(%)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="all_border bg_grey">1월</td>
+                                                <td class="all_border bg_grey">2월</td>
+                                                <td class="all_border bg_grey">3월</td>
+                                                <td class="all_border bg_grey">4월</td>
+                                                <td class="all_border bg_grey">5월</td>
+                                                <td class="all_border bg_grey">6월</td>
+                                                <td class="all_border bg_grey">7월</td>
+                                                <td class="all_border bg_grey">8월</td>
+                                                <td class="all_border bg_grey">9월</td>
+                                                <td class="all_border bg_grey">10월</td>
+                                                <td class="all_border bg_grey">11월</td>
+                                                <td class="all_border bg_grey">12월</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border " rowspan="5" colspan="2"
+                                                    style="font-size: 15px;">CM용역
+                                                </td>
+                                                <td class="all_border ">경기법인</td>
+                                                <td class="all_border num_align" id="plan_CG">497억
+                                                </td>
+                                                <td class="all_border num_align" id="CG_MONTH_01">
+                                                    26.51억</td>
+                                                <td class="all_border num_align" id="CG_MONTH_02">
+                                                    23.79억</td>
+                                                <td class="all_border num_align" id="CG_MONTH_03">
+                                                    49.69억</td>
+                                                <td class="all_border num_align" id="CG_MONTH_04">
+                                                    29.46억</td>
+                                                <td class="all_border num_align num_align"
+                                                    id="CG_MONTH_05">30.06억</td>
+                                                <td class="all_border num_align" id="CG_MONTH_06">
+                                                    70.83억</td>
+                                                <td class="all_border num_align" id="CG_MONTH_07">
+                                                    50.95억</td>
+                                                <td class="all_border num_align" id="CG_MONTH_08">
+                                                    4.1억</td>
+                                                <td class="all_border num_align" id="CG_MONTH_09">
+                                                    33.36억</td>
+                                                <td class="all_border num_align" id="CG_MONTH_10">
+                                                    8.1억</td>
+                                                <td class="all_border num_align" id="CG_MONTH_11">
+                                                    5.01억</td>
+                                                <td class="all_border num_align" id="CG_MONTH_12">
+                                                    21.1억</td>
+                                                <td class="all_border num_align"
+                                                    id="CG_MONTH_TOTAL">352.96억</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="CG_rate">71.02%</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">서울법인</td>
+                                                <td class="all_border num_align" id="plan_CS">0억
+                                                </td>
+                                                <td class="all_border num_align" id="CS_MONTH_01">
+                                                </td>
+                                                <td class="all_border num_align" id="CS_MONTH_02">
+                                                </td>
+                                                <td class="all_border num_align" id="CS_MONTH_03">
+                                                </td>
+                                                <td class="all_border num_align" id="CS_MONTH_04">
+                                                </td>
+                                                <td class="all_border num_align" id="CS_MONTH_05">
+                                                </td>
+                                                <td class="all_border num_align" id="CS_MONTH_06">
+                                                </td>
+                                                <td class="all_border num_align" id="CS_MONTH_07">
+                                                </td>
+                                                <td class="all_border num_align" id="CS_MONTH_08">
+                                                </td>
+                                                <td class="all_border num_align" id="CS_MONTH_09">
+                                                </td>
+                                                <td class="all_border num_align" id="CS_MONTH_10">
+                                                </td>
+                                                <td class="all_border num_align" id="CS_MONTH_11">
+                                                </td>
+                                                <td class="all_border num_align" id="CS_MONTH_12">
+                                                </td>
+                                                <td class="all_border num_align"
+                                                    id="CS_MONTH_TOTAL"></td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="CS_rate">0%</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">전북법인</td>
+                                                <td class="all_border num_align" id="plan_CJ">0억
+                                                </td>
+                                                <td class="all_border num_align" id="CJ_MONTH_01">
+                                                    0.48억</td>
+                                                <td class="all_border num_align" id="CJ_MONTH_02">
+                                                    2.78억</td>
+                                                <td class="all_border num_align" id="CJ_MONTH_03">
+                                                    2.23억</td>
+                                                <td class="all_border num_align" id="CJ_MONTH_04">
+                                                </td>
+                                                <td class="all_border num_align" id="CJ_MONTH_05">
+                                                    0.84억</td>
+                                                <td class="all_border num_align" id="CJ_MONTH_06">
+                                                    2.04억</td>
+                                                <td class="all_border num_align" id="CJ_MONTH_07">
+                                                    0.39억</td>
+                                                <td class="all_border num_align" id="CJ_MONTH_08">
+                                                    0.19억</td>
+                                                <td class="all_border num_align" id="CJ_MONTH_09">
+                                                </td>
+                                                <td class="all_border num_align" id="CJ_MONTH_10">
+                                                    0.55억</td>
+                                                <td class="all_border num_align" id="CJ_MONTH_11">
+                                                </td>
+                                                <td class="all_border num_align" id="CJ_MONTH_12">
+                                                    1.29억</td>
+                                                <td class="all_border num_align"
+                                                    id="CJ_MONTH_TOTAL">10.81억</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="CJ_rate">0%</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">전남법인</td>
+                                                <td class="all_border num_align" id="plan_CC">0억
+                                                </td>
+                                                <td class="all_border num_align" id="CC_MONTH_01">
+                                                    0.54억</td>
+                                                <td class="all_border num_align" id="CC_MONTH_02">
+                                                </td>
+                                                <td class="all_border num_align" id="CC_MONTH_03">
+                                                    0.05억</td>
+                                                <td class="all_border num_align" id="CC_MONTH_04">
+                                                </td>
+                                                <td class="all_border num_align" id="CC_MONTH_05">
+                                                </td>
+                                                <td class="all_border num_align" id="CC_MONTH_06">
+                                                </td>
+                                                <td class="all_border num_align" id="CC_MONTH_07">
+                                                </td>
+                                                <td class="all_border num_align" id="CC_MONTH_08">
+                                                </td>
+                                                <td class="all_border num_align" id="CC_MONTH_09">
+                                                </td>
+                                                <td class="all_border num_align" id="CC_MONTH_10">
+                                                </td>
+                                                <td class="all_border num_align" id="CC_MONTH_11">
+                                                </td>
+                                                <td class="all_border num_align" id="CC_MONTH_12">
+                                                </td>
+                                                <td class="all_border num_align"
+                                                    id="CC_MONTH_TOTAL">0.59억</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="CC_rate">0%</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border total_sub_background">소계</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="plan_C_ALL">497억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_01">27.53억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_02">26.57억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_03">51.98억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_04">29.46억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_05">30.9억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_06">72.87억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_07">51.34억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_08">4.29억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_09">33.36억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_10">8.65억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_11">5.01억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_12">22.4억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="C_ALL_MONTH_TOTAL">364.36억</td>
+                                                <td class="all_border num_align no_border_r total_sub_background"
+                                                    id="C_ALL_rate">73.31%</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border " rowspan="5" colspan="2"
+                                                    style="font-size: 15px;">설계용역
+                                                </td>
+                                                <td class="all_border ">경기법인</td>
+                                                <td class="all_border num_align" id="plan_AG">131.1억
+                                                </td>
+                                                <td class="all_border num_align" id="AG_MONTH_01">
+                                                </td>
+                                                <td class="all_border num_align" id="AG_MONTH_02">
+                                                </td>
+                                                <td class="all_border num_align" id="AG_MONTH_03">
+                                                    7.55억</td>
+                                                <td class="all_border num_align" id="AG_MONTH_04">
+                                                    2.18억</td>
+                                                <td class="all_border num_align" id="AG_MONTH_05">
+                                                    13.38억</td>
+                                                <td class="all_border num_align" id="AG_MONTH_06">
+                                                    10.38억</td>
+                                                <td class="all_border num_align" id="AG_MONTH_07">
+                                                    0.97억</td>
+                                                <td class="all_border num_align" id="AG_MONTH_08">
+                                                    12.2억</td>
+                                                <td class="all_border num_align" id="AG_MONTH_09">
+                                                    0.35억</td>
+                                                <td class="all_border num_align" id="AG_MONTH_10">
+                                                    0.22억</td>
+                                                <td class="all_border num_align" id="AG_MONTH_11">
+                                                    5.32억</td>
+                                                <td class="all_border num_align" id="AG_MONTH_12">
+                                                    8.37억</td>
+                                                <td class="all_border num_align"
+                                                    id="AG_MONTH_TOTAL">60.9억</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="AG_rate">46.46%</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">서울법인</td>
+                                                <td class="all_border num_align" id="plan_AS">0억
+                                                </td>
+                                                <td class="all_border num_align" id="AS_MONTH_01">
+                                                    12.1억</td>
+                                                <td class="all_border num_align" id="AS_MONTH_02">
+                                                    12.71억</td>
+                                                <td class="all_border num_align" id="AS_MONTH_03">
+                                                </td>
+                                                <td class="all_border num_align" id="AS_MONTH_04">
+                                                </td>
+                                                <td class="all_border num_align" id="AS_MONTH_05">
+                                                </td>
+                                                <td class="all_border num_align" id="AS_MONTH_06">
+                                                    4.14억</td>
+                                                <td class="all_border num_align" id="AS_MONTH_07">
+                                                    5.03억</td>
+                                                <td class="all_border num_align" id="AS_MONTH_08">
+                                                </td>
+                                                <td class="all_border num_align" id="AS_MONTH_09">
+                                                    2.49억</td>
+                                                <td class="all_border num_align" id="AS_MONTH_10">
+                                                </td>
+                                                <td class="all_border num_align" id="AS_MONTH_11">
+                                                </td>
+                                                <td class="all_border num_align" id="AS_MONTH_12">
+                                                    0.03억</td>
+                                                <td class="all_border num_align"
+                                                    id="AS_MONTH_TOTAL">36.5억</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="AS_rate">0%</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">전북법인</td>
+                                                <td class="all_border num_align" id="plan_AJ">0억
+                                                </td>
+                                                <td class="all_border num_align" id="AJ_MONTH_01">
+                                                </td>
+                                                <td class="all_border num_align" id="AJ_MONTH_02">
+                                                </td>
+                                                <td class="all_border num_align" id="AJ_MONTH_03">
+                                                    0.46억</td>
+                                                <td class="all_border num_align" id="AJ_MONTH_04">
+                                                    0.15억</td>
+                                                <td class="all_border num_align" id="AJ_MONTH_05">
+                                                    1.62억</td>
+                                                <td class="all_border num_align" id="AJ_MONTH_06">
+                                                </td>
+                                                <td class="all_border num_align" id="AJ_MONTH_07">
+                                                </td>
+                                                <td class="all_border num_align" id="AJ_MONTH_08">
+                                                    0.64억</td>
+                                                <td class="all_border num_align" id="AJ_MONTH_09">
+                                                </td>
+                                                <td class="all_border num_align" id="AJ_MONTH_10">
+                                                </td>
+                                                <td class="all_border num_align" id="AJ_MONTH_11">
+                                                </td>
+                                                <td class="all_border num_align" id="AJ_MONTH_12">
+                                                </td>
+                                                <td class="all_border num_align"
+                                                    id="AJ_MONTH_TOTAL">2.87억</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="AJ_rate">0%</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">전남법인</td>
+                                                <td class="all_border num_align" id="plan_AC">0억
+                                                </td>
+                                                <td class="all_border num_align" id="AC_MONTH_01">
+                                                    2.49억</td>
+                                                <td class="all_border num_align" id="AC_MONTH_02">
+                                                    4.45억</td>
+                                                <td class="all_border num_align" id="AC_MONTH_03">
+                                                    8.46억</td>
+                                                <td class="all_border num_align" id="AC_MONTH_04">
+                                                    3.45억</td>
+                                                <td class="all_border num_align" id="AC_MONTH_05">
+                                                    9.16억</td>
+                                                <td class="all_border num_align" id="AC_MONTH_06">
+                                                    9.18억</td>
+                                                <td class="all_border num_align" id="AC_MONTH_07">
+                                                    3.76억</td>
+                                                <td class="all_border num_align" id="AC_MONTH_08">
+                                                    4.7억</td>
+                                                <td class="all_border num_align" id="AC_MONTH_09">
+                                                    13.85억</td>
+                                                <td class="all_border num_align" id="AC_MONTH_10">
+                                                    12.01억</td>
+                                                <td class="all_border num_align" id="AC_MONTH_11">
+                                                    6.27억</td>
+                                                <td class="all_border num_align" id="AC_MONTH_12">
+                                                    26.29억</td>
+                                                <td class="all_border num_align"
+                                                    id="AC_MONTH_TOTAL">104.08억</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="AC_rate">0%</td>
+                                            </tr>
+                                            <tr class="Trheight total_sub_background">
+                                                <td class="all_border total_sub_background">소계</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="plan_A_ALL">131.1억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_01">14.59억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_02">17.16억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_03">16.48억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_04">5.77억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_05">24.16억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_06">23.71억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_07">9.75억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_08">17.53억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_09">16.69억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_10">12.23억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_11">11.59억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_12">34.68억</td>
+                                                <td class="all_border num_align total_sub_background"
+                                                    id="A_ALL_MONTH_TOTAL">204.34억</td>
+                                                <td class="all_border num_align no_border_r total_sub_background"
+                                                    id="A_ALL_rate">155.87%</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border total_background" rowspan="2"
+                                                    colspan="2" style="font-size: 15px;">총계
+                                                </td>
+                                                <td class="all_border total_background ">합계</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="plan_ALL">628.1억</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_01">42.13억</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_02">43.74억</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_03">68.45억</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_04">35.24억</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_05">55.06억</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_06">96.58억</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_07">61.09억</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_08">21.82억</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_09">50.05억</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_10">20.88억</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_11">16.59억</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_12">57.08억</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_TOTAL">568.71억</td>
+                                                <td class="all_border num_align no_border_r total_background"
+                                                    id="ALL_rate">90.54%</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border total_background">비율</td>
+                                                <td class="all_border total_background"></td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_01_RATE">6.71%</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_02_RATE">6.96%</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_03_RATE">10.9%</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_04_RATE">5.61%</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_05_RATE">8.77%</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_06_RATE">15.38%</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_07_RATE">9.73%</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_08_RATE">3.47%</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_09_RATE">7.97%</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_10_RATE">3.32%</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_11_RATE">2.64%</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_12_RATE">9.09%</td>
+                                                <td class="all_border num_align total_background"
+                                                    id="ALL_MONTH_TOTAL_RATE">90.54%</td>
+                                                <td class="all_border no_border_r total_background">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="chart_sum_total">
+                        <td rowspan="2">
+                            <div class="chart_container chart_comment">
+                                <div class="chart_box">
+                                    <div class="chart_legend1">
+                                        <span class="legend_box" id="target_legend1"></span>
+                                        <span>계획</span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span class="legend_box" id="data_legend1"></span>
+                                        <span>수금</span>
+                                    </div>
+                                    <div id="chart-area1">
+                                        <div class="toastui-chart-wrapper">
+                                            <div class="toastui-chart-tooltip-container"
+                                                style="transform: translate(403.539px, 738px);">
+                                            </div><canvas width="400" height="415"
+                                                style="width: 400px; height: 415px;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td rowspan="2">
+                            <div class="chart_container chart_comment">
+                                <div class="chart_box">
+                                    <div class="chart_legend2">
+                                        <span class="legend_box" id="target_legend2"></span>
+                                        <span>계획</span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span class="legend_box" id="data_legend2"></span>
+                                        <span>수금</span>
+                                    </div>
+                                    <div id="chart-area2">
+                                        <div class="toastui-chart-wrapper">
+                                            <div class="toastui-chart-tooltip-container"
+                                                style="transform: translate(1060.99px, 739px);">
+                                            </div><canvas width="660" height="415"
+                                                style="width: 660px; height: 415px;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td rowspan="1" colspan="1">
+                            <div class="chart_container" style="flex-direction: column;">
+                                <div class="chart_box">
+                                    <table id="table-area2">
+                                        <colgroup>
+                                            <col style="width: 45%">
+                                            <col>
+                                        </colgroup>
+                                        <tbody>
+                                            <tr style="height: 28px">
+                                                <td class="all_border bg_grey total_background">
+                                                    CM전략부</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="table2_c_all">364.36억</td>
+                                            </tr>
+                                            <tr style="height: 28px">
+                                                <td class="all_border bg_grey total_background">
+                                                    설계전략부</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="table2_a_all">204.34억</td>
+                                            </tr>
+                                            <tr style="height: 28px">
+                                                <td class="all_border bg_grey">계</td>
+                                                <td class="all_border bg_grey num_align no_border_r"
+                                                    id="table2_all">568.71억</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="chart_container chart_sum">
+                                <div class="chart_box">
+                                    <!-- <div style="margin: 2px; font-size: 15px; font-weight: 600;">법인별 수금금액</div> -->
+                                    <table id="table-area3">
+                                        <colgroup>
+                                            <col style="width: 45%">
+                                            <col style="width: 25%">
+                                            <col>
+                                        </colgroup>
+                                        <tbody>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey total_background"
+                                                    rowspan="2">경기</td>
+                                                <td class="all_border ">CM</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="table3_cg">352.96억</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">설계</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="table3_ag">60.9억</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey" id="table3_g_rate">
+                                                    72.77%</td>
+                                                <td class="all_border bg_grey ">소계</td>
+                                                <td class="all_border bg_grey num_align no_border_r"
+                                                    id="table3_g_all">413.87억</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey total_background"
+                                                    rowspan="2">서울</td>
+                                                <td class="all_border ">CM</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="table3_cs"></td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">설계</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="table3_as">36.5억</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey" id="table3_s_rate">
+                                                    6.42%</td>
+                                                <td class="all_border bg_grey ">소계</td>
+                                                <td class="all_border bg_grey num_align no_border_r"
+                                                    id="table3_s_all">36.5억</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey total_background"
+                                                    rowspan="2">전북</td>
+                                                <td class="all_border ">CM</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="table3_cj">10.81억</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">설계</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="table3_aj">2.87억</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey" id="table3_j_rate">
+                                                    2.41%</td>
+                                                <td class="all_border bg_grey ">소계</td>
+                                                <td class="all_border bg_grey num_align no_border_r"
+                                                    id="table3_j_all">13.68억</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey total_background"
+                                                    rowspan="2">전남</td>
+                                                <td class="all_border ">CM</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="table3_cc">0.59억</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border ">설계</td>
+                                                <td class="all_border num_align no_border_r"
+                                                    id="table3_ac">104.08억</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey" id="table3_c_rate">
+                                                    18.4%</td>
+                                                <td class="all_border bg_grey ">소계</td>
+                                                <td class="all_border bg_grey num_align no_border_r"
+                                                    id="table3_c_all">104.66억</td>
+                                            </tr>
+                                            <tr class="Trheight">
+                                                <td class="all_border bg_grey total_background"
+                                                    colspan="2">계</td>
+                                                <td class="all_border bg_grey num_align no_border_r total_background"
+                                                    id="table3_all">568.71억</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

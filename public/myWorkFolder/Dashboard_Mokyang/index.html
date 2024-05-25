@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/overview.css" />
+    <link rel="stylesheet" type="text/css" href="css/chart.css" />
+    <link rel="stylesheet" type="text/css" href="css/SpoqaHanSans.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://uicdn.toast.com/chart/latest/toastui-chart.min.css" />
+    <script src="https://uicdn.toast.com/chart/latest/toastui-chart.min.js"></script>
+</head>
+<script type="text/javascript">
+    (function($){
+    "use strict";
+    
+        let classChange = (element) => {
+            $(".spanImg").removeClass("active_img");
+            $(".spanImg").addClass("hide_img");
+            
+            $(element).children().children("img").addClass("active_img");
+            $(element).children().children("img").removeClass("hide_img");
+        
+        }
+        
+        $("#tab_nav1 > div").hover(function(){
+            $(this).children().children("img").addClass("active_img");
+            $(this).children().children("img").removeClass("hide_img");
+        }, function(){
+            
+            let activeCheck = $(".active_img").length; 
+            if(activeCheck === 1) return; //현재 클릭한 현황 이면 unhover class 변경하지 않고  return
+            
+            $(this).children().children("img").removeClass("active_img");
+            $(this).children().children("img").addClass("hide_img");
+        });
+        
+        var currentTab
+        window.overview_progress01 = {			
+                initEvent : function(){
+                $("#tab1").click(function(){
+                    overview_progress01.cmdProMenu1();
+                    classChange(this);
+                });
+                $("#tab2").click(function(){
+                    overview_progress01.cmdProMenu2(); 
+                    classChange(this);
+                });
+                $("#tab3").click(function(){
+                    overview_progress01.cmdProMenu3();
+                    classChange(this);
+                });
+                $("#tab4").click(function(){
+                    overview_progress01.cmdProMenu4();
+                    classChange(this);
+                });
+            },
+            selYearEvent : function(tab){
+                var d = new Date();
+                var year =  d.getFullYear();
+                $("#thisYear").text(year);
+                var value = $("select").val() ? $("select").val() : year;
+                var i = 2021;
+                $("select option").remove();
+                for(i ; i < year + 1 ; i++){
+                    $("#selYear", "#sub_contents").append("<option value="+i+">"+i+"년</option>");
+                }
+                $("#selYear option[value="+value+"]", "#sub_contents").attr("selected", "true");
+            },
+            cmdProMenu1 : function(){
+                overview_progress01.active_Tab(1);
+                overview_progress01.selYearEvent(1);
+                $("input[name=activeTab]").val(1);
+    
+                var serchParam = [];
+                serchParam.push(
+                        {name:"srchYear", value:$("#selYear", "#sub_contents").val()},
+                        {name:"target_div", value:'10'}
+                );
+                
+                $(".category_name").text("수주현황");
+                $(".tab1_ext_tag").show();
+                $(".tab4_ext_tag").hide();
+                $("#year_span").show();
+                $("#selYear").show();
+                $("#tab3_thisYear").hide();
+                $('.sub_contents_area').html("<iframe src='./board1.html' class='sub_contents' id='board1'></iframe>");
+            }, 
+            cmdProMenu2 : function(){
+                overview_progress01.active_Tab(2);
+                overview_progress01.selYearEvent(2);
+                $("input[name=activeTab]").val(2);
+                
+                var serchParam = [];
+                serchParam.push(
+                        {name:"srchYear", value:$("#selYear", "#sub_contents").val()},
+                        {name:"target_div", value:'11'}
+                );
+                
+                $(".category_name").text("수금현황");
+                $(".tab1_ext_tag").show();
+                $(".tab4_ext_tag").hide();
+                $("#year_span").show();
+                $("#selYear").show();
+                $("#tab3_thisYear").hide();
+                $('.sub_contents_area').html("<iframe src='./board2.html' class='sub_contents' id='board2'></iframe>");
+            },
+            cmdProMenu3 : function(){
+                overview_progress01.active_Tab(3);
+                overview_progress01.selYearEvent(3);
+                $("input[name=activeTab]").val(3);
+                $(".category_name").text("인원현황");
+                $(".tab1_ext_tag").hide();
+                $(".tab4_ext_tag").hide();
+                $("#selYear").hide();
+                $("#year_span").hide();
+                $("#tab3_thisYear").show();
+                $('.sub_contents_area').html("<iframe src='./board3.html' class='sub_contents' id='board3'></iframe>");
+            },
+            cmdProMenu4 : function(){
+                overview_progress01.active_Tab(4);
+                overview_progress01.selYearEvent(4);
+                $("input[name=activeTab]").val(4);
+                $(".category_name").text("프로젝트현황");
+                $(".tab1_ext_tag").hide();
+                $(".tab4_ext_tag").show();
+                $("#year_span").hide();
+                $("#tab3_thisYear").hide();
+                $('.sub_contents_area').html("<iframe src='./board4.html' class='sub_contents' id='board4'></iframe>");
+            },
+            active_Tab : function(num){
+                currentTab = num;
+                $("#tab_nav1 div").removeClass('selected').filter("[data-index='"+currentTab+"']").addClass('selected');
+            },
+            cmdPreView : function(){
+                window.print();
+            }
+        }
+    })(jQuery);
+    
+    $(document).ready(function () {
+        $("#selYear", "#sub_contents").change(function () {
+            var num = $("input[name=activeTab]").val();
+            
+            $("#tab" + num).click();
+        });
+        
+        $(".btn_prev_view", "#main_contents_container").click(function(){
+            overview_progress01.cmdPreView();
+        });
+        
+        overview_progress01.cmdProMenu1();
+        overview_progress01.initEvent();
+        overview_progress01.selYearEvent();
+    })
+    
+</script>
+<body style="background: #565656;">
+    <input type="hidden" name="activeTab" value="1" />
+    <div class="topImg"></div>
+    <div id="main_contents_container" style="display:flex; gap:8px;">
+        <div id="tab_container">
+            <div id="tab_nav1">
+                <div id="tab1" data-index="1"><span><img class="spanImg active_img" alt="수주현황" src="./images/ico_menu01.png"/><br/>수주<br/>현황</span></div>
+                <div id="tab2" data-index="2"><span><img class="spanImg hide_img" alt="수금현황" src="./images/ico_menu02.png"/><br/>수금<br>현황</span></div>
+                <div id="tab3" data-index="3"><span><img class="spanImg hide_img" alt="인원현황" src="./images/ico_menu03.png"/><br/>인원<br>현황</span></div>
+                <div id="tab4" data-index="4"><span style="left:17%"><img class="spanImg hide_img" alt="프로젝트현황" src="./images/ico_menu04.png"/><br/>프로젝트<br>현황</span></div>
+            </div>
+        </div>
+        <div id="sub_contents" style="padding:6px; height: 857px; width: 1755px;">
+            <div style="position:relative; margin: 5px; font-size: 20px; font-weight: 600; color: #ffffff; font-family: malgun;">
+                <span class="category_name"></span>
+                <div class="btn_prev_view"><img alt="인쇄하기" src="./images/btn_print.png"/></div>
+                <span id="year_span" style="font-size: 15px;vertical-align: bottom;"><select id="selYear" class="selectbox"></select></span>
+                <span id="tab3_thisYear" style="font-size: 15px;vertical-align: bottom;">(<span id="thisYear"></span>년)</span>
+            </div>
+            <div class="sub_contents_area"></div>
+        </div>
+    </div>
+</body>
+</html>
