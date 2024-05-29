@@ -1,14 +1,11 @@
-const zooms = document.querySelectorAll('.zoom');
-const modal = document.getElementById('myModal');
-const modalContent = document.querySelector('.modal-content');
 let select_page = '';
 
 window.addEventListener('load', function() {
-    var allElements = document.getElementsByTagName('*');
+    let allElements = document.getElementsByTagName('*');
     Array.prototype.forEach.call(allElements, function(el) {
-        var includePath = el.dataset.includePath;
+        let includePath = el.dataset.includePath;
         if (includePath) {
-            var xhttp = new XMLHttpRequest();
+            let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
                     el.outerHTML = this.responseText;
@@ -21,49 +18,66 @@ window.addEventListener('load', function() {
 });
 
 function init(){
-    let workList = ['', 'Animated_Action_Menu', 'Animated_Circular_Progress_Bar', 'Animated_Gaming_Website', 'Animated_Search_Box', 'Color_Switch_Page'
-        , 'Countdown_Flip_Timer', 'Custom_Input_Range_Slider', 'Dashboard_Mokyang', 'Dashboard_kt_M-BcN', 'Dashboard_Sidebar_Menu', 'Delete_Button_Animation_Effects'
-        , 'Dynamic_Expandable_Content_Only_CSS', 'Highlighter_effect(Pseudo_Element)', 'Infinite_Ticker_CSS_Animation_Effects', 'Infinity_scroll'
-        , 'Input_Field_Gradient_Border_Animation_Effects', 'MapData_To_Text_File', 'Page_Progress_Bar', 'Playing_Card_Hover_Effect', 'Progress_Bar'
-        , 'Slide_Transitions', 'Spinning_Wheel_Game', 'Typing_JS'
-    ];
+    let xmlhttp = new XMLHttpRequest();
+    let url = "/myWorkFolder/workList.json";
+    let json_data;
 
-    let list_output = '';
-
-    for(let i = 1; i < workList.length; i++){
-        let work = workList[i];
-        list_output += '<div class="item list' + i + '" value="/myWorkFolder/' + work +'/">"'
-            + '<span class="zoom">'
-            + ' <ion-icon name="expand-outline"></ion-icon>'
-            + '</span>'
-            + '<span class="list_name">' + work.replaceAll('_', ' ') + '</span>'
-            + '<img src="/myWorkFolder/' + work + '/screenshot_gif.gif" class="gif_img"></img>'
-            + '</div>';
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            json_data = JSON.parse(xmlhttp.responseText);
+            setWorkList(json_data);
+        }
     }
-
-    $('#workListContainer').html(list_output);
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+    
 }
 
 init();
 
-$('.zoom').off().on('click', function () {
-    $('#myModal').css('display','block');
-    $(this).closest('.item').find('img').clone().addClass('zoom_img').appendTo('.modal-content');
-    let e = window.event;
-    e.stopPropagation();
-})
+function setWorkList(json_data){
+    let list_output = '';
+    let data_length = Object.keys(json_data).length;
+    let currentIndex = 0;  // 현재 로드 중인 이미지의 인덱스
 
-$('.close').on('click', () => {
-    $('#myModal').css('display','none');
-    $('.modal-content').html('');
-});
+    function loadImage(index) {
+        if (index >= data_length) {
+            // 모든 이미지가 로드되었을 때
+            $('#workListContainer').html(list_output);
+            return;
+        }
 
-$(window).on('click', (e) => {
-    if(e.target.id === 'myModal'){
-        $('#myModal').css('display','none');
-        $('.modal-content').html('');
+        let work = json_data[index];
+        let img_data = new Image();
+        img_data.src = `/myWorkFolder/${work}/screenshot_gif.gif`;
+
+        img_data.onload = function() {
+            let calc_width = img_data.width / img_data.height * 2300000;
+            let temp = Math.ceil(calc_width);
+            let width_result = temp / 10000;
+
+            // 배경 이미지 설정
+            let backgroundImageStyle = `background-image: url('/myWorkFolder/${work}/screenshot_gif.gif');`;
+
+            list_output += `
+            <div class="item list${index + 1}" value="/myWorkFolder/${work}/" style="${backgroundImageStyle} width:${width_result}px; background-size: cover;">
+                <span class="list_name">${work.replaceAll('_', ' ')}</span>
+            </div>`;
+
+            // 다음 이미지 로드
+            loadImage(index + 1);
+        };
+
+        img_data.onerror = function() {
+            console.error(`이미지 로드 실패: ${work}`);
+            // 다음 이미지 로드 (오류 발생 시에도 진행)
+            loadImage(index + 1);
+        };
     }
-});
+
+    // 첫 번째 이미지 로드 시작
+    loadImage(currentIndex);
+}
 
 $(document).on('click', '.item', function (e) {
     let temp_url = $(this).attr('value');
