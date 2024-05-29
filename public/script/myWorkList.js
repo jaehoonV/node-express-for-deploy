@@ -19,7 +19,7 @@ window.addEventListener('load', function() {
 
 function init(){
     let xmlhttp = new XMLHttpRequest();
-    let url = "/myWorkFolder/workList.json";
+    let url = "./myWorkFolder/workList.json";
     let json_data;
 
     xmlhttp.onreadystatechange = function () {
@@ -49,7 +49,7 @@ function setWorkList(json_data){
 
         let work = json_data[index];
         let img_data = new Image();
-        img_data.src = `/myWorkFolder/${work}/screenshot_gif.gif`;
+        img_data.src = `./myWorkFolder/${work}/screenshot_gif.gif`;
 
         img_data.onload = function() {
             let calc_width = img_data.width / img_data.height * 2300000;
@@ -57,7 +57,7 @@ function setWorkList(json_data){
             let width_result = temp / 10000;
 
             // 배경 이미지 설정
-            let backgroundImageStyle = `background-image: url('/myWorkFolder/${work}/screenshot_gif.gif');`;
+            let backgroundImageStyle = `background-image: url('./myWorkFolder/${work}/screenshot_gif.gif');`;
 
             list_output += `
             <div class="item list${index + 1}" value="/myWorkFolder/${work}/" style="${backgroundImageStyle} width:${width_result}px; background-size: cover;">
