@@ -5,43 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log Page</title>
-    <link rel="stylesheet" href="/stylesheets/logPage.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.6.0/pagination.css">
-    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.6.0/pagination.js"></script>
-    <script type="text/javascript" src="/script/logPage.js" defer></script>
 </head>
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.13.7/sorting/formatted-numbers.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="/script/logPage.js" defer></script>
+    <link rel="stylesheet" href="/stylesheets/logPage.css">
 <body>
     <header>
         <%- include ('sidebar.ejs') %>
     </header>
     <div class="body_div">
-        <h1 style="margin: 10px auto; width: 150px;">Log Page</h1>
-
         <% if(master_yn){ %>
-            <div id="log_history">
+            <h1 style="margin: 10px auto; text-align: center;">Log</h1>
+            <div class="log_history">
                 <div id="log_data_container">
                     <div class="loader">
                         <span><i></i></span>
                     </div>
                 </div>
-                <div class="pagination-container" id="log_container_page"></div>
             </div>
-            <div id="log_history">
-                <div id="log_act_data_container">
+
+            <h1 style="margin: 10px auto; text-align: center;">Member</h1>
+            <div class="manage_member">
+                <div id="member_data_container">
                     <div class="loader">
                         <span><i></i></span>
                     </div>
                 </div>
-                <div class="pagination-container" id="log_act_container_page"></div>
-            </div>
-            <div id="log_history">
-                <div id="log_move_data_container">
-                    <div class="loader">
-                        <span><i></i></span>
-                    </div>
-                </div>
-                <div class="pagination-container" id="log_move_container_page"></div>
             </div>
         <% } %>
     </div>

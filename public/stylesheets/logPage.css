@@ -3,17 +3,18 @@ body{
     background: #edf1f4;
 }
 
-table,
-th,
-tr,
-td {
-    border: 1px solid black;
+#log_table_filter, #member_table_filter{
+    margin-bottom: 10px;
+}
+
+table.dataTable>thead>tr>th, table.dataTable>thead>tr>td, table.dataTable tbody td { 
+    padding: 3px 4px !important;
 }
 
 .table2 {
-    /* margin: 0 auto; */
+    margin: 0 auto;
     font-size: 10px;
-    width: 100%;
+    width: 1400px;
     border-collapse: collapse;
 }
 
@@ -73,12 +74,110 @@ td {
     width: 300px;
 }
 
+.f_10{
+    font-size: 1rem;
+    font-weight: bold;
+}
+
 .f_8{
     font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.f_6{
+    font-size: 0.6rem;
     font-weight: bold;
 }
 
 .pagination-container{
     width: 350px;
     margin: 20px auto;
- }
+}
+
+/* 로딩 */
+.loader {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader span {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    background: #eaeef0;
+    border: 2px solid #eaeef0;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 1), 8px 8px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.loader span::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    background: rgb(255, 255, 255);
+    border-radius: 50%;
+    border: 2px solid #eaeef0;
+    z-index: 1;
+}
+
+.loader span i {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(#0583ebd4, #f12368db, #f3dd1bd9);
+    border-radius: 50%;
+    filter: blur(5px);
+    animation: animate 1s linear infinite;
+}
+
+@keyframes animate{
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+}
+/* 로딩 */
+
+.btn{
+    width: 70px;
+    border-radius: 5px;
+    font-size: 13px;
+    padding: 2px 14px;
+}
+
+.revoke_btn{
+    background: #ff5b45;
+    color: #ffffff;
+    border: 1px solid #ff5b45;
+    cursor: pointer;
+}
+
+.revoke_btn:hover{
+    background: #df2b14;
+    border: 1px solid #df2b14;
+}
+
+.grant_btn{
+    background: #6ce924;
+    color: #ffffff;
+    border: 1px solid #6ce924;
+    cursor: pointer;
+}
+
+.grant_btn:hover{
+    background: #4bcc00;
+    border: 1px solid #4bcc00;
+}
+
+#log_data_container, #member_data_container{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.log_history, .manage_member{
+    margin-bottom: 20px;
+}
+
+.td_center{
+    text-align: center;
+}

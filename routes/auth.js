@@ -15,11 +15,11 @@ let sql = "SELECT EMAIL, USERNAME, MASTER_YN FROM `MEMBER`";
 let sql_data;
 maria.query(sql, function (err, results) {
   if (err) {
-      console.log(err);
-      res.render('error', {error: err});
+    console.log(err);
+    res.render('error', { error: err });
   }
   sql_data = {
-      "results": results
+    "results": results
   }
 });
 
@@ -35,7 +35,7 @@ router.get('/', (req, res) => {
 })
 
 /* GET main page. */
-router.get('/main', function(req, res, next) {
+router.get('/main', function (req, res, next) {
   if (!authCheck.isOwner(req, res)) {  // login page
     res.redirect('/login');
     return false;
@@ -181,7 +181,7 @@ router.post('/register', function (request, response) {
   if(password == confirm){
     maria.query('SELECT * FROM `MEMBER` WHERE EMAIL = ? ', [email], function (error, results, fields) {
       if (error) throw error;
-      if (results.length > 0) { 
+      if (results.length > 0) {
         response.send(`<script type="text/javascript">alert("이미 가입된 이메일입니다."); 
               document.location.href="/login";</script>`);
       } else {
@@ -214,29 +214,36 @@ router.post('/login_process', function (request, response) {
   var email = request.body.email;
   var password = request.body.password;
   if (email && password) {             // id와 pw가 입력되었는지 확인
-    maria.query('SELECT * FROM `MEMBER` WHERE EMAIL = ? AND PASSWORD = ?', [email, password], function(error, results, fields) {
-          if (error) throw error;
-          if (results.length > 0) {       // db에서의 반환값이 있으면 로그인 성공
-              request.session.is_logined = true;      // 세션 정보 갱신
-              request.session.email = email;
-              request.session.username = results[0].USERNAME;
+    maria.query('SELECT * FROM `MEMBER` WHERE EMAIL = ? AND PASSWORD = ?', [email, password], function (error, results, fields) {
+      if (error) throw error;
+      if (results.length > 0) {       // db에서의 반환값이 있으면 로그인 성공
+        request.session.is_logined = true;      // 세션 정보 갱신
+        request.session.email = email;
+        request.session.username = results[0].USERNAME;
 
-              createLog.insertLog(request, response, 'LOGIN', 'ACT');
+        let use_yn = results[0].USE_YN; // 계정 사용 권한 체크
 
-              if(results[0].MASTER_YN == 'Y'){ // 마스터권한
-                request.session.is_master = true;
-              }
-              request.session.save(function () {
-                  response.redirect(`/`);
-              });
-          } else {              
-              response.send(`<script type="text/javascript">alert("로그인 정보가 일치하지 않습니다."); 
-              document.location.href="/login";</script>`);    
-          }            
-      });
+        if(use_yn == 'N'){
+          response.send(`<script type="text/javascript">alert("회원가입 대기중 입니다."); 
+              document.location.href="/login";</script>`);
+        }else{
+          createLog.insertLog(request, response, 'LOGIN', 'ACT');
+          
+          if(results[0].MASTER_YN == 'Y'){ // 마스터권한
+            request.session.is_master = true;
+          }
+          request.session.save(function () {
+            response.redirect(`/`);
+          });
+        }
+      } else {
+        response.send(`<script type="text/javascript">alert("로그인 정보가 일치하지 않습니다."); 
+              document.location.href="/login";</script>`);
+      }
+    });
   } else {
-      response.send(`<script type="text/javascript">alert("아이디와 비밀번호를 입력하세요!"); 
-      document.location.href="/login";</script>`);    
+    response.send(`<script type="text/javascript">alert("아이디와 비밀번호를 입력하세요!"); 
+      document.location.href="/login";</script>`);
   }
 });
 
@@ -244,7 +251,7 @@ router.post('/login_process', function (request, response) {
 router.get('/logout', function (request, response) {
   createLog.insertLog(request, response, 'LOGOUT', 'ACT');
   request.session.destroy(function (err) {
-      response.redirect('/');
+    response.redirect('/');
   });
 });
 
