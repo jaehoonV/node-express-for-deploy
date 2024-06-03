@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Fullcalendar</title>
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   <script src='fullcalendar-6.1.13/dist/index.global.js'></script>
+   <script src="script.js" defer></script>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+   <div id="calendar_container">
+      <div id="group_select_box">
+         <select name="group_select" id="group_select">
+            <option value="0">default</option>
+            <option value="1">background-events</option>
+            <option value="2">daygrid-views</option>
+            <option value="3">external-dragging-2cals</option>
+            <option value="4">external-dragging-builtin</option>
+            <option value="5">full-height</option>
+            <option value="6">list-sticky-header</option>
+            <option value="7">list-views</option>
+            <option value="8">month-view</option>
+            <option value="9">multimonth-view</option>
+            <option value="10">natural-height</option>
+            <option value="11">selectable</option>
+            <option value="12">timegrid-views-modal</option>
+            <option value="13">timegrid-views</option>
+         </select>
+         <button type="button" id="save_btn">Save</button>
+      </div>
+      <div id='wrap'>
+         <div id='external-events'>
+            <h4>Draggable Events</h4>
+
+            <div id='external-events-list'>
+               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                  <div class='fc-event-main'>My Event 1</div>
+               </div>
+               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                  <div class='fc-event-main'>My Event 2</div>
+               </div>
+               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                  <div class='fc-event-main'>My Event 3</div>
+               </div>
+               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                  <div class='fc-event-main'>My Event 4</div>
+               </div>
+               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                  <div class='fc-event-main'>My Event 5</div>
+               </div>
+            </div>
+
+            <p>
+               <input type='checkbox' id='drop-remove' />
+               <label for='drop-remove'>Remove after drop</label>
+            </p>
+         </div>
+
+         <div id='calendar-wrap'>
+            <div id='calendar'></div>
+         </div>
+
+      </div>
+      <div id="iframe_div"></div>
+   </div>
+</body>
+
+</html>
