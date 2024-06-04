@@ -1,0 +1,50 @@
+.container{
+   width: 710px;
+   margin: 20px auto;
+}
+
+#search{
+   border: 1px solid #ddd;
+   outline: none;
+   width: 200px;
+   border-radius: 5px;
+}
+
+#search:focus {
+   outline:1px solid #afafaf;
+}
+
+input {
+   width: 20rem;
+   height: 2rem;
+   font-size: 1rem;
+}
+
+.user-cards {
+   display: grid;
+   /* 자동 채우기 */
+   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+   gap: 1rem;
+   margin-top: 1rem;
+}
+
+.card {
+   border: 1px solid rgb(243, 243, 243);
+   border-radius: 7px;
+   background-color: rgb(243, 243, 243);
+   box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.1);
+   padding: .5rem;
+}
+
+.card>.name {
+   margin-bottom: .25rem;
+}
+
+.card>.body, .card>.username {
+   font-size: .8rem;
+   color: #777;
+}
+
+.hide {
+   display: none;
+}

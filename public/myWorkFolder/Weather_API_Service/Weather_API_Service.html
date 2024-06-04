@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API Service</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./styles.css">
+    <!-- js -->
+    <script type="module" rel="script" src="./scripts.js" defer></script>
+</head>
+<body>
+    <!-- abPiIAX9s%2BDHXRnUd1X%2BRSPn3gr429SocWtL%2BLhIW3gLaY%2BV8DuQ6ypRPmmeoyfysHbBV0hh1EUSNCqKQR%2F74A%3D%3D -->
+    <div class="container">
+        <div class="input-container">
+            <select name="location" id="location_select">
+                <option value="0">지역</option>
+                <option value="1">서울</option>
+                <option value="2">춘천</option>
+                <option value="3">청주</option>
+                <option value="4">강릉</option>
+                <option value="5">수원</option>
+                <option value="6">안동</option>
+                <option value="7">대전</option>
+                <option value="8">전주</option>
+                <option value="9">대구</option>
+                <option value="10">광주</option>
+                <option value="11">울산</option>
+                <option value="12">부산</option>
+                <option value="13">목포</option>
+                <option value="14">여수</option>
+                <option value="15">제주도</option>
+                <option value="16">울릉도</option>
+                <option value="17">백령도</option>
+                <option value="18">전체</option>
+            </select>
+            <select name="type" id="type_select">
+                <option value="0">타입</option>
+                <option value="1">실황</option>
+                <option value="2">예보</option>
+            </select>
+            <input type="text" id="service-key" placeholder="서비스 키를 입력하세요">
+            <button id="enter_btn">Enter</button>
+        </div>
+        <button id="prev_btn">이전</button>
+        <div id="weather-container"></div>
+    </div>
+</body>
+
+</html>

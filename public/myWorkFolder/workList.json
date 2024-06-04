@@ -20,7 +20,9 @@
     {"name" : "Page_Progress_Bar","width" : 600, "height" : 600},
     {"name" : "Playing_Card_Hover_Effect","width" : 600, "height" : 450},
     {"name" : "Progress_Bar","width" : 400, "height" : 400},
+    {"name" : "Search_Bar_In_JS","width" : 600, "height" : 336},
     {"name" : "Slide_Transitions","width" : 600, "height" : 600},
     {"name" : "Spinning_Wheel_Game","width" : 600, "height" : 600},
-    {"name" : "Typing_JS","width" : 600, "height" : 600}
+    {"name" : "Typing_JS","width" : 600, "height" : 600},
+    {"name" : "Weather_API_Service","width" : 600, "height" : 438}
 ]
