@@ -17,6 +17,7 @@ let myWorkListRouter = require('./routes/myWorkList');
 let chat_containerRouter = require('./routes/chat_container');
 let stockRouter = require('./routes/stock');
 let logPage = require('./routes/logPage');
+let caesar = require('./routes/caesar');
 
 var app = express();
 
@@ -50,6 +51,7 @@ app.use('/my_work_list', myWorkListRouter);
 app.use('/chat_container', chat_containerRouter);
 app.use('/stock', stockRouter);
 app.use('/logPage', logPage);
+app.use('/caesar', caesar);
 
 // 404 Error Handling
 app.all('*',(req, res, next) => {

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caesar</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <form action="/caesar/encrypt" method="POST">
+        <div class="form-group">
+            <label>text</label>
+            <input type="text" class="form-control" name="text" />
+        </div>
+        <div class="form-group">
+            <label>shift</label>
+            <input type="text" class="form-control" name="shift" />
+        </div>
+        <div class="form-group">
+            <label>spe_num</label>
+            <input type="text" class="form-control" name="spe_num" />
+        </div>
+        <button type="submit" class="button_css">Submit</button>
+    </form>
+
+    <form action="/caesar/decrypt" method="POST">
+        <div class="form-group">
+            <label>text</label>
+            <input type="text" class="form-control" name="text" />
+        </div>
+        <div class="form-group">
+            <label>shift</label>
+            <input type="text" class="form-control" name="shift" />
+        </div>
+        <div class="form-group">
+            <label>spe_num</label>
+            <input type="text" class="form-control" name="spe_num" />
+        </div>
+        <button type="submit" class="button_css">Submit</button>
+    </form>
+
+    <div id="ajax_test_div">
+        <input type="text" id="ajax_type" name="ajax_type" placeholder="type"/>
+        <input type="text" id="ajax_text" name="ajax_text" placeholder="text"/>
+        <input type="text" id="ajax_shift" name="ajax_shift" placeholder="shift"/>
+        <input type="text" id="ajax_spe_num" name="ajax_spe_num" placeholder="spe_num"/>
+        <button type="button" id="ajax_test_btn">ajax_test</button>
+    </div>
+    <script>
+    $(document).on("click","#ajax_test_btn",function(e){ 
+        e.preventDefault();
+        let _type = $('#ajax_type').val();
+        let _text = $('#ajax_text').val();
+        let _shift = $('#ajax_shift').val();
+        let _spe_num = $('#ajax_spe_num').val();
+
+        $.ajax({
+            url : "/caesar/result",
+            type : "POST",
+            dataType : "JSON",
+            data: {
+                "type" : _type,
+                "text" : _text,
+                "shift" : _shift,
+                "spe_num" : _spe_num
+            }
+        })
+        .done(function (json){
+            let json_data = JSON.parse(JSON.stringify(json));
+            console.log(json_data);
+            let result = `${json_data.result}`
+            console.log(result);
+        })
+        .fail(function (xhr, status, errorThrown){
+            alert("Ajax failed")
+        })
+    })
+    </script>
+</body>
+
+</html>

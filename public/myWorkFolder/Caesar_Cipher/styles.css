@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+input,
+button {
+    padding: 10px;
+    margin: 5px;
+}
+
+#shift,
+#spe_num {
+    display: inline-block;
+    background-color: #eeeeee;
+    border: 1px solid #eeeeee;
+    border-radius: 5px;
+    padding: 10px 5px;
+    margin: 5px 0px;
+    box-shadow: 0px 0px 5px #8a8a8a;
+    font-size: 12px;
+    width: 50px;
+}
+
+#input_text:focus {
+    outline: none;
+}
+
+#input_text,
+#result_e,
+#result_d {
+    display: inline-block;
+    background-color: #eeeeee;
+    border: 1px solid #eeeeee;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px 0px;
+    box-shadow: 0px 0px 5px #8a8a8a;
+    font-size: 12px;
+}

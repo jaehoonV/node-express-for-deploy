@@ -62,10 +62,10 @@ function weather_enter(){
 async function weather_service(key, loc_x, loc_y, type_val){
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
-        let url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst'; /* 초단기 실황 조회 URL */
+        let url = 'https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst'; /* 초단기 실황 조회 URL */
         let base_time = basic.getTime_weather_u();
         if(type_val == '2'){
-            url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'; /* 단기 예보 조회 URL */
+            url = 'https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst'; /* 단기 예보 조회 URL */
             base_time = basic.getTime_weather_v();
         }
 
