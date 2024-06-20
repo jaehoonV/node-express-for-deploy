@@ -39,9 +39,10 @@ router.get('/main', function (req, res, next) {
     sql_data = {
       "results": results
     }
-  });
 
-  res.render('index', sql_data);
+    res.render('index', sql_data);
+  });
+  
 });
 
 /* POST main */
