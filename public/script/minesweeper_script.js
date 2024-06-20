@@ -1,3 +1,5 @@
+$('#side_minesweeper').addClass('li_active');
+
 function init(){
 
     $.ajax({

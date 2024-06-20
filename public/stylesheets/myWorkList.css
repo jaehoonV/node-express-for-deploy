@@ -13,9 +13,7 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 65vh;
-    padding-top: 20px;
-    padding-left: 120px;
+    padding: 40px 5px 40px 120px;
 }
 
 .item {
@@ -34,6 +32,7 @@ body{
 
 .item:hover{
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.356);
+    transform: translate(3px, -3px);
 }
 
 #movePage_confirmed{

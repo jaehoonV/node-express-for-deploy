@@ -1,6 +1,8 @@
 import Queue from "./Class_queue.js"
 import * as func from "./basic_func.js"
 
+$('#side_stock').addClass('li_active');
+
 const url = "https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo";
 let popup_chart;
 $('#likeItmsNm, #basDt').on("keydown", function(e){

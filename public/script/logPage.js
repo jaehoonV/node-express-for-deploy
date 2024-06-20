@@ -1,3 +1,5 @@
+$('#side_logPage').addClass('li_active');
+
 let results_log;
 let results_log_act;
 let results_log_move;

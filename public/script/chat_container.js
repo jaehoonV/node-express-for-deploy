@@ -1,3 +1,5 @@
+$('#side_chat_container').addClass('li_active');
+
 let master_seq;
 
 /**

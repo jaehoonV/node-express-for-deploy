@@ -8,6 +8,21 @@ h1,h3{
    color: #e2e2e2;
 }
 
+button{
+   background: #f0f0f0;
+   border: 1px solid #f0f0f0;
+   border-radius: 5px;
+   padding: 3px 10px;
+   font-size: 14px;
+   font-weight: 600;
+   cursor: pointer;
+}
+
+button:hover{
+   background: #cccccc;
+   border: 1px solid #cccccc;
+}
+
 .cube {
     position: relative;
     width: 300px;

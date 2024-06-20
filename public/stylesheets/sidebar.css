@@ -103,7 +103,7 @@ header>body {
    border-bottom-left-radius: 30px;
 }
 
-.navigation ul li:hover{
+.navigation ul li:hover, .li_active{
    background: #edf1f4;
    color: #222;
 }
@@ -114,7 +114,7 @@ header>body {
    background: none;
 }
 
-.navigation ul li:not(:first-child):hover::before{
+.navigation ul li:not(:first-child):hover::before, .li_active::before{
    content: '';
    position: absolute;
    top: -20px;
@@ -126,7 +126,7 @@ header>body {
    box-shadow: 7.5px 7.5px 0 7.5px #edf1f4;
 }
 
-.navigation ul li:not(:first-child):hover::after{
+.navigation ul li:not(:first-child):hover::after, .li_active::after{
    content: '';
    position: absolute;
    bottom: -20px;
@@ -138,6 +138,10 @@ header>body {
    box-shadow: 7.5px -7.5px 0 7.5px #edf1f4;
 }
 
+.navigation ul li:hover:not(:first-child) a, .li_active a{
+   color: var(--side-bg-color-dark) !important;
+}
+
 .navigation ul li a {
    position: relative;
    display: block;
@@ -145,10 +149,6 @@ header>body {
    display: flex;
    text-decoration: none;
    color: #fff;
-}
-
-.navigation ul li:hover:not(:first-child) a {
-color: var(--side-bg-color-dark);
 }
 
 .navigation ul li a .icon{

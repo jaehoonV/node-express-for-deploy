@@ -1,3 +1,5 @@
+$('#side_my_work_list').addClass('li_active');
+
 let select_page = '';
 
 window.addEventListener('load', function() {

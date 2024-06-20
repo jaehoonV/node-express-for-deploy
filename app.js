@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 const session = require('express-session');
+const cors = require('cors');
 const FileStore = require('session-file-store')(session);
 const favicon = require('serve-favicon');
 var path = require('path');
@@ -32,6 +33,9 @@ app.use(express.static("public"));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors({
+  origin: '*', // 모든 출처 허용
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -1,6 +1,8 @@
 import Grid from "./Grid.js"
 import Tile from "./Tile.js"
 
+$('#side_2048_daily').addClass('li_active');
+
 $(document).ready(function () {
    $('.hover').hover(function () {
       $(this).addClass('flip');

@@ -1,3 +1,5 @@
+$('#side_lotto').addClass('li_active');
+
 let results_lo; // 전 회차 기록
 let results_lo_num_cnt; // 전 회차 통계
 let results_lo_recently10; // 최근 10회차 통계

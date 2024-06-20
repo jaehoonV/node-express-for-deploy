@@ -18,11 +18,13 @@
         <th>Mail</th>
         <th>Name</th>
         <th>Master</th>
+        <th>Use_YN</th>
       <% for(var obj of results){ %>
         <tr>
           <td class="td_w250"><%= obj.EMAIL %></td>
           <td class="td_w100"><%= obj.USERNAME %></td>
           <td class="td_w100"><%= obj.MASTER_YN %></td>
+          <td class="td_w100"><%= obj.USE_YN %></td>
         </tr>
       <% } %>
     </table>
